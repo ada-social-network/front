@@ -1,14 +1,17 @@
 import React from "react";
+import SearchBar from "./SearchBar"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink mb-3">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink mb-3 border-b-8 border-red">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <a
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-red"
+              className="text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-red"
               href="#pablo"
             >
               AdaHub
@@ -18,7 +21,8 @@ export default function Navbar() {
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-              <i className="fas fa-bars"></i>
+              <FontAwesomeIcon icon={faBars} />
+
             </button>
           </div>
           <div
@@ -28,6 +32,9 @@ export default function Navbar() {
             }
             id="example-navbar-danger"
           >
+            
+            <SearchBar />
+          
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="nav-item">
                 <a
