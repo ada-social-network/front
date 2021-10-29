@@ -1,14 +1,33 @@
 import React from 'react';
-import NavBar from './components/NavBar';
+import { BrowserRouter, Route, Switch, RouteComponentProps } from 'react-router-dom';
+import routes from './routes';
+
 
 
 function App() {
   return (
-    <div className="App">
-      <header>
-        <NavBar />
-      </header>
-    </div>
+    <div>
+        <BrowserRouter>
+                <Switch>
+                    {routes.map((route, index) => {
+                        return (
+                            <Route 
+                                key={index}
+                                path={route.path}
+                                exact={route.exact}
+                                render={(props: RouteComponentProps<any>) => (
+                                    <route.component
+                                        name={route.name} 
+                                        {...props}
+                                        {...route.props}
+                                    />
+                                )}
+                            />
+                        );
+                    })}
+                </Switch>
+            </BrowserRouter>
+        </div>
   );
 }
 
