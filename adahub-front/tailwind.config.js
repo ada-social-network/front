@@ -9,6 +9,15 @@ module.exports = {
           DEFAULT: '#f9dadb',
           dark: '#ff16d1',
         },
+        red: {
+          DEFAULT:'#e74f3c'
+        },
+        blue: {
+          DEFAULT:'#1f78f4'
+        },
+        yellow: {
+          DEFAULT:'#ffcd2b'
+        },
       },
     },
   },
