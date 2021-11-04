@@ -10,14 +10,16 @@ type User = {
 
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const [hasUser, setHasUser] = React.useState(false); // temporaire
+
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink mb-3 border-b-8 border-red">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink border-b-8 border-red">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <a
               className="text-xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-red"
-              href="#pablo"
+              href="/"
             >
               AdaHub
             </a>
@@ -40,16 +42,16 @@ export default function Navbar() {
             
             <SearchBar />
           
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="nav-item">
+            <div className="flex flex-col lg:flex-row list-none lg:ml-auto">
+             
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
+                  href="/login"
                 >
-                  <span className="ml-2">userName LastName</span>
+                  <span className="ml-2">Login</span>
                 </a>
-              </li>
-            </ul>
+            
+            </div>
           </div>
         </div>
       </nav>
