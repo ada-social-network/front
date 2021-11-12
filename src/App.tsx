@@ -7,7 +7,7 @@ import routes from './routes';
 function App() {
 
   return (
-    <div className="overflow-y-hidden">
+    <div>
       <BrowserRouter>
         <Switch>
           {routes.map((route, index) => {
