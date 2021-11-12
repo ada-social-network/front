@@ -41,9 +41,12 @@ const WelcomePage: FunctionComponent = () => {
         {isSmallScreen ? <SideBar small={true} /> : <SideBar small={false} />}
         <div className="flex flex-col mx-12 my-2">
             <h1 className="text-2xl m-4 ">Actualités du Bda</h1>
-          {posts.map((post) => {
+          {posts !== null || undefined ? 
+              posts.map((post) => {
             return <BdaPostCard title={post.title} content={post.content} />;
-          })}
+          })
+        : "Il y a un problème ..."
+        }
         </div>
       </div>
     </div>
