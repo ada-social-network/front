@@ -40,7 +40,7 @@ const handleClose = () => {
               </a>
             </li>
             <li>
-              <a href="/promos">
+              <a href="/family">
                 <MenuTitle name={"Promos"} small={small} icon={faUsers}/>
               </a>
             </li>
