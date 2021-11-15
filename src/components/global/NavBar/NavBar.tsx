@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink border-b-8 border-red">
+      <nav className="fixed w-full items-center justify-between px-2 py-3 bg-pink border-b-8 border-red">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <a
@@ -43,7 +43,6 @@ export default function Navbar() {
             <SearchBar />
           
             <div className="flex flex-col lg:flex-row list-none lg:ml-auto">
-             
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   href="/login"

@@ -21,6 +21,7 @@ module.exports = {
       },
       boxShadow: {
         DEFAULT: "#1f78f4 -15px 15px",
+        'small': "#1f78f4 -5px 5px"
       },
       fontFamily: {
         'sans': ['Oswald', 'Chivo']

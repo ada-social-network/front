@@ -17,13 +17,14 @@ const SideBar: FunctionComponent<Props> = ({small}) => {
 const [isModalOpen, setIsModalOpen] = useState(false)
 const handleClose = () => {
   setIsModalOpen(false)
+  window.location.reload();
 }
   return (
     <>
 
       <div className={small? ("w-14") : ("w-44")}>
-        <div className="h-screen flex flex-col bg-white border-4 border-pink overflow-hidden">
-          <ul className="flex flex-col py-4">
+        <div className="fixed mt-20 h-screen flex flex-col bg-white border-4 border-pink overflow-hidden">
+          <ul className="flex flex-col mr-4 py-4">
             <li>
               <a href="/">
                 <MenuTitle name={"Actualités"} small={small} icon={faGlobe}/>
