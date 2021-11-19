@@ -1,15 +1,15 @@
 
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
-import { Formik, Field, Form, FormikProps } from 'formik';
+import { Formik, Field, Form, FormikProps, FormikHelpers } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios'
 
 interface FormValues {
-  firstName: string
-  lastName: string
+  first_name: string
+  last_name: string
   password: string
-  confirmPassword: string
+  // confirmPassword: string
   email: string
 }
 
@@ -52,70 +52,63 @@ const RegistrationForm: React.FunctionComponent = () => {
       type: '',
   })
 
-  const baseUrl = "http://localhost:8080/api/rest/v1/users"
+  const baseUrl = "http://localhost:8080/auth/register"
   const [succes, setSuccess] = useState(false)
-
-  const createNewUser = async (data: FormValues, resetForm: Function) => {
-    try {
-        if (data) {
-          axios.post<FormValues>(baseUrl, JSON.stringify(data)).then((response)=> {
-            setSuccess(true)
-          })
-            setFormStatus(formStatusProps.success)
-            resetForm({})
-            redirectWelcome()
-        }
-    } catch (error: any) {
-        const response = error.response
-        if (
-            response.data === 'user already exist' &&
-            response.status === 400
-        ) {
-            setFormStatus(formStatusProps.duplicate)
-        } else {
-            setFormStatus(formStatusProps.error)
-        }
-    } finally {
-        setDisplayFormStatus(true)
-    }
-  }
 
 	return (
 		<Formik
       initialValues={{
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         password: '',
-        confirmPassword: '',
+        // confirmPassword: '',
         email: '',
       }}
-      onSubmit={(values: FormValues, actions) => {
-        createNewUser(values, actions.resetForm)
-        setTimeout(() => {
-            actions.setSubmitting(false)
-            setSuccess(false)
-        }, 500)
-    }}
-    validationSchema={Yup.object().shape({
-      email: Yup.string()
-          .email()
-          .required('Veuillez entrez une adresse mail valide'),
-      lastName: Yup.string().required('Veuillez entrer votre nom'),
-      firstName: Yup.string().required('Veuillez entrer votre prénom'),
-      password: Yup.string()
-          .matches(
-              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-          )
-          .required('required'),
-      confirmPassword: Yup.string()
-          .required('Requis')
-          .test(
-              'password-match',
-              'Password musth match',
-              function (value) {
-                  return this.parent.password === value
-              }
-          ),
+      onSubmit={(
+        values: FormValues,
+        { setSubmitting }: FormikHelpers<FormValues>
+      ) => {
+        axios.post<FormValues>(baseUrl, JSON.stringify(values))
+        .then((response)=> {
+          setSuccess(true)
+          setFormStatus(formStatusProps.success)
+          setTimeout(() => {redirectWelcome()}, 1500)
+        })
+        .catch (function(error) {
+          const response = error.response
+          setSubmitting(false)
+          setSuccess(false)
+            if (
+              response.data.message === 'this email is already taken' &&
+              response.status === 409
+            ) {
+              setFormStatus(formStatusProps.duplicate)
+            } else {
+              setFormStatus(formStatusProps.error)
+            }
+          })
+        .finally(() => setDisplayFormStatus(true))
+      }}
+      validationSchema={Yup.object().shape({
+        email: Yup.string()
+            .email()
+            .required('Veuillez entrez une adresse mail valide'),
+        last_name: Yup.string().required('Veuillez entrer votre nom'),
+        first_name: Yup.string().required('Veuillez entrer votre prénom'),
+        password: Yup.string()
+            .matches(
+                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+            )
+            .required('required'),
+      // confirmPassword: Yup.string()
+      //     .required('Requis')
+      //     .test(
+      //         'password-match',
+      //         'Password musth match',
+      //         function (value) {
+      //             return this.parent.password === value
+      //         }
+      //     ),
       })}
     >
       {(props: FormikProps<FormValues>) => {
@@ -143,40 +136,40 @@ const RegistrationForm: React.FunctionComponent = () => {
                     <div className="relative w-full mt-8">
                       <Field
                         className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
-                        id="lastName" 
-                        name="lastName" 
+                        id="last_name" 
+                        name="last_name" 
                         placeholder="Nom"
-                        value={values.lastName}
+                        value={values.last_name}
                         style={{ transition: "all .15s ease" }}
                         error={
-                            errors.lastName && touched.lastName
+                            errors.last_name && touched.last_name
                                 ? true
                                 : false
                         }
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
-                      {errors.lastName && touched.lastName ? 
-                        <div className="text-xs text-red">{errors.lastName}</div> : ''}
+                      {errors.last_name && touched.last_name ? 
+                        <div className="text-xs text-red">{errors.last_name}</div> : ''}
 
                     </div><div className="relative w-full mt-5">
                       <Field
                         className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
-                        id="firstName" 
-                        name="firstName" 
+                        id="first_name" 
+                        name="first_name" 
                         placeholder="Prenom"
-                        value={values.firstName}
+                        value={values.first_name}
                         style={{ transition: "all .15s ease" }}
                         error={
-                            errors.firstName && touched.firstName
+                            errors.first_name && touched.first_name
                                 ? true
                                 : false
                         }
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
-                      {errors.firstName && touched.firstName ? 
-                        <div className="text-xs text-red">{errors.firstName} </div> : ''}
+                      {errors.first_name && touched.first_name ? 
+                        <div className="text-xs text-red">{errors.first_name} </div> : ''}
                     </div>
                     <div className="relative w-full mt-5">
                       <Field
@@ -220,8 +213,8 @@ const RegistrationForm: React.FunctionComponent = () => {
                         Veuillez entrer un mot de passe valide: au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial
                       </div> : ''}
                     </div>
-                    <div className="relative w-full mt-5">
-                      <Field
+                    {/* <div className="relative w-full mt-5"> */}
+                      {/* <Field
                         className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
                         id="confirmPassword" 
                         name="confirmPassword" 
@@ -239,7 +232,7 @@ const RegistrationForm: React.FunctionComponent = () => {
                       />
                       {errors.confirmPassword && touched.confirmPassword ? 
                         <div className="text-xs text-red">{errors.confirmPassword}</div> : ''}
-                    </div>
+                    </div> */}
                     <div className="text-center mt-6 mb-10">
                       <button
                         className="bg-white text-black active:bg-gray-700 font-bold px-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
