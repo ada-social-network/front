@@ -148,8 +148,8 @@ const RegistrationForm: FunctionComponent = () => {
                     {errors.last_name && touched.last_name
                       ? <div className="text-xs text-red">{errors.last_name}</div>
                       : ''}
-
-                  </div><div className="relative w-full mt-5">
+                  </div>
+                  <div className="relative w-full mt-5">
                     <Field
                       className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
                       id="first_name"
