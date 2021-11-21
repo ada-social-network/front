@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function Searchbar() {
+export default function Searchbar () {
   return (
     <div className="pt-2 relative mx-auto text-gray-600">
       <input
@@ -27,5 +25,5 @@ export default function Searchbar() {
         </svg>
       </button>
     </div>
-  );
+  )
 }
