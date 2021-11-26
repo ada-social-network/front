@@ -1,5 +1,5 @@
-import React from "react";
-import SearchBar from "./SearchBar"
+import { useState } from 'react'
+import SearchBar from './SearchBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
@@ -8,9 +8,9 @@ type User = {
   lastName: String,
 }
 
-export default function Navbar() {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
-  const [hasUser, setHasUser] = React.useState(false); // temporaire
+export default function Navbar () {
+  const [navbarOpen, setNavbarOpen] = useState(false)
+  const [hasUser, setHasUser] = useState(false) // temporaire
 
   return (
     <>
@@ -29,31 +29,27 @@ export default function Navbar() {
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
               <FontAwesomeIcon icon={faBars} />
-
             </button>
           </div>
           <div
             className={
-              "lg:flex flex-grow items-center" +
-              (navbarOpen ? " flex" : " hidden")
+              'lg:flex flex-grow items-center' +
+              (navbarOpen ? ' flex' : ' hidden')
             }
             id="example-navbar-danger"
           >
-            
             <SearchBar />
-          
             <div className="flex flex-col lg:flex-row list-none lg:ml-auto">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="/login"
-                >
-                  <span className="ml-2">Login</span>
-                </a>
-            
+              <a
+                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                href="/login"
+              >
+                <span className="ml-2">Login</span>
+              </a>
             </div>
           </div>
         </div>
       </nav>
     </>
-  );
+  )
 }

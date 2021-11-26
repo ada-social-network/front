@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 import {
   BrowserRouter,
   Route,
   Switch,
-  RouteComponentProps,
-} from "react-router-dom";
-import Layout from "./components/global/Layout";
-import LoginPage from "./components/LoginPage/LoginPage";
-import RegistrationPage from "./components/RegistrationPage/RegistrationPage";
-import routes from "./routes";
+  RouteComponentProps
+} from 'react-router-dom'
+import Layout from './components/global/Layout'
+import LoginPage from './components/LoginPage/LoginPage'
+import RegistrationPage from './components/RegistrationPage/RegistrationPage'
+import routes from './routes'
 
-function App() {
+function App () {
   return (
     <div className="overflow-y-hidden">
       <BrowserRouter>
@@ -35,12 +35,12 @@ function App() {
                   </Layout>
                 )}
               />
-            );
+            )
           })}
         </Switch>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

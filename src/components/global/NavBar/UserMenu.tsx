@@ -1,15 +1,13 @@
-import { FunctionComponent } from "react"
-
-
-
+import { FunctionComponent } from 'react'
 interface Props {
 
 }
 
 const UserMenu: FunctionComponent<Props> = () => {
-    return (
-        <div>
-        </div>
-)}
+  return (
+    <div>
+    </div>
+  )
+}
 
-export default UserMenu;
+export default UserMenu

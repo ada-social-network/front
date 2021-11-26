@@ -1,11 +1,10 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
+import axios from 'axios'
 
-import axios from "axios";
+import PromoCard from './PromoCard'
 
-import PromoCard from "./PromoCard";
-
-const baseUrl = "http://localhost:8080/api/rest/v1/promo";
+const baseUrl = 'http://localhost:8080/api/rest/v1/promo'
 
 interface Promo {
   ID: Number;
@@ -21,35 +20,35 @@ interface Promo {
 type PromoList = Promo[];
 
 const FamilyPage: FunctionComponent = () => {
-  const [promos, setPromos] = useState<PromoList>();
+  const [promos, setPromos] = useState<PromoList>()
 
   useEffect(() => {
     axios
       .get<PromoList>(baseUrl)
       .then((response) => {
-        setPromos(response.data);
+        setPromos(response.data)
       })
       .catch(function (error) {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
         } else if (error.request) {
-          console.log(error.request);
+          console.log(error.request)
         } else {
-          console.log("Error", error.message);
+          console.log('Error', error.message)
         }
-        console.log(error.config);
+        console.log(error.config)
         setPromos([
           {
             ID: 0,
-            promo_name: "Error",
+            promo_name: 'Error',
             biography:
-              "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau",
-          },
-        ]);
-      });
-  }, []);
+              "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau"
+          }
+        ])
+      })
+  }, [])
 
   if (!promos) return <div>hey</div>
 
@@ -59,16 +58,14 @@ const FamilyPage: FunctionComponent = () => {
       <div className="grid grid-cols-3 gap-6">
         {promos !== null || undefined
           ? promos.map((promo, i) => {
-              return (
-                <div>
-                  <PromoCard key={i} {...promo} />
-                </div>
-              );
-            })
-          : "Il y a un problème ..."}
+            return (
+              <PromoCard key={i} {...promo} />
+            )
+          })
+          : 'Il y a un problème ...'}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FamilyPage;
+export default FamilyPage

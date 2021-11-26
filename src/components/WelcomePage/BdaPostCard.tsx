@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
-import DateComponent from "./DateComponent";
+import { FunctionComponent } from 'react'
+import DateComponent from './DateComponent'
 
 interface Props {
   title?: String;
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const BdaPostCard: FunctionComponent<Props> = ({ title, content, CreatedAt }) => {
-  if (!title) title = "Pas de titre :(";
+  if (!title) title = 'Pas de titre :('
   return (
     <>
       <div className="bg-white w-full flex flex-col m-6">
@@ -21,7 +21,7 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, CreatedAt }) =>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default BdaPostCard;
+export default BdaPostCard
