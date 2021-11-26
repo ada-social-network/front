@@ -43,7 +43,6 @@ const routes: IRoute[] = [
     component: ForumPage,
     exact: true
   }
-
 ]
 
 export default routes

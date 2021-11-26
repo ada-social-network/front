@@ -1,12 +1,10 @@
-import { FunctionComponent } from "react";
-import { useMediaQuery } from "react-responsive";
-import NavBar from "./NavBar/NavBar";
-import SideBar from "./SideBar/SideBar";
+import { FunctionComponent } from 'react'
+import { useMediaQuery } from 'react-responsive'
+import NavBar from './NavBar/NavBar'
+import SideBar from './SideBar/SideBar'
 
-
-
-const Layout: FunctionComponent = ({ children}) => {
-  const isSmallScreen = useMediaQuery({ query: "(max-width: 900px)" });
+const Layout: FunctionComponent = ({ children }) => {
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 900px)' })
 
   return (
     <div>
@@ -16,7 +14,7 @@ const Layout: FunctionComponent = ({ children}) => {
         {children}
       </div>
     </div>
-  );
-};
-  
-export default Layout;
+  )
+}
+
+export default Layout
