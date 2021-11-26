@@ -2,13 +2,14 @@
 import { useState, FunctionComponent } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Formik, Field, Form, FormikProps, FormikHelpers } from 'formik'
-import axios from 'axios'
+// import axios from 'axios'
+import * as Yup from 'yup'
+import { login } from '../../services/auth.service'
 
 interface FormValues {
   email: string
   password: string
 }
-
 interface FormStatus {
   message: string
   type: string
@@ -46,49 +47,99 @@ const LoginForm: FunctionComponent = () => {
     history.push('/')
   }
 
+  const initialValues: {
+    email: string;
+    password: string;
+  } = {
+    email: '',
+    password: ''
+  }
+
+  // const [loading, setLoading] = useState<boolean>(false)
+  // const [message, setMessage] = useState<string>('')
+
+  const handleLogin = (FormValues: { email: string; password: string }) => {
+    const { email, password } = FormValues
+
+    // setMess age('')
+    // setLoading(true)
+
+    login(email, password).then(
+      () => {
+        setFormStatus(formStatusProps.success)
+        setTimeout(() => { redirectWelcome() }, 1500)
+        window.location.reload()
+      }
+      // setLoading(false)
+      // setMessage(resMessage)
+    )
+      .catch(function (error) {
+        const response = error.response
+        // setSubmitting(false)
+        console.log(error)
+
+        // if (
+        //   response.data.message === 'wrong email' &&
+        //       response.status === 400
+        // ) {
+        //   setFormStatus(formStatusProps.email)
+        // } else if (
+        //   response.data.message === 'wrong password' &&
+        //       response.status === 400
+        // ) {
+        //   setFormStatus(formStatusProps.password)
+        // } else {
+        //   setFormStatus(formStatusProps.error)
+        // }
+      })
+      .finally(() => setDisplayFormStatus(true))
+  }
+
   const [displayFormStatus, setDisplayFormStatus] = useState(false)
   const [formStatus, setFormStatus] = useState<FormStatus>({
     message: '',
     type: ''
   })
 
-  const baseUrl = 'http://localhost:8080/auth/login'
+  // const baseUrl = 'http://localhost:8080/auth/login'
 
   return (
     <Formik
-      initialValues={{
-        email: '',
-        password: ''
-      }}
-      onSubmit={(
-        values: FormValues,
-        { setSubmitting }: FormikHelpers<FormValues>
-      ) => {
-        axios.post<FormValues>(baseUrl, JSON.stringify(values))
-          .then((response) => {
-            setFormStatus(formStatusProps.success)
-            setTimeout(() => { redirectWelcome() }, 1500)
-          })
-          .catch(function (error) {
-            console.log(JSON.stringify(values))
-            const response = error.response
-            setSubmitting(false)
-            if (
-              response.data.message === 'wrong email' &&
-              response.status === 400
-            ) {
-              setFormStatus(formStatusProps.email)
-            } else if (
-              response.data.message === 'wrong password' &&
-              response.status === 400
-            ) {
-              setFormStatus(formStatusProps.password)
-            } else {
-              setFormStatus(formStatusProps.error)
-            }
-          })
-          .finally(() => setDisplayFormStatus(true))
-      }}
+      initialValues={initialValues}
+      validationSchema={Yup.object().shape({
+        email: Yup.string().required('This field is required!'),
+        password: Yup.string().required('This field is required!')
+      })}
+      onSubmit={handleLogin}
+      // onSubmit={(
+      //   values: FormValues,
+      //   { setSubmitting }: FormikHelpers<FormValues>
+      // ) => {
+      //   axios.post<FormValues>(baseUrl, JSON.stringify(values))
+      //     .then((response) => {
+      //       setFormStatus(formStatusProps.success)
+      //       setTimeout(() => { redirectWelcome() }, 1500)
+      //     })
+      //     .catch(function (error) {
+      //       console.log(JSON.stringify(values))
+      //       const response = error.response
+      //       setSubmitting(false)
+      //       if (
+      //         response.data.message === 'wrong email' &&
+      //         response.status === 400
+      //       ) {
+      //         setFormStatus(formStatusProps.email)
+      //       } else if (
+      //         response.data.message === 'wrong password' &&
+      //         response.status === 400
+      //       ) {
+      //         setFormStatus(formStatusProps.password)
+      //       } else {
+      //         setFormStatus(formStatusProps.error)
+      //       }
+      //     })
+      //     .finally(() => setDisplayFormStatus(true))
+      // }}
     >
       {(props: FormikProps<FormValues>) => {
         const {

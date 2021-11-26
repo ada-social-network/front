@@ -4,10 +4,10 @@ const API_URL = 'http://localhost:8080/auth/'
 
 export const login = (email: string, password: string) => {
   return axios
-    .post(API_URL + 'login', {
-      email,
-      password
-    })
+    .post(API_URL + 'login', JSON.stringify({
+      email, password
+    }),
+    { headers: { 'Content-Type': 'application/json' } })
     .then((response) => {
       if (response.data.accessToken) {
         localStorage.setItem('user', JSON.stringify(response.data))
