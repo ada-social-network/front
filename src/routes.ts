@@ -45,18 +45,6 @@ const routes: IRoute[] = [
         component: ForumPage,
         exact: true
     },
-    {
-        path: '/login',
-        name: 'Login Page',
-        component: LoginPage,
-        exact: true
-    },
-    {
-        path: '/registration',
-        name: 'Registration Page',
-        component: RegistrationPage,
-        exact: true
-    },
 
 ]
 
