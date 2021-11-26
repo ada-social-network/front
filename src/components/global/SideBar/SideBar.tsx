@@ -15,7 +15,6 @@ const SideBar: FunctionComponent<Props> = ({ small }) => {
   }
   return (
     <>
-
       <div className={small ? ('w-14') : ('w-44')}>
         <div className="fixed mt-20 h-screen flex flex-col bg-white border-4 border-pink overflow-hidden">
           <ul className="flex flex-col mr-4 py-4">
@@ -66,7 +65,6 @@ const SideBar: FunctionComponent<Props> = ({ small }) => {
               </div>
             </div>
             : null }
-
         </div>
       </div>
     </>

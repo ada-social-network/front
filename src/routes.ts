@@ -3,8 +3,6 @@ import ProfilePage from './components/ProfilePage/ProfilePage'
 import CalendarPage from './components/CalendarPage/CalendarPage'
 import FamilyPage from './components/FamilyPage/FamilyPage'
 import ForumPage from './components/ForumPage/ForumPage'
-import LoginPage from './components/LoginPage/LoginPage'
-import RegistrationPage from './components/RegistrationPage/RegistrationPage'
 
 interface IRoute {
     path: string;
@@ -43,18 +41,6 @@ const routes: IRoute[] = [
     path: '/forum',
     name: 'Forum Page',
     component: ForumPage,
-    exact: true
-  },
-  {
-    path: '/login',
-    name: 'Login Page',
-    component: LoginPage,
-    exact: true
-  },
-  {
-    path: '/registration',
-    name: 'Registration Page',
-    component: RegistrationPage,
     exact: true
   }
 
