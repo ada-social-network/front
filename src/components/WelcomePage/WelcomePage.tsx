@@ -53,7 +53,7 @@ const WelcomePage: FunctionComponent = () => {
   return (
     <div>
       <h1 className="text-2xl m-4 ">Actualités du Bda</h1>
-      {posts !== null || undefined
+      {posts
         ? posts.map((post, i) => {
           return <BdaPostCard key={i} {...post} />
         })
