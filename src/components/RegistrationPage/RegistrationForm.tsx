@@ -1,9 +1,9 @@
 
 import { useState, FunctionComponent } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Formik, Field, Form, FormikProps, FormikHelpers } from 'formik'
+import { Formik, Field, Form, FormikProps } from 'formik'
 import * as Yup from 'yup'
-import axios from 'axios'
+import { register } from '../../services/auth.service'
 
 interface FormValues {
   first_name: string
@@ -24,15 +24,15 @@ interface FormStatusProps {
 
 const formStatusProps: FormStatusProps = {
   success: {
-    message: 'Signed up successfully.',
+    message: 'Votre inscription a été prise en compte',
     type: 'success'
   },
   duplicate: {
-    message: 'Email-id already exist. Please use different email-id.',
+    message: 'Cet e-mail a déjà été utilisé',
     type: 'error'
   },
   error: {
-    message: 'Something went wrong. Please try again.',
+    message: 'Une erreur est survenue',
     type: 'error'
   }
 }
@@ -52,62 +52,61 @@ const RegistrationForm: FunctionComponent = () => {
     type: ''
   })
 
-  const baseUrl = 'http://localhost:8080/auth/register'
+  const initialValues = {
+    first_name: '',
+    last_name: '',
+    password: '',
+    confirmPassword: '',
+    email: ''
+  }
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required('Veuillez entrez une adresse mail valide'),
+    last_name: Yup.string().required('Veuillez entrer votre nom'),
+    first_name: Yup.string().required('Veuillez entrer votre prénom'),
+    password: Yup.string()
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+      )
+      .required('required'),
+    confirmPassword: Yup.string()
+      .required('Requis')
+      .test(
+        'password-match',
+        'Le mot de passe doit être identique',
+        function (value) {
+          return this.parent.password === value
+        }
+      )
+  })
+
+  const handleRegister = (values: FormValues) => {
+    register(values)
+      .then((response) => {
+        setFormStatus(formStatusProps.success)
+        setTimeout(() => { redirectWelcome() }, 1500)
+      })
+      .catch(function (error) {
+        const response = error.response
+        if (
+          response.data.message === 'this email is already taken' &&
+          response.status === 409
+        ) {
+          setFormStatus(formStatusProps.duplicate)
+        } else {
+          setFormStatus(formStatusProps.error)
+        }
+      })
+      .finally(() => setDisplayFormStatus(true))
+  }
 
   return (
     <Formik
-      initialValues={{
-        first_name: '',
-        last_name: '',
-        password: '',
-        confirmPassword: '',
-        email: ''
-      }}
-      onSubmit={(
-        values: FormValues,
-        { setSubmitting }: FormikHelpers<FormValues>
-      ) => {
-        axios.post<FormValues>(baseUrl, JSON.stringify(values))
-          .then((response) => {
-            setFormStatus(formStatusProps.success)
-            setTimeout(() => { redirectWelcome() }, 1500)
-          })
-          .catch(function (error) {
-            console.log(JSON.stringify(values))
-            const response = error.response
-            setSubmitting(false)
-            if (
-              response.data.message === 'this email is already taken' &&
-              response.status === 409
-            ) {
-              setFormStatus(formStatusProps.duplicate)
-            } else {
-              setFormStatus(formStatusProps.error)
-            }
-          })
-          .finally(() => setDisplayFormStatus(true))
-      }}
-      validationSchema={Yup.object().shape({
-        email: Yup.string()
-          .email()
-          .required('Veuillez entrez une adresse mail valide'),
-        last_name: Yup.string().required('Veuillez entrer votre nom'),
-        first_name: Yup.string().required('Veuillez entrer votre prénom'),
-        password: Yup.string()
-          .matches(
-            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-          )
-          .required('required'),
-        confirmPassword: Yup.string()
-          .required('Requis')
-          .test(
-            'password-match',
-            'Password musth match',
-            function (value) {
-              return this.parent.password === value
-            }
-          )
-      })}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleRegister}
     >
       {(props: FormikProps<FormValues>) => {
         const {
@@ -148,8 +147,8 @@ const RegistrationForm: FunctionComponent = () => {
                     {errors.last_name && touched.last_name
                       ? <div className="text-xs text-red">{errors.last_name}</div>
                       : ''}
-
-                  </div><div className="relative w-full mt-5">
+                  </div>
+                  <div className="relative w-full mt-5">
                     <Field
                       className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
                       id="first_name"
