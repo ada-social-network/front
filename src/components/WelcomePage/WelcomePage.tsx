@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive'
 
 import axios from 'axios'
 import BdaPostCard from './BdaPostCard'
+import authHeader from '../../services/auth-header'
 
 const baseUrl = 'http://localhost:8080/api/rest/v1/bdaposts'
 
@@ -23,7 +24,7 @@ const WelcomePage: FunctionComponent = () => {
 
   useEffect(() => {
     axios
-      .get<BdaPostList>(baseUrl)
+      .get<BdaPostList>(baseUrl, { headers: { Authorization: authHeader() } })
       .then((response) => {
         setPosts(response.data.reverse())
       })

@@ -14,8 +14,8 @@ export const login = (email: string, password: string) => {
     }),
     { headers: { 'Content-Type': 'application/json' } })
     .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem('user', JSON.stringify(response.data))
+      if (response.data.token) {
+        localStorage.setItem('user', JSON.stringify(response.data.token))
       }
       return response.data
     })
