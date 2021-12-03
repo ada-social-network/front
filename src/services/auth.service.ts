@@ -14,6 +14,7 @@ export const login = (email: string, password: string) => {
     }),
     { headers: { 'Content-Type': 'application/json' } })
     .then((response) => {
+      console.log(response)
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data.token))
       }
@@ -23,11 +24,4 @@ export const login = (email: string, password: string) => {
 
 export const logout = () => {
   localStorage.removeItem('user')
-}
-
-export const getCurrentUser = () => {
-  const userStr = localStorage.getItem('user')
-  if (userStr) return JSON.parse(userStr)
-
-  return null
 }
