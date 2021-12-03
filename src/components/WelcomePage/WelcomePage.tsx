@@ -1,11 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { useMediaQuery } from 'react-responsive'
-
-import axios from 'axios'
 import BdaPostCard from './BdaPostCard'
-import authHeader from '../../services/auth-header'
-
-const baseUrl = 'http://localhost:8080/api/rest/v1/bdaposts'
+import { getBdaPosts } from '../../services/post.service'
 
 interface BdaPost {
     ID: Number;
@@ -23,10 +18,9 @@ const WelcomePage: FunctionComponent = () => {
   const [posts, setPosts] = useState<BdaPostList>()
 
   useEffect(() => {
-    axios
-      .get<BdaPostList>(baseUrl, { headers: { Authorization: authHeader() } })
-      .then((response) => {
-        setPosts(response.data.reverse())
+    getBdaPosts()
+      .then((posts) => {
+        setPosts(posts.reverse())
       })
       .catch(function (error) {
         if (error.response) {

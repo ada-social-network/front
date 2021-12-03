@@ -1,8 +1,8 @@
 import axios from 'axios'
-import internal from 'stream'
+import App from '../App'
 import authHeader from './auth-header'
 
-const API_URL = 'http://localhost:8080/api/rest/v1/me'
+const API_URL = 'http://localhost:8080/api/rest/v1/'
 
 type User = {
   ID: Number;
@@ -29,11 +29,16 @@ interface Me {
   userName: String,
   userEmail : String
 }
+
 export const getCurrentUser = () => {
   return axios
-    .get<Me>(API_URL, { headers: { Authorization: authHeader() } })
-    .then((res) => {
-      console.log(res)
-      return res
+    .get<Me>(API_URL + 'me', { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response
     })
+}
+
+export const getPromoList = () => {
+  return axios
+    .get(API_URL + 'promos', { headers: { Authorization: authHeader() } })
 }

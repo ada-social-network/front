@@ -1,7 +1,7 @@
 
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { FunctionComponent, useState } from 'react'
-import axios from 'axios'
+import { postBdaPost } from '../../../services/post.service'
 
 interface Values {
   title: string;
@@ -14,7 +14,6 @@ interface Props {
 }
 
 const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
-  const baseUrl = 'http://localhost:8080/api/rest/v1/bdaposts'
   const [succes, setSuccess] = useState(false)
   return (
     <div>
@@ -29,9 +28,10 @@ const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
             values: Values,
             { setSubmitting }: FormikHelpers<Values>
           ) => {
-            axios.post<Values>(baseUrl, JSON.stringify(values)).then((response) => {
-              setSuccess(true)
-            })
+            postBdaPost(values)
+              .then((response) => {
+                setSuccess(true)
+              })
             setSubmitting(false)
             setTimeout(onClose, 500)
             setSuccess(false)

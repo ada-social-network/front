@@ -14,7 +14,6 @@ export const login = (email: string, password: string) => {
     }),
     { headers: { 'Content-Type': 'application/json' } })
     .then((response) => {
-      console.log(response)
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data.token))
       }

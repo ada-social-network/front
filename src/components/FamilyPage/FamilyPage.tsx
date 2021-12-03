@@ -1,11 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-
-import axios from 'axios'
-
 import PromoCard from './PromoCard'
-import authHeader from '../../services/auth-header'
-
-const baseUrl = 'http://localhost:8080/api/rest/v1/promos'
+import { getPromoList } from '../../services/user.service'
 
 interface Promo {
   ID: Number;
@@ -24,8 +19,7 @@ const FamilyPage: FunctionComponent = () => {
   const [promos, setPromos] = useState<PromoList>()
 
   useEffect(() => {
-    axios
-      .get<PromoList>(baseUrl, { headers: { Authorization: authHeader() } })
+    getPromoList()
       .then((response) => {
         setPromos(response.data)
       })
