@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SearchBar from './SearchBar'
+import Dropdown from './Dropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
@@ -40,12 +41,9 @@ export default function Navbar () {
           >
             <SearchBar />
             <div className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <a
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                href="/login"
-              >
-                <span className="ml-2">Login</span>
-              </a>
+            
+                <span className="ml-2"><Dropdown/></span>
+            
             </div>
           </div>
         </div>
