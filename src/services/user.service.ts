@@ -1,4 +1,5 @@
 import axios from 'axios'
+import React, { FunctionComponent, useEffect } from 'react'
 import App from '../App'
 import authHeader from './auth-header'
 
@@ -21,7 +22,7 @@ export type User = {
   github?: String,
   linkedin?: String,
   mbti?: String,
-  is_admin: String,
+  is_admin?: String,
   promo_id?: Number,
 }
 

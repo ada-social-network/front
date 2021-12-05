@@ -1,11 +1,12 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react'
 import { createPopper } from '@popperjs/core'
-import { getCurrentUser, User } from '../../../services/user.service'
+import { User } from '../../../services/user.service'
 import { Redirect, useHistory } from 'react-router-dom'
-import { logOut } from '../../../services/auth.service'
+
+import { useUserContext } from '../../../context/userContext'
 
 const Dropdown = () => {
-  const [currentUser, setCurrentUser] = useState<User>()
+  /*  const [currentUser, setCurrentUser] = useState<User>()
   useEffect(() => {
     getCurrentUser()
       .then((user) => {
@@ -23,7 +24,10 @@ const Dropdown = () => {
         }
         console.log(error.config)
       })
-  }, [])
+  }, []) */
+
+  const { user, userLogOut } = useUserContext()
+
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
   const btnDropdownRef = React.createRef<HTMLButtonElement>()
   const popoverDropdownRef = React.createRef<HTMLInputElement>()
@@ -52,7 +56,7 @@ const Dropdown = () => {
                 : openDropdownPopover()
             }}
           >
-            <p> {currentUser ? currentUser?.first_name : 'login button to do' }</p>
+            {user.first_name !== '' ? user.first_name : 'login button to do' }
           </button>
           <div
             ref={popoverDropdownRef}
@@ -86,7 +90,7 @@ const Dropdown = () => {
               className=
                 "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent "
 
-              onClick={logOut}
+              onClick={userLogOut}
 
             >
                             Se déconnecter
