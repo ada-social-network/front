@@ -40,11 +40,9 @@ export default function Navbar () {
             id="example-navbar-danger"
           >
             <SearchBar />
-            <div className="flex flex-col lg:flex-row list-none lg:ml-auto">
-            
-                <span className="ml-2"><Dropdown/></span>
-            
-            </div>
+
+            <Dropdown/>
+
           </div>
         </div>
       </nav>

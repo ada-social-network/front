@@ -4,7 +4,7 @@ import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:8080/api/rest/v1/'
 
-type User = {
+export type User = {
   ID: Number;
   CreatedAt?: Date;
   UpdatedAt?: Date;
@@ -26,15 +26,25 @@ type User = {
 }
 
 interface Me {
-  userName: String,
+  userID: Number,
   userEmail : String
 }
 
-export const getCurrentUser = () => {
+const getCurrentUserId = async () => {
   return axios
     .get<Me>(API_URL + 'me', { headers: { Authorization: authHeader() } })
     .then((response) => {
-      return response
+      return response.data.userID
+    })
+}
+
+export const getCurrentUser = async () => {
+  const userId = await getCurrentUserId()
+  console.log(userId)
+  return axios
+    .get<User>(API_URL + 'users/' + userId, { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response.data
     })
 }
 

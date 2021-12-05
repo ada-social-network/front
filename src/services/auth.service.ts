@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 const API_URL = 'http://localhost:8080/auth/'
 
@@ -21,6 +22,7 @@ export const login = (email: string, password: string) => {
     })
 }
 
-export const logout = () => {
+export const logOut = () => {
   localStorage.removeItem('user')
+  window.location.replace('/login')
 }
