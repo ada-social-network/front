@@ -1,31 +1,9 @@
-import React, { FunctionComponent, useContext, useEffect, useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import { createPopper } from '@popperjs/core'
-import { User } from '../../../services/user.service'
-import { Redirect, useHistory } from 'react-router-dom'
 
 import { useUserContext } from '../../../context/userContext'
 
 const Dropdown = () => {
-  /*  const [currentUser, setCurrentUser] = useState<User>()
-  useEffect(() => {
-    getCurrentUser()
-      .then((user) => {
-        setCurrentUser(user)
-      })
-      .catch(function (error) {
-        if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        } else if (error.request) {
-          console.log(error.request)
-        } else {
-          console.log('Error', error.message)
-        }
-        console.log(error.config)
-      })
-  }, []) */
-
   const { user, userLogOut } = useUserContext()
 
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)

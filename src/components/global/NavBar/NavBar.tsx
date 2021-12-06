@@ -4,14 +4,8 @@ import Dropdown from './Dropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-type User = {
-  firstName: String,
-  lastName: String,
-}
-
 export default function Navbar () {
   const [navbarOpen, setNavbarOpen] = useState(false)
-  const [hasUser, setHasUser] = useState(false) // temporaire
 
   return (
     <>

@@ -3,14 +3,14 @@ import PromoCard from './PromoCard'
 import { getPromoList } from '../../services/user.service'
 
 interface Promo {
-  ID: Number;
+  ID: number;
   CreatedAt?: Date;
   UpdatedAt?: Date;
   DeletedAt?: Date;
-  promo_name: String;
-  date_of_start?: String;
-  date_of_end?: String;
-  biography: String;
+  promo_name: string;
+  date_of_start?: string;
+  date_of_end?: string;
+  biography: string;
 }
 
 type PromoList = Promo[];

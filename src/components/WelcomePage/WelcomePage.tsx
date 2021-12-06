@@ -3,13 +3,13 @@ import BdaPostCard from './BdaPostCard'
 import { getBdaPosts } from '../../services/post.service'
 
 interface BdaPost {
-    ID: Number;
+    ID: number;
     CreatedAt?: Date;
     UpdatedAt?: Date;
     DeletedAt?: Date;
-    content: String;
-    title?: String;
-    user_id: Number;
+    content: string;
+    title?: string;
+    user_id: number;
 }
 
 type BdaPostList = BdaPost[];

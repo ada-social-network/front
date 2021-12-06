@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react'
 
 interface Props {
-    promo_name : String;
-    biography: String;
+    promo_name : string;
+    biography: string;
 }
 
 const PromoCard: FunctionComponent<Props> = ({ promo_name, biography }) => {

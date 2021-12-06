@@ -6,32 +6,32 @@ import authHeader from './auth-header'
 const API_URL = 'http://localhost:8080/api/rest/v1/'
 
 export type User = {
-  ID: Number;
+  ID: number;
   CreatedAt?: Date;
   UpdatedAt?: Date;
   DeletedAt?: Date;
-  first_name: String,
-  last_name: String,
-  email : String,
-  date_of_birth ?: String,
-  apprentice_at?: String,
-  profil_pic?: String,
-  private_mail?: String,
-  instagram?: String,
-  facebook?: String,
-  github?: String,
-  linkedin?: String,
-  mbti?: String,
-  is_admin?: String,
-  promo_id?: Number,
+  first_name: string,
+  last_name: string,
+  email : string,
+  date_of_birth ?: string,
+  apprentice_at?: string,
+  profil_pic?: string,
+  private_mail?: string,
+  instagram?: string,
+  facebook?: string,
+  github?: string,
+  linkedin?: string,
+  mbti?: string,
+  is_admin?: string,
+  promo_id?: number,
 }
 
 interface Me {
-  userID: Number,
-  userEmail : String
+  userID: number,
+  userEmail : string
 }
 
-const getCurrentUserId = async () => {
+export const getCurrentUserId = async () => {
   return axios
     .get<Me>(API_URL + 'me', { headers: { Authorization: authHeader() } })
     .then((response) => {
