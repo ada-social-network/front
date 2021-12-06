@@ -46,8 +46,9 @@ const WelcomePage: FunctionComponent = () => {
   }, [])
 
   return (
-    <div>
-      <h1 className="text-2xl m-4 ">Actualités du Bda</h1>
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="text-2xl m-4">Actualités du Bda</h1>
+
       {posts
         ? posts.map((post, i) => {
           return <BdaPostCard key={i} {...post} />
