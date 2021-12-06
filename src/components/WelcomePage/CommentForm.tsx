@@ -2,6 +2,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { FunctionComponent, useEffect, useState } from 'react'
 import { useUserContext } from '../../context/userContext'
 import { postBdaComment } from '../../services/post.service'
+import { IComment } from './CommentButton'
 
 interface Values {
  bdapost_id: number;
@@ -11,8 +12,9 @@ interface Values {
 
 type Props ={
  bdaPostId : number,
+ onPost : (response: IComment) => void,
 }
-const CommentForm: FunctionComponent<Props> = ({ bdaPostId }) => {
+const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
   const { user } = useUserContext()
   const [userID, setUserID] = useState<number>(0)
   useEffect(() => {
@@ -24,6 +26,7 @@ const CommentForm: FunctionComponent<Props> = ({ bdaPostId }) => {
       {userID !== 0
         ? (
           <Formik
+            enableReinitialize={true}
             initialValues={{
               bdapost_id: bdaPostId,
               content: '',
@@ -31,45 +34,42 @@ const CommentForm: FunctionComponent<Props> = ({ bdaPostId }) => {
             }}
             onSubmit={(
               values: Values,
-              { setSubmitting }: FormikHelpers<Values>
-            ) => {
-              postBdaComment(values)
-                .then((response) => {
+              actions: FormikHelpers<Values>
 
-                })
-              setSubmitting(false)
+            ) => {
+              postBdaComment(values).then((response) => {
+                actions.setSubmitting(false)
+                actions.resetForm()
+                onPost(response.data)
+              })
             }}
           >
 
-            <div className="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5">
-              <div className="text-normal leading-snug md:leading-normal">
+            <div className="rounded-3xl ">
 
-                <Form>
-                  <div className="mt-3 pt-0">
-                    <Field
-                      className="hidden"
-                      id="user_id"
-                      name="user_id"
-                      value ={userID}
-                    />
-                    <Field
-                      className="px-3 placeholder-blueGray-300 text-blueGray-600 relative bg-gray-100 rounded text-sm outline-none"
-                      id="content"
-                      name="content"
-                      placeholder="Mon message à la plèbe"
-                    />
-
-                  </div>
+              <Form>
+                <div className="m-4 flex">
+                  <Field
+                    className="hidden"
+                    id="user_id"
+                    name="user_id"
+                    value ={userID}
+                  />
+                  <Field
+                    className="rounded-l-lg p-4 bg-gray-100 border-t mr-0 border-b border-l text-gray-800 border-gray-200 w-full"
+                    id="content"
+                    name="content"
+                    placeholder="Mon message à la plèbe"
+                  />
 
                   <button
-                    className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-lightBlue-600 bg-Blue uppercase last:mr-0 mr-1"
+                    className="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r"
                     type="submit"
                   >
        Poster
                   </button>
-
-                </Form>
-              </div>
+                </div>
+              </Form>
             </div>
 
           </Formik>)

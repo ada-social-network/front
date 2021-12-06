@@ -3,7 +3,7 @@ import { getBdaPostComments } from '../../services/post.service'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 
-interface IComment {
+export interface IComment {
   ID: number
   content: string,
   user_id: number,
@@ -22,10 +22,14 @@ type Props = {
 const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
   const [comments, setComments] = useState<CommentList>([])
 
+  const newComment = (response : IComment) => {
+    setComments([response, ...comments])
+  }
+
   useEffect(() => {
     getBdaPostComments(bdaPostId)
       .then((comments) => {
-        setComments(comments)
+        setComments(comments.reverse())
       })
       .catch(function (error) {
         if (error.response) {
@@ -72,7 +76,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
         >
           <ul>
             <li className="border-b mx-6">
-              <CommentForm bdaPostId={bdaPostId}/>
+              <CommentForm bdaPostId={bdaPostId} onPost={newComment}/>
             </li>
             <li>
               {comments.length > 1
