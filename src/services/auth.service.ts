@@ -5,6 +5,9 @@ const API_URL = 'http://localhost:8080/auth/'
 export const register = (values: object) => {
   return axios
     .post(API_URL + 'register', JSON.stringify(values))
+    .then((response) => {
+      login(response.data.email, response.data.password)
+    })
 }
 
 export const login = (email: string, password: string) => {
@@ -23,4 +26,10 @@ export const login = (email: string, password: string) => {
 
 export const logout = () => {
   localStorage.removeItem('user')
+}
+
+export const isLogin = () => {
+  const user = localStorage.getItem('user')
+  if (user) return true
+  return false
 }

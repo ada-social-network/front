@@ -1,6 +1,7 @@
 import {
   BrowserRouter,
   Route,
+  Redirect,
   Switch,
   RouteComponentProps
 } from 'react-router-dom'
@@ -8,6 +9,7 @@ import Layout from './components/global/Layout'
 import LoginPage from './components/LoginPage/LoginPage'
 import RegistrationPage from './components/RegistrationPage/RegistrationPage'
 import routes from './routes'
+import { isLogin } from './services/auth.service'
 
 function App () {
   return (
@@ -16,6 +18,9 @@ function App () {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationPage} />
+          {isLogin()
+            ? ''
+            : <Redirect to="login"/>}
           {routes.map((route, index) => {
             return (
               <Route
