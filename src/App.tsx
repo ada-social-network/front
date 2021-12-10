@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
 import {
   BrowserRouter,
   Route,
+  Redirect,
   Switch,
   RouteComponentProps
 } from 'react-router-dom'
@@ -9,6 +9,7 @@ import Layout from './components/global/Layout'
 import LoginPage from './components/LoginPage/LoginPage'
 import RegistrationPage from './components/RegistrationPage/RegistrationPage'
 import routes from './routes'
+import { isLogin } from './services/auth.service'
 
 import { UserProvider } from './context/userContext'
 
@@ -19,6 +20,9 @@ function App () {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationPage} />
+          {isLogin()
+            ? ''
+            : <Redirect to="login"/>}
           <UserProvider>
             {routes.map((route, index) => {
               return (
