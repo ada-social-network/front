@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
 
 const API_URL = 'http://localhost:8080/auth/'
 
@@ -11,6 +10,8 @@ export const register = (values: object) => {
     })
 }
 
+export const isLogin = () => !!localStorage.getItem('user')
+
 export const login = (email: string, password: string) => {
   return axios
     .post(API_URL + 'login', JSON.stringify({
@@ -20,6 +21,7 @@ export const login = (email: string, password: string) => {
     .then((response) => {
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data.token))
+        isLogin()
       }
       return response.data
     })
@@ -28,10 +30,5 @@ export const login = (email: string, password: string) => {
 export const logOut = () => {
   localStorage.removeItem('user')
   window.location.replace('/login')
-}
-
-export const isLogin = () => {
-  const user = localStorage.getItem('user')
-  if (user) return true
-  return false
+  isLogin()
 }

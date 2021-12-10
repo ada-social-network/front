@@ -20,28 +20,29 @@ function App () {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationPage} />
-          {isLogin()
-            ? ''
-            : <Redirect to="login"/>}
           <UserProvider>
             {routes.map((route, index) => {
               return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  render={(props: RouteComponentProps<any>) => (
-                    <Layout>
-                      <div className="flex flex-col mx-6 mt-20">
-                        <route.component
-                          name={route.name}
-                          {...props}
-                          {...route.props}
-                        />
-                      </div>
-                    </Layout>
-                  )}
-                />
+                <>
+                  {isLogin()
+                    ? <Route
+                      key={index}
+                      path={route.path}
+                      exact={route.exact}
+                      render={(props: RouteComponentProps<any>) => (
+                        <Layout>
+                          <div className="flex flex-col mx-6 mt-20">
+                            <route.component
+                              name={route.name}
+                              {...props}
+                              {...route.props}
+                            />
+                          </div>
+                        </Layout>
+                      )}
+                    />
+                    : <Redirect to="login"/>}
+                </>
               )
             })}
           </UserProvider>

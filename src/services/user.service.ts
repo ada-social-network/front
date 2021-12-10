@@ -1,6 +1,4 @@
 import axios from 'axios'
-import React, { FunctionComponent, useEffect } from 'react'
-import App from '../App'
 import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:8080/api/rest/v1/'
