@@ -42,9 +42,6 @@ const RegistrationForm: FunctionComponent = () => {
   const redirectLogin = () => {
     history.push('/login')
   }
-  const redirectWelcome = () => {
-    history.push('/')
-  }
 
   const [displayFormStatus, setDisplayFormStatus] = useState(false)
   const [formStatus, setFormStatus] = useState<FormStatus>({
@@ -86,7 +83,7 @@ const RegistrationForm: FunctionComponent = () => {
     register(values)
       .then((response) => {
         setFormStatus(formStatusProps.success)
-        setTimeout(() => { redirectWelcome() }, 1500)
+        setTimeout(() => { redirectLogin() }, 1500)
       })
       .catch(function (error) {
         const response = error.response
@@ -130,24 +127,6 @@ const RegistrationForm: FunctionComponent = () => {
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <Form>
-                  <div className="relative w-full mt-8">
-                    <Field
-                      className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
-                      id="lastName"
-                      name="lastName"
-                      placeholder="Nom"
-                      value={values.lastName}
-                      style={{ transition: 'all .15s ease' }}
-                      error={
-                        !!(errors.lastName && touched.lastName)
-                      }
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.lastName && touched.lastName
-                      ? <div className="text-xs text-red">{errors.lastName}</div>
-                      : ''}
-                  </div>
                   <div className="relative w-full mt-5">
                     <Field
                       className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
@@ -164,6 +143,24 @@ const RegistrationForm: FunctionComponent = () => {
                     />
                     {errors.firstName && touched.firstName
                       ? <div className="text-xs text-red">{errors.firstName} </div>
+                      : ''}
+                  </div>
+                  <div className="relative w-full mt-8">
+                    <Field
+                      className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
+                      id="lastName"
+                      name="lastName"
+                      placeholder="Nom"
+                      value={values.lastName}
+                      style={{ transition: 'all .15s ease' }}
+                      error={
+                        !!(errors.lastName && touched.lastName)
+                      }
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.lastName && touched.lastName
+                      ? <div className="text-xs text-red">{errors.lastName}</div>
                       : ''}
                   </div>
                   <div className="relative w-full mt-5">

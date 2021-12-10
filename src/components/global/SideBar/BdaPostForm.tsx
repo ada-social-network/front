@@ -1,7 +1,6 @@
 
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { FunctionComponent, useEffect, useState } from 'react'
-import { useUserContext } from '../../../context/userContext'
+import { FunctionComponent, useState } from 'react'
 import { postBdaPost } from '../../../services/post.service'
 
 interface Values {
@@ -40,7 +39,7 @@ const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
           <Form>
             <div className="flex flex-col">
               <label className="my-2" htmlFor="title">
-              Titre
+                Titre
               </label>
               <Field
                 className="px-3 py-3 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring w-full border border-black"
@@ -48,9 +47,8 @@ const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
                 name="title"
                 placeholder="Le titre du post"
               />
-
               <label className="my-2" htmlFor="content">
-              Message
+                Message
               </label>
               <Field
                 as="textarea"
@@ -66,15 +64,14 @@ const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
                 className="bg-red text-white active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
                 onClick={onClose}
               >
-              Annuler
+                Annuler
               </button>
               <button
                 className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
                 type="submit"
               >
-              Poster
+                Poster
               </button>
-
             </div>
           </Form>
         </Formik>)

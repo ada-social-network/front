@@ -1,14 +1,14 @@
-import React, { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useState, createRef } from 'react'
 import { createPopper } from '@popperjs/core'
 
 import { useUserContext } from '../../../context/userContext'
 
-const Dropdown = () => {
+const Dropdown: FunctionComponent = () => {
   const { user, userLogOut } = useUserContext()
 
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
-  const btnDropdownRef = React.createRef<HTMLButtonElement>()
-  const popoverDropdownRef = React.createRef<HTMLInputElement>()
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false)
+  const btnDropdownRef = createRef<HTMLButtonElement>()
+  const popoverDropdownRef = createRef<HTMLInputElement>()
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current!, popoverDropdownRef.current!, {
       placement: 'bottom-end'
@@ -25,7 +25,6 @@ const Dropdown = () => {
         <div className="relative inline-flex align-middle w-full">
           <button
             className="max-h-10 bg-blue text-white font-bold uppercase text-sm px-6 py-3 rounded hover:shadow-lg "
-
             type="button"
             ref={btnDropdownRef}
             onClick={() => {
@@ -51,7 +50,7 @@ const Dropdown = () => {
                                 (' text-blueGray-700')
               }
             >
-                            Profil
+              Profil
             </a>
             <a
               href="#pablo"
@@ -61,7 +60,7 @@ const Dropdown = () => {
               }
               onClick={e => e.preventDefault()}
             >
-                            Paramètres
+              Paramètres
             </a>
             <a
               href="#pablo"
@@ -69,9 +68,8 @@ const Dropdown = () => {
                 "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent "
 
               onClick={userLogOut}
-
             >
-                            Se déconnecter
+              Se déconnecter
             </a>
           </div>
         </div>

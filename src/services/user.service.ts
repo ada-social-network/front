@@ -11,7 +11,7 @@ export type User = {
   firstName: string,
   lastName: string,
   email : string,
-  dateOfBirth ?: string,
+  dateOfBirth ?: Date,
   apprenticeAt?: string,
   profilPic?: string,
   privateMail?: string,
@@ -24,7 +24,7 @@ export type User = {
   promoId?: string,
 }
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = () => {
   return axios
     .get<User>(API_URL + 'me', { headers: { Authorization: authHeader() } })
     .then((response) => {
@@ -35,4 +35,12 @@ export const getCurrentUser = async () => {
 export const getPromoList = () => {
   return axios
     .get(API_URL + 'promos', { headers: { Authorization: authHeader() } })
+}
+
+export const updateUser = (id: string, values: object) => {
+  return axios
+    .patch(API_URL + 'users/' + id,
+      JSON.stringify(values),
+      { headers: { Authorization: authHeader() } }
+    )
 }
