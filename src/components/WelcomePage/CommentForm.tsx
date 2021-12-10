@@ -5,25 +5,25 @@ import { postBdaComment } from '../../services/post.service'
 import { IComment } from './CommentButton'
 
 interface Values {
- bdapost_id: number;
+ bdapost_id: string;
  content: string;
- user_id: number;
+ user_id: string;
 }
 
 type Props ={
- bdaPostId : number,
+ bdaPostId : string,
  onPost : (response: IComment) => void,
 }
 const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
   const { user } = useUserContext()
-  const [userID, setUserID] = useState<number>(0)
+  const [userID, setUserID] = useState<string>("")
   useEffect(() => {
     setUserID(user.ID)
   }, [user])
 
   return (
     <div>
-      {userID !== 0
+      {userID !== ""
         ? (
           <Formik
             enableReinitialize={true}

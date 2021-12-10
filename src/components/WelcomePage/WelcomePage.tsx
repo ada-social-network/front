@@ -3,13 +3,13 @@ import BdaPostCard from './BdaPostCard'
 import { getBdaPosts } from '../../services/post.service'
 
 interface BdaPost {
-    ID: number;
+    ID: string;
     CreatedAt?: Date;
     UpdatedAt?: Date;
     DeletedAt?: Date;
     content: string;
     title?: string;
-    user_id: number;
+    user_id: string;
 }
 
 type BdaPostList = BdaPost[];
@@ -35,11 +35,11 @@ const WelcomePage: FunctionComponent = () => {
         console.log(error.config)
         setPosts([
           {
-            ID: 0,
+            ID: "",
             title: 'Error',
             content:
                 "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau",
-            user_id: 0
+            user_id: ""
           }
         ])
       })

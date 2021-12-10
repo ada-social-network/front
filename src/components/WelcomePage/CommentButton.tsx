@@ -4,10 +4,10 @@ import Comment from './Comment'
 import CommentForm from './CommentForm'
 
 export interface IComment {
-  ID: number
+  ID: string,
   content: string,
-  user_id: number,
-  bdapost_id: number,
+  user_id: string,
+  bdapost_id: string,
   CreatedAt?: Date,
   UpdatedAt?: Date,
   DeletedAt?: Date
@@ -16,7 +16,7 @@ export interface IComment {
 type CommentList = IComment[]
 
 type Props = {
-  bdaPostId: number
+  bdaPostId: string
 }
 
 const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {

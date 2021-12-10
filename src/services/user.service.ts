@@ -6,7 +6,7 @@ import authHeader from './auth-header'
 const API_URL = 'http://localhost:8080/api/rest/v1/'
 
 export type User = {
-  ID: number;
+  ID: string;
   CreatedAt?: Date;
   UpdatedAt?: Date;
   DeletedAt?: Date;
@@ -23,11 +23,11 @@ export type User = {
   linkedin?: string,
   mbti?: string,
   is_admin?: string,
-  promo_id?: number,
+  promo_id?: string,
 }
 
 interface Me {
-  userID: number,
+  userID: string,
   userEmail : string
 }
 

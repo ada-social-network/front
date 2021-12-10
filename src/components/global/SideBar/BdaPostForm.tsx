@@ -6,7 +6,7 @@ import { postBdaPost } from '../../../services/post.service'
 interface Values {
   title: string;
   content: string;
-  user_id: number;
+  user_id: string;
 }
 
 interface Props {
@@ -22,7 +22,7 @@ const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
           initialValues={{
             title: '',
             content: '',
-            user_id: 1
+            user_id: "" //mettre l'id du user connecté
           }}
           onSubmit={(
             values: Values,

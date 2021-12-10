@@ -3,9 +3,9 @@ import DateComponent from './DateComponent'
 
 interface Props {
   content: string;
-  user_id: number;
+  user_id: string;
   CreatedAt?: Date;
-  ID: number
+  ID: string
 }
 
 const Comment: FunctionComponent<Props> = ({ user_id, content, CreatedAt, ID }) => {

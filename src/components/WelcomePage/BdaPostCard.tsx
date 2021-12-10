@@ -6,7 +6,7 @@ interface Props {
   title?: string;
   content: string;
   CreatedAt?: Date;
-  ID: number
+  ID: string
 }
 
 const BdaPostCard: FunctionComponent<Props> = ({ title, content, CreatedAt, ID }) => {
