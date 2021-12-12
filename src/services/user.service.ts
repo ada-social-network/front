@@ -26,24 +26,9 @@ export type User = {
   promo_id?: string,
 }
 
-interface Me {
-  userID: string,
-  userEmail : string
-}
-
-export const getCurrentUserId = async () => {
-  return axios
-    .get<Me>(API_URL + 'me', { headers: { Authorization: authHeader() } })
-    .then((response) => {
-      return response.data.userID
-    })
-}
-
 export const getCurrentUser = async () => {
-  const userId = await getCurrentUserId()
-  console.log(userId)
   return axios
-    .get<User>(API_URL + 'users/' + userId, { headers: { Authorization: authHeader() } })
+    .get<User>(API_URL + 'me', { headers: { Authorization: authHeader() } })
     .then((response) => {
       return response.data
     })
