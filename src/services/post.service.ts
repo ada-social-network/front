@@ -18,7 +18,7 @@ export const postBdaPost = (values: object) => {
 
 export const getBdaPostComments = (id : string) => {
   return axios
-    .get(API_URL + 'bdaposts/'+ id +'/comments', { headers: { Authorization: authHeader() } })
+    .get(API_URL + 'bdaposts/' + id + '/comments', { headers: { Authorization: authHeader() } })
     .then((response) => {
       return response.data
     })

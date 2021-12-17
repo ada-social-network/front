@@ -16,14 +16,14 @@ type Props ={
 }
 const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
   const { user } = useUserContext()
-  const [userID, setUserID] = useState<string>("")
+  const [userID, setUserID] = useState<string>('')
   useEffect(() => {
     setUserID(user.ID)
   }, [user])
 
   return (
     <div>
-      {userID !== ""
+      {userID !== ''
         ? (
           <Formik
             enableReinitialize={true}

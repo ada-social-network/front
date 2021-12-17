@@ -5,10 +5,10 @@ interface Props {
   content: string;
   user_id: string;
   CreatedAt?: Date;
-  ID: string
+  id: string
 }
 
-const Comment: FunctionComponent<Props> = ({ user_id, content, CreatedAt, ID }) => {
+const Comment: FunctionComponent<Props> = ({ user_id, content, CreatedAt, id }) => {
   return (
 
     <div className="bg-white flex flex-row w-5/6 mx-6">

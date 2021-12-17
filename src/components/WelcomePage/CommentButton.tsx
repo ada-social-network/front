@@ -4,7 +4,7 @@ import Comment from './Comment'
 import CommentForm from './CommentForm'
 
 export interface IComment {
-  ID: string,
+  id: string,
   content: string,
   user_id: string,
   bdapost_id: string,
