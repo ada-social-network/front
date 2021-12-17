@@ -6,11 +6,11 @@ import CommentForm from './CommentForm'
 export interface IComment {
   id: string,
   content: string,
-  user_id: string,
-  bdapost_id: string,
-  CreatedAt?: Date,
-  UpdatedAt?: Date,
-  DeletedAt?: Date
+  userId: string,
+  bdapostId: string,
+  createdAt?: Date,
+  updatedAt?: Date,
+  deletedAt?: Date
 }
 
 type CommentList = IComment[]

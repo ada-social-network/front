@@ -5,11 +5,11 @@ import CommentButton from './CommentButton'
 interface Props {
   title?: string;
   content: string;
-  CreatedAt?: Date;
+  createdAt?: Date;
   id: string
 }
 
-const BdaPostCard: FunctionComponent<Props> = ({ title, content, CreatedAt, id }) => {
+const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }) => {
   // const [comments, setComments] = useState()
   if (!title) title = 'Pas de titre :('
   return (
@@ -19,7 +19,7 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, CreatedAt, id }
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">{title + id}</div>
             <p className="text-gray-700 text-base">{content}</p>
-            <DateComponent date={CreatedAt} />
+            <DateComponent date={createdAt} />
             <CommentButton bdaPostId={id}/>
           </div>
         </div>

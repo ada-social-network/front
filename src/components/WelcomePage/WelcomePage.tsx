@@ -4,12 +4,12 @@ import { getBdaPosts } from '../../services/post.service'
 
 interface BdaPost {
     id: string;
-    CreatedAt?: Date;
-    UpdatedAt?: Date;
-    DeletedAt?: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
     content: string;
     title?: string;
-    user_id: string;
+    userId: string;
 }
 
 type BdaPostList = BdaPost[];
@@ -39,7 +39,7 @@ const WelcomePage: FunctionComponent = () => {
             title: 'Error',
             content:
                 "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau",
-            user_id: ''
+            userId: ''
           }
         ])
       })

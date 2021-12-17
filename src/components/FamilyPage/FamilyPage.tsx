@@ -36,7 +36,7 @@ const FamilyPage: FunctionComponent = () => {
         console.log(error.config)
         setPromos([
           {
-            id: "",
+            id: '',
             promo: 'Error',
             biography:
               "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau"

@@ -7,7 +7,6 @@ import { postBdaPost } from '../../../services/post.service'
 interface Values {
   title: string;
   content: string;
-  user_id: string;
 }
 
 interface Props {
@@ -15,20 +14,14 @@ interface Props {
 }
 
 const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
-  const { user } = useUserContext()
-  const [userID, setUserID] = useState<string>('')
-  useEffect(() => {
-    setUserID(user.id)
-  }, [user])
   const [succes, setSuccess] = useState(false)
   return (
     <div>
-      {!succes && userID !== ''
+      {!succes
         ? (<Formik
           initialValues={{
             title: '',
-            content: '',
-            user_id: userID // mettre l'id du user connecté
+            content: ''
           }}
           onSubmit={(
             values: Values,

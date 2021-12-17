@@ -5,9 +5,9 @@ import { postBdaComment } from '../../services/post.service'
 import { IComment } from './CommentButton'
 
 interface Values {
- bdapost_id: string;
+ bdapostId: string;
  content: string;
- user_id: string;
+ userId: string;
 }
 
 type Props ={
@@ -28,9 +28,9 @@ const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
           <Formik
             enableReinitialize={true}
             initialValues={{
-              bdapost_id: bdaPostId,
+              bdapostId: bdaPostId,
               content: '',
-              user_id: userID
+              userId: userID
             }}
             onSubmit={(
               values: Values,
