@@ -3,13 +3,13 @@ import PromoCard from './PromoCard'
 import { getPromoList } from '../../services/user.service'
 
 interface Promo {
-  ID: string;
-  CreatedAt?: Date;
-  UpdatedAt?: Date;
-  DeletedAt?: Date;
-  promo_name: string;
-  date_of_start?: string;
-  date_of_end?: string;
+  id: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  promo: string;
+  dateOfStart?: string;
+  dateOfEnd?: string;
   biography: string;
 }
 
@@ -36,8 +36,8 @@ const FamilyPage: FunctionComponent = () => {
         console.log(error.config)
         setPromos([
           {
-            ID: "",
-            promo_name: 'Error',
+            id: "",
+            promo: 'Error',
             biography:
               "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau"
           }

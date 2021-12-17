@@ -18,7 +18,7 @@ const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
   const { user } = useUserContext()
   const [userID, setUserID] = useState<string>('')
   useEffect(() => {
-    setUserID(user.ID)
+    setUserID(user.id)
   }, [user])
   const [succes, setSuccess] = useState(false)
   return (

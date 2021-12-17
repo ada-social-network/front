@@ -34,7 +34,7 @@ const Dropdown = () => {
                 : openDropdownPopover()
             }}
           >
-            {user.first_name !== '' ? user.first_name : 'login button to do' }
+            {user.firstName !== '' ? user.firstName : 'login button to do' }
           </button>
           <div
             ref={popoverDropdownRef}

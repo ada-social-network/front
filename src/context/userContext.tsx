@@ -9,9 +9,9 @@ interface UserContextType {
 }
 const defaultUser = {
   user: {
-    ID: "",
-    first_name: '',
-    last_name: '',
+    id: "",
+    firstName: '',
+    lastName: '',
     email: ''
   }
 }
