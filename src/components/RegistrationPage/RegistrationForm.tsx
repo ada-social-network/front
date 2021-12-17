@@ -6,8 +6,8 @@ import * as Yup from 'yup'
 import { register } from '../../services/auth.service'
 
 interface FormValues {
-  first_name: string
-  last_name: string
+  firstName: string
+  lastName: string
   password: string
   confirmPassword: string
   email: string
@@ -53,8 +53,8 @@ const RegistrationForm: FunctionComponent = () => {
   })
 
   const initialValues = {
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     password: '',
     confirmPassword: '',
     email: ''
@@ -64,8 +64,8 @@ const RegistrationForm: FunctionComponent = () => {
     email: Yup.string()
       .email()
       .required('Veuillez entrez une adresse mail valide'),
-    last_name: Yup.string().required('Veuillez entrer votre nom'),
-    first_name: Yup.string().required('Veuillez entrer votre prénom'),
+    lastName: Yup.string().required('Veuillez entrer votre nom'),
+    firstName: Yup.string().required('Veuillez entrer votre prénom'),
     password: Yup.string()
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
@@ -133,37 +133,37 @@ const RegistrationForm: FunctionComponent = () => {
                   <div className="relative w-full mt-8">
                     <Field
                       className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
-                      id="last_name"
-                      name="last_name"
+                      id="lastName"
+                      name="lastName"
                       placeholder="Nom"
-                      value={values.last_name}
+                      value={values.lastName}
                       style={{ transition: 'all .15s ease' }}
                       error={
-                        !!(errors.last_name && touched.last_name)
+                        !!(errors.lastName && touched.lastName)
                       }
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.last_name && touched.last_name
-                      ? <div className="text-xs text-red">{errors.last_name}</div>
+                    {errors.lastName && touched.lastName
+                      ? <div className="text-xs text-red">{errors.lastName}</div>
                       : ''}
                   </div>
                   <div className="relative w-full mt-5">
                     <Field
                       className="px-3 py-3 placeholder-black bg-white text-sm focus:outline-none focus:ring w-full border border-black"
-                      id="first_name"
-                      name="first_name"
+                      id="firstName"
+                      name="firstName"
                       placeholder="Prenom"
-                      value={values.first_name}
+                      value={values.firstName}
                       style={{ transition: 'all .15s ease' }}
                       error={
-                        !!(errors.first_name && touched.first_name)
+                        !!(errors.firstName && touched.firstName)
                       }
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.first_name && touched.first_name
-                      ? <div className="text-xs text-red">{errors.first_name} </div>
+                    {errors.firstName && touched.firstName
+                      ? <div className="text-xs text-red">{errors.firstName} </div>
                       : ''}
                   </div>
                   <div className="relative w-full mt-5">

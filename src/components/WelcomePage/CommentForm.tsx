@@ -18,7 +18,7 @@ const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
   const { user } = useUserContext()
   const [userID, setUserID] = useState<string>('')
   useEffect(() => {
-    setUserID(user.ID)
+    setUserID(user.id)
   }, [user])
 
   return (

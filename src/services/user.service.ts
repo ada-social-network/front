@@ -4,24 +4,24 @@ import authHeader from './auth-header'
 const API_URL = 'http://localhost:8080/api/rest/v1/'
 
 export type User = {
-  ID: string;
-  CreatedAt?: Date;
-  UpdatedAt?: Date;
-  DeletedAt?: Date;
-  first_name: string,
-  last_name: string,
+  id: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  firstName: string,
+  lastName: string,
   email : string,
-  date_of_birth ?: string,
-  apprentice_at?: string,
-  profil_pic?: string,
-  private_mail?: string,
+  dateOfBirth ?: string,
+  apprenticeAt?: string,
+  profilPic?: string,
+  privateMail?: string,
   instagram?: string,
   facebook?: string,
   github?: string,
   linkedin?: string,
   mbti?: string,
-  is_admin?: string,
-  promo_id?: string,
+  isAdmin?: string,
+  promoId?: string,
 }
 
 export const getCurrentUser = async () => {
