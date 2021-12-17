@@ -20,12 +20,13 @@ function App () {
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationPage} />
-          <UserProvider>
-            {routes.map((route, index) => {
-              return (
-                <>
-                  {isLogin()
-                    ? <Route
+          {isLogin()
+            ? <UserProvider>
+              {routes.map((route, index) => {
+                return (
+                  <>
+
+                    <Route
                       key={index}
                       path={route.path}
                       exact={route.exact}
@@ -41,11 +42,12 @@ function App () {
                         </Layout>
                       )}
                     />
-                    : <Redirect to="login"/>}
-                </>
-              )
-            })}
-          </UserProvider>
+
+                  </>
+                )
+              })}
+            </UserProvider>
+            : <Redirect to="login"/>}
         </Switch>
       </BrowserRouter>
     </div>

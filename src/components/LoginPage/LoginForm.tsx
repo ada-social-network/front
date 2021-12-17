@@ -57,7 +57,7 @@ const LoginForm: FunctionComponent = () => {
     login(email, password)
       .then(() => {
         setFormStatus(formStatusProps.success)
-        setTimeout(() => { redirectWelcome() }, 1500)
+        setTimeout(redirectWelcome, 1500)
       }
       )
       .catch(function (error) {

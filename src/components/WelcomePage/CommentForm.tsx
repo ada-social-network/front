@@ -40,6 +40,7 @@ const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
               postBdaComment(values).then((response) => {
                 actions.setSubmitting(false)
                 actions.resetForm()
+                console.log(response)
                 onPost(response.data)
               })
             }}

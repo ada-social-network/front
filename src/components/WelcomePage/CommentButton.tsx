@@ -79,7 +79,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
               <CommentForm bdaPostId={bdaPostId} onPost={newComment}/>
             </li>
             <li>
-              {comments.length > 1
+              {comments.length > 0
                 ? comments.map((comment, i) => {
                   return <Comment key={i} {...comment} />
                 })
