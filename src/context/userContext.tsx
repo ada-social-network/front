@@ -1,25 +1,24 @@
-/* eslint-disable no-unused-vars */
-import React, { FunctionComponent, useContext, useEffect } from 'react'
+import { FunctionComponent, useContext, useEffect, createContext, useState } from 'react'
 import { logOut } from '../services/auth.service'
 import { User, getCurrentUser } from '../services/user.service'
 
 interface UserContextType {
- user: User
- userLogOut?: () => void
+  user: User
+  userLogOut?: () => void
 }
 const defaultUser = {
   user: {
-    id: "",
+    id: '',
     firstName: '',
     lastName: '',
     email: ''
   }
 }
 
-export const UserContext = React.createContext <UserContextType>(defaultUser)
+export const UserContext = createContext<UserContextType>(defaultUser)
 
 export const UserProvider : FunctionComponent = ({ children }) => {
-  const [user, setUser] = React.useState<User>(defaultUser.user)
+  const [user, setUser] = useState<User>(defaultUser.user)
   const userLogOut = () => {
     logOut()
     setUser(defaultUser.user)

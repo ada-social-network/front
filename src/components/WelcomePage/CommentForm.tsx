@@ -5,14 +5,14 @@ import { postBdaComment } from '../../services/post.service'
 import { IComment } from './CommentButton'
 
 interface Values {
- bdapostId: string;
- content: string;
- userId: string;
+  bdapostId: string;
+  content: string;
+  userId: string;
 }
 
 type Props ={
- bdaPostId : string,
- onPost : (response: IComment) => void,
+  bdaPostId : string,
+  onPost : (response: IComment) => void,
 }
 const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
   const { user } = useUserContext()
@@ -67,7 +67,7 @@ const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
                     className="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r"
                     type="submit"
                   >
-       Poster
+                    Poster
                   </button>
                 </div>
               </Form>
