@@ -3,12 +3,12 @@ import DateComponent from './DateComponent'
 
 interface Props {
   content: string;
-  user_id: number;
+  user_id: string;
   CreatedAt?: Date;
-  ID: number
+  id: string
 }
 
-const Comment: FunctionComponent<Props> = ({ user_id, content, CreatedAt, ID }) => {
+const Comment: FunctionComponent<Props> = ({ user_id, content, CreatedAt, id }) => {
   return (
 
     <div className="bg-white flex flex-row w-5/6 mx-6">

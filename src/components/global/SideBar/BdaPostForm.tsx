@@ -1,12 +1,13 @@
 
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
+import { useUserContext } from '../../../context/userContext'
 import { postBdaPost } from '../../../services/post.service'
 
 interface Values {
   title: string;
   content: string;
-  user_id: number;
+  user_id: string;
 }
 
 interface Props {
@@ -14,15 +15,20 @@ interface Props {
 }
 
 const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
+  const { user } = useUserContext()
+  const [userID, setUserID] = useState<string>('')
+  useEffect(() => {
+    setUserID(user.ID)
+  }, [user])
   const [succes, setSuccess] = useState(false)
   return (
     <div>
-      {!succes
+      {!succes && userID !== ''
         ? (<Formik
           initialValues={{
             title: '',
             content: '',
-            user_id: 1
+            user_id: userID // mettre l'id du user connecté
           }}
           onSubmit={(
             values: Values,
@@ -31,6 +37,7 @@ const BdaPostForm:FunctionComponent<Props> = ({ onClose }) => {
             postBdaPost(values)
               .then((response) => {
                 setSuccess(true)
+                console.log(response)
               })
             setSubmitting(false)
             setTimeout(onClose, 500)

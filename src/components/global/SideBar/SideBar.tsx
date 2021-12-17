@@ -11,7 +11,7 @@ const SideBar: FunctionComponent<Props> = ({ small }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const handleClose = () => {
     setIsModalOpen(false)
-    window.location.reload()
+    // window.location.reload()
   }
   return (
     <>
