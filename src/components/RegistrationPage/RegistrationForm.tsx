@@ -115,7 +115,7 @@ const RegistrationForm: FunctionComponent = () => {
           isSubmitting
         } = props
         return (
-          <div className="w-full lg:w-1/3 shadow">
+          <div className="w-full lg:w-1/3 shadow-lightBlue">
             <div className="relative flex flex-col min-w-0 break-words bg-white border-4 border-red">
               <div className="w-full">
                 <h3 className="my-4 text-center text-5xl font-extrabold">

@@ -8,7 +8,7 @@ interface FormValues {
   firstName: string,
   lastName: string,
   email : string,
-  dateOfBirth ?: Date,
+  dateOfBirth?: string,
   apprenticeAt?: string,
   profilPic?: string,
   privateMail?: string,
@@ -75,16 +75,18 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
   }
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email()
-      .required('Veuillez entrez une adresse mail valide'),
+    email: Yup.string().email().required('Veuillez entrez une adresse mail valide'),
     lastName: Yup.string().required('Veuillez entrer votre nom'),
-    firstName: Yup.string().required('Veuillez entrer votre prénom')
+    firstName: Yup.string().required('Veuillez entrer votre prénom'),
+    dateOfBirth: Yup.string()
+      .matches(
+        /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/
+      )
   })
 
   const handleSubmit = (values: FormValues) => {
     updateUser(user.id, values)
-      .then((response) => {
+      .then(() => {
         setFormStatus(formStatusProps.success)
         setTimeout(onClose, 1500)
       })
@@ -174,7 +176,13 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                   value={values.dateOfBirth}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  error={
+                    !!(errors.dateOfBirth && touched.dateOfBirth)
+                  }
                 />
+                {errors.dateOfBirth && touched.dateOfBirth
+                  ? <div className="text-xs text-red">Veuillez entrer une date valide</div>
+                  : ''}
               </div>
               <div className="relative mt-8">
                 <Field
@@ -189,9 +197,9 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
               <div className="relative mt-8">
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='instagram'
-                  placeholder='Instagram'
-                  value={values.instagram}
+                  name='profilPic'
+                  placeholder='Photo de profil'
+                  value={values.profilPic}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -199,9 +207,9 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
               <div className="relative mt-8">
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='profilPic'
-                  placeholder='Photo de profil'
-                  value={values.profilPic}
+                  name='instagram'
+                  placeholder='Instagram'
+                  value={values.instagram}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -220,7 +228,7 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='github'
-                  placeholder='Github'
+                  placeholder='Lien Github'
                   value={values.github}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -230,7 +238,7 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='linkedin'
-                  placeholder='Linkedin'
+                  placeholder='Lien Linkedin'
                   value={values.linkedin}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -252,7 +260,7 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                   className="bg-red text-white active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
                   onClick={onClose}
                 >
-                Annuler
+                  Annuler
                 </button>
                 <button
                   className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
@@ -266,15 +274,11 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                 <div className="formStatus">
                   {formStatus.type === 'error'
                     ? (
-                      <p>
-                        {formStatus.message}
-                      </p>
+                      <p>{formStatus.message}</p>
                     )
                     : formStatus.type === 'success'
                       ? (
-                        <p>
-                          {formStatus.message}
-                        </p>
+                        <p>{formStatus.message}</p>
                       )
                       : null }
                 </div>

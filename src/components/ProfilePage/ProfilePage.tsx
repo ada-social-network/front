@@ -2,25 +2,102 @@ import { FunctionComponent, useState } from 'react'
 import MenuTitle from '../global/SideBar/MenuTitle'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import ProfileForm from './ProfileForm'
-import { useParams } from 'react-router'
+import { useUserContext } from '../../context/userContext'
+import Insta from '../../logo/insta.svg'
+import Github from '../../logo/github.svg'
+import Linkedin from '../../logo/linkedin.svg'
 
 interface Props {
   small : boolean,
 }
 
-interface Params {
-  id : string
-}
 const ProfilePage: FunctionComponent<Props> = ({ small }) => {
-  const { id } = useParams<Params>()
+  const { user } = useUserContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const handleClose = () => {
     setIsModalOpen(false)
     window.location.reload()
   }
+
+  const hrefInsta = `https://www.instagram.com/${user.instagram}`
+  const profilPic = 'https://cdn.radiofrance.fr/s3/cruiser-production/2020/03/e67b4427-4143-4eef-9dc2-5c893a445662/838_800px-ada_lovelace_portrait.jpg'
+  const coverImage = 'https://thumb.canalplus.pro/http/unsafe/3532x1914/smart/creativemedia-image.canalplus.pro/content/0001/33/a50a92ea1757a6f64a1edefbeb69f3defd498149.jpeg'
+
   return (
-    <div>
-      <p> {id} </p>
+    <div className="mt-8">
+      <h1 className='font-bold text-3xl text-blue mb-10 text-center'>Mon profil</h1>
+      <div className="flex justify-center">
+        <div className="flex flex-col">
+          <div className="md:relative"
+            style={{ width: '940px', height: '348px' }}>
+            <img src={coverImage} alt="ADA" className='border-4 border-blue' style={{ width: '940px', height: '348px' }}/>
+            <div>
+              <img src={user.profilPic ? user.profilPic : profilPic}
+                className="rounded-full md:absolute top-60 inset-x-96 border-4 border-pink" style={{ width: '170px', height: '168px' }} />
+            </div>
+          </div>
+          {/* <div className='absolute right-0'> */}
+          <div className='container flex flex-row border-2 border-blue w-36 place-content-center'>
+            <div className='w-10'>
+              <a href={hrefInsta}>
+                <img src={Insta} alt="insta"/>
+              </a>
+            </div>
+            <div className='w-10'>
+              <a href={user.github}>
+                <img src={Github} alt="github"/>
+              </a>
+            </div>
+            <div className='w-10'>
+              <a href={user.linkedin}>
+                <img src={Linkedin} alt="linkedin"/>
+              </a>
+            </div>
+          </div>
+          {/* </div> */}
+
+        </div>
+      </div>
+      <div className="flex justify-center flex-col mt-6 mb-3.5">
+        <h1 className="text-center text-2xl">{user.firstName + ' ' + user.lastName}</h1>
+      </div>
+
+      <div className='container flex mt-14 justify-center'>
+        <div className="bg-white">
+          <div className="p-4 border-blue border-4 shadow-red" style={{ width: '940px' }}>
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">Biographie</div>
+              <p className="text-base">Ceci est une biographie détaillée</p>
+            </div>
+            <div className='container grid grid-cols-2'>
+              <div className="px-6 py-4">
+                <h3 className="font-bold text-xl mb-2">Anniversaire</h3>
+                <p className="text-base">{user.dateOfBirth}</p>
+              </div>
+              <div className="px-6 py-4">
+                <h3 className="font-bold text-xl mb-2">Alternance</h3>
+                <p className="text-base">{user.apprenticeAt}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className='container flex mt-24 justify-center'>
+        <div className="bg-white">
+          <div className="p-4 border-blue border-4 shadow-red" style={{ width: '940px' }}>
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">Mes projets pro</div>
+              <p className="text-base">??????????</p>
+            </div>
+            <div className="px-6 py-4">
+              <h3 className="font-bold text-xl mb-2">Mes projets perso</h3>
+              <p className="text-base">???????????</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <button onClick={() => setIsModalOpen(!isModalOpen)}>
         <MenuTitle name={'Modifier mon profile'} small={small} icon={faUsers}/>
       </button>
