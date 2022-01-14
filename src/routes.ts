@@ -23,7 +23,7 @@ const routes: IRoute[] = [
   {
     path: '/profile/:id',
     name: 'Profile Page',
-    component: ProfilePage(useParams(id)),
+    component: ProfilePage,
     exact: true
   },
   {
