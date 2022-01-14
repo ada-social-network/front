@@ -3,7 +3,8 @@ import ProfilePage from './components/ProfilePage/ProfilePage'
 import CalendarPage from './components/CalendarPage/CalendarPage'
 import FamilyPage from './components/FamilyPage/FamilyPage'
 import ForumPage from './components/ForumPage/ForumPage'
-import { useParams } from 'react-router'
+import TopicPage from './components/ForumPage/TopicPage'
+import PostPage from './components/ForumPage/PostPage'
 
 interface IRoute {
     path: string;
@@ -42,6 +43,18 @@ const routes: IRoute[] = [
     path: '/forum',
     name: 'Forum Page',
     component: ForumPage,
+    exact: true
+  },
+  {
+    path: '/forum/categories/:id',
+    name: 'Topic Page',
+    component: TopicPage,
+    exact: true
+  },
+  {
+    path: '/forum/topics/:id',
+    name: 'Post Page',
+    component: PostPage,
     exact: true
   }
 ]
