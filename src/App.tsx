@@ -24,26 +24,25 @@ function App () {
             ? <UserProvider>
               {routes.map((route, index) => {
                 return (
-                  <>
 
-                    <Route
-                      key={index}
-                      path={route.path}
-                      exact={route.exact}
-                      render={(props: RouteComponentProps<any>) => (
-                        <Layout>
-                          <div className="flex flex-col mx-6 mt-20">
-                            <route.component
-                              name={route.name}
-                              {...props}
-                              {...route.props}
-                            />
-                          </div>
-                        </Layout>
-                      )}
-                    />
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    render={(props: RouteComponentProps<any>) => (
+                      <Layout>
+                        <div className="flex flex-col mx-6 mt-20">
+                          <route.component
+                            key={index}
+                            name={route.name}
+                            {...props}
+                            {...route.props}
+                          />
+                        </div>
+                      </Layout>
+                    )}
+                  />
 
-                  </>
                 )
               })}
             </UserProvider>

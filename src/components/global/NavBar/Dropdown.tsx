@@ -5,6 +5,7 @@ import { useUserContext } from '../../../context/userContext'
 
 const Dropdown: FunctionComponent = () => {
   const { user, userLogOut } = useUserContext()
+  const profileRef = '/profile/' + user.id
 
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false)
   const btnDropdownRef = createRef<HTMLButtonElement>()
@@ -44,7 +45,7 @@ const Dropdown: FunctionComponent = () => {
             style={{ minWidth: '12rem' }}
           >
             <a
-              href="/profile"
+              href={profileRef}
               className={
                 'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent ' +
                                 (' text-blueGray-700')

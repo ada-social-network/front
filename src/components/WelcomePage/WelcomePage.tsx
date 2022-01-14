@@ -53,7 +53,7 @@ const WelcomePage: FunctionComponent = () => {
         ? posts.map((post, i) => {
           return <BdaPostCard key={i} {...post} />
         })
-        : 'Il y a un problème ...'
+        : 'Loading...'
       }
     </div>
   )

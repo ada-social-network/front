@@ -32,6 +32,14 @@ export const getCurrentUser = () => {
     })
 }
 
+export const getUser = (userId :string) => {
+  return axios
+    .get<User>(API_URL + 'users/' + userId, { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response.data
+    })
+}
+
 export const getPromoList = () => {
   return axios
     .get(API_URL + 'promos', { headers: { Authorization: authHeader() } })
