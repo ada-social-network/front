@@ -2,12 +2,17 @@ import { FunctionComponent, useState } from 'react'
 import MenuTitle from '../global/SideBar/MenuTitle'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import ProfileForm from './ProfileForm'
+import { useParams } from 'react-router'
 
 interface Props {
   small : boolean,
 }
 
+interface Params {
+  id : string
+}
 const ProfilePage: FunctionComponent<Props> = ({ small }) => {
+  const { id } = useParams<Params>()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const handleClose = () => {
     setIsModalOpen(false)
@@ -15,6 +20,7 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
   }
   return (
     <div>
+      <p> {id} </p>
       <button onClick={() => setIsModalOpen(!isModalOpen)}>
         <MenuTitle name={'Modifier mon profile'} small={small} icon={faUsers}/>
       </button>
@@ -32,6 +38,7 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
                     </h3>
                     <ProfileForm onClose={handleClose} />
                   </div>
+
                 </div>
               </div>
             </div>

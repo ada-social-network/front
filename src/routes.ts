@@ -3,6 +3,7 @@ import ProfilePage from './components/ProfilePage/ProfilePage'
 import CalendarPage from './components/CalendarPage/CalendarPage'
 import FamilyPage from './components/FamilyPage/FamilyPage'
 import ForumPage from './components/ForumPage/ForumPage'
+import { useParams } from 'react-router'
 
 interface IRoute {
     path: string;
@@ -20,7 +21,7 @@ const routes: IRoute[] = [
     exact: true
   },
   {
-    path: '/profile',
+    path: '/profile/:id',
     name: 'Profile Page',
     component: ProfilePage,
     exact: true

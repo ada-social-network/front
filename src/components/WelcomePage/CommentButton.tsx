@@ -81,7 +81,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
             <li>
               {comments.length > 0
                 ? comments.map((comment, i) => {
-                  return <Comment key={i} {...comment} />
+                  return <Comment key={i + bdaPostId} {...comment} />
                 })
                 : <p>Zero commentaire ...</p>
               }
