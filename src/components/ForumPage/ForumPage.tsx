@@ -40,7 +40,7 @@ const ForumPage:FunctionComponent = () => {
   }, [])
   console.log(categories)
   return (
-    <div className="min-w-full">
+    <div className=" item-center justify-center">
       <PostCategoryButton />
       {categories !== undefined
         ? categories.map((category, i) => {

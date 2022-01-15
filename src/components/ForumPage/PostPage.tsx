@@ -12,6 +12,7 @@ interface Post {
   title : string;
   content: string;
   topicID : string;
+  userID: string;
 }
 
 interface Params {
@@ -43,22 +44,34 @@ const PostPage:FunctionComponent = () => {
             id: '',
             title: 'error',
             content: "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau",
-            topicID: ''
+            topicID: '',
+            userID: ''
           }
         ])
       })
   }, [])
 
   return (
-    <div className="min-w-full">
-      <PostPostButton />
+    <div className="w-full justify-center bg-white">
+      <div className="border-b-2 border-pink px-6 py-2 ">
+        <div className="flex flex-col">
+          <h3 className="text-grey-darkest mb-1 font-extrabold">#general</h3>
+          <div className="text-grey-dark text-sm ">
+                    Chit-chattin' about ugly HTML and mixing of concerns.
+          </div>
+        </div>
+
+      </div>
+
       {posts !== undefined
         ? posts.map((post, i) => {
           return <PostCard key={i} {...post}/>
         })
         : 'Loading...'
       }
+      <PostPostButton />
     </div>
+
   )
 }
 export default PostPage

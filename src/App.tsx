@@ -31,7 +31,7 @@ function App () {
                     exact={route.exact}
                     render={(props: RouteComponentProps<any>) => (
                       <Layout>
-                        <div className="flex flex-col mx-6 mt-20">
+                        <div className="flex flex-col w-5/6 ml-6 mt-20">
                           <route.component
                             key={index}
                             name={route.name}
