@@ -57,6 +57,7 @@ const LoginForm: FunctionComponent = () => {
     login(email, password)
       .then(() => {
         setFormStatus(formStatusProps.success)
+        setTimeout(redirectWelcome, 1000)
       }
       )
       .catch(function (error) {
@@ -69,12 +70,11 @@ const LoginForm: FunctionComponent = () => {
         } else {
           setFormStatus(formStatusProps.error)
         }
+        location.reload()
       })
       .finally(() => {
         setDisplayFormStatus(true)
-        setTimeout(redirectWelcome, 100)
-      }
-      )
+      })
   }
 
   const [displayFormStatus, setDisplayFormStatus] = useState(false)
