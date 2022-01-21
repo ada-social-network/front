@@ -2,7 +2,6 @@ import { FunctionComponent, useState } from 'react'
 import DateComponent from '../WelcomePage/DateComponent'
 
 interface Props {
-  title?: string;
   content: string;
   createdAt?: Date;
   id: string;
@@ -10,7 +9,7 @@ interface Props {
   userID:string
 }
 
-const PostCard: FunctionComponent<Props> = ({ title, content, createdAt, id, topicID, userID }) => {
+const PostCard: FunctionComponent<Props> = ({ content, createdAt, id, topicID, userID }) => {
   return (
     <div className="border-b border-red flex-col px-6 py-2 items-center flex-none">
       <div className="flex items-start mb-4 text-sm">
@@ -21,9 +20,6 @@ const PostCard: FunctionComponent<Props> = ({ title, content, createdAt, id, top
             <span className="font-bold">Steve Schoger</span>
             <span className="text-grey text-xs "><DateComponent date={createdAt} /></span>
           </div>
-          {title
-            ? <div className="font-bold text-xl mb-2">{title}</div>
-            : ''}
           <p className="text-black leading-normal">{content}</p>
         </div>
       </div>

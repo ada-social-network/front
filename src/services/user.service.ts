@@ -22,6 +22,10 @@ export type User = {
   mbti?: string,
   isAdmin?: string,
   promoId?: string,
+  biography?: string,
+  coverPic? : string,
+  projectPerso? : string,
+  projectPro?: string
 }
 
 export const getCurrentUser = () => {

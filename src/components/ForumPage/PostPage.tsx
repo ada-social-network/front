@@ -9,7 +9,6 @@ interface Post {
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
-  title : string;
   content: string;
   topicID : string;
   userID: string;
@@ -42,7 +41,6 @@ const PostPage:FunctionComponent = () => {
         setPosts([
           {
             id: '',
-            title: 'error',
             content: "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau",
             topicID: '',
             userID: ''

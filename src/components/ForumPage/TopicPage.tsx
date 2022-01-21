@@ -10,7 +10,8 @@ interface Topic {
   updatedAt?: Date;
   deletedAt?: Date;
   name : string;
-  categoryID : string
+  categoryID : string;
+  content: string
 }
 
 interface Params {
@@ -41,7 +42,8 @@ const TopicPage:FunctionComponent = () => {
           {
             id: '',
             name: "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau",
-            categoryID: ''
+            categoryID: '',
+            content: ''
           }
         ])
       })
@@ -52,7 +54,7 @@ const TopicPage:FunctionComponent = () => {
       <PostTopicButton />
       {topics !== undefined
         ? topics.map((topic, i) => {
-          return <TopicTitle key={i} title={topic.name} id={topic.id}/>
+          return <TopicTitle key={i} title={topic.name} id={topic.id} content={topic.content}/>
         })
         : 'Loading...'
       }

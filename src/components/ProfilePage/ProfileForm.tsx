@@ -17,6 +17,10 @@ interface FormValues {
   github?: string,
   linkedin?: string,
   mbti?: string,
+  biography?: string,
+  coverPic? : string,
+  projectPerso? : string,
+  projectPro?: string
 }
 
 interface Props {
@@ -63,7 +67,11 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
     facebook: user.facebook,
     github: user.github,
     linkedin: user.linkedin,
-    mbti: user.mbti
+    mbti: user.mbti,
+    biography: user.biography,
+    coverPic: user.coverPic,
+    projectPerso: user.projectPerso,
+    projectPro: user.projectPro
   }
 
   const validationSchema = Yup.object().shape({

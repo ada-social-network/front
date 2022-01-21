@@ -4,7 +4,6 @@ import { useParams } from 'react-router'
 import { postPost } from '../../services/post.service'
 
 interface Values {
-  title: string;
   content:string;
 }
 
@@ -24,7 +23,6 @@ const PostPostForm:FunctionComponent<Props> = ({ onClose }) => {
       {!succes
         ? (<Formik
           initialValues={{
-            title: '',
             content: ''
           }}
           onSubmit={(
@@ -43,15 +41,6 @@ const PostPostForm:FunctionComponent<Props> = ({ onClose }) => {
         >
           <Form>
             <div className="flex flex-col">
-              <label className="my-2" htmlFor="title">
-                Titre
-              </label>
-              <Field
-                className="px-3 py-3 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring w-full border border-black"
-                id="title"
-                name="title"
-                placeholder="Le titre du post"
-              />
               <label className="my-2" htmlFor="content">
                 Message
               </label>

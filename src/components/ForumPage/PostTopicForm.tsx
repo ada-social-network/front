@@ -5,6 +5,7 @@ import { postTopic } from '../../services/post.service'
 
 interface Values {
   name: string;
+  content : string
 }
 
 interface Props {
@@ -23,7 +24,8 @@ const PostCategoryForm:FunctionComponent<Props> = ({ onClose }) => {
       {!succes
         ? (<Formik
           initialValues={{
-            name: ''
+            name: '',
+            content: ''
           }}
           onSubmit={(
             values: Values,
@@ -42,7 +44,7 @@ const PostCategoryForm:FunctionComponent<Props> = ({ onClose }) => {
           <Form>
             <div className="flex flex-col">
               <label className="my-2" htmlFor="title">
-                Nom de la catégorie
+                Nom du topic
               </label>
               <Field
                 className="px-3 py-3 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring w-full border border-black"
@@ -51,6 +53,16 @@ const PostCategoryForm:FunctionComponent<Props> = ({ onClose }) => {
                 placeholder="Le nom"
               />
             </div>
+            <label className="my-2" htmlFor="content">
+                Message
+            </label>
+            <Field
+              as="textarea"
+              className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
+              id="content"
+              name="content"
+              placeholder="Mon message à la plèbe"
+            />
             <div className="px-4 mt-4 py-3 flex flex-inline align-center">
               <button
                 type="button"

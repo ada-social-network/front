@@ -24,9 +24,9 @@ export const getBdaPostComments = (id : string) => {
     })
 }
 
-export const postBdaComment = (values: object) => {
+export const postBdaComment = (values: object, id: string) => {
   return axios
-    .post(API_URL + 'comments', JSON.stringify(values), { headers: { Authorization: authHeader() } })
+    .post(API_URL + 'bdaposts/' + id + '/comments', JSON.stringify(values), { headers: { Authorization: authHeader() } })
 }
 
 export const postCategory = (values: object) => {
