@@ -11,7 +11,7 @@ export type User = {
   firstName: string,
   lastName: string,
   email : string,
-  dateOfBirth ?: Date,
+  dateOfBirth ?: string,
   apprenticeAt?: string,
   profilPic?: string,
   privateMail?: string,

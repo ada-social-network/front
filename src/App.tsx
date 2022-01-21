@@ -13,7 +13,7 @@ import { UserProvider } from './context/userContext'
 
 function App () {
   return (
-    <div className="overflow-y-hidden">
+    <div>
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={LoginPage} />

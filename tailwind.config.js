@@ -1,35 +1,40 @@
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         pink: {
-          light: "#ff7ce5",
-          DEFAULT: "#f9dadb",
-          dark: "#ff16d1",
+          light: '#ff7ce5',
+          DEFAULT: '#f9dadb',
+          dark: '#ff16d1'
         },
         red: {
-          DEFAULT: "#e74f3c",
+          DEFAULT: '#e74f3c'
         },
-        blue: {
-          DEFAULT: "#1f78f4",
+        lightBlue: {
+          DEFAULT: '#1f78f4'
         },
         yellow: {
-          DEFAULT: "#ffcd2b",
+          DEFAULT: '#ffcd2b'
         },
+        blue: {
+          DEFAULT: '#2D337B'
+        }
       },
       boxShadow: {
-        DEFAULT: "#1f78f4 -15px 15px",
-        'small': "#1f78f4 -5px 5px"
+        DEFAULT: '#2D337B -20px 20px',
+        small: '#2D337B -5px 5px',
+        red: '#e74f3c -20px 20px',
+        lightBlue: '#1f78f4 -20px 20px'
       },
       fontFamily: {
-        'sans': ['Oswald', 'Chivo']
+        sans: ['Oswald', 'Chivo']
       }
     },
     variants: {
-      extend: {},
+      extend: {}
     },
-    plugins: [],
-  },
-};
+    plugins: []
+  }
+}
