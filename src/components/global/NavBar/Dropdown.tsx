@@ -34,7 +34,7 @@ const Dropdown: FunctionComponent = () => {
                 : openDropdownPopover()
             }}
           >
-            {user.firstName !== '' ? user.firstName : 'login button to do' }
+            {user.firstName ? user.firstName : '' }
           </button>
           <div
             ref={popoverDropdownRef}
@@ -54,12 +54,11 @@ const Dropdown: FunctionComponent = () => {
               Profil
             </a>
             <a
-              href="#pablo"
+              href="/params"
               className={
                 'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent ' +
                                 (' text-blueGray-700')
               }
-              onClick={e => e.preventDefault()}
             >
               Paramètres
             </a>

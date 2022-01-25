@@ -5,6 +5,7 @@ import FamilyPage from './components/FamilyPage/FamilyPage'
 import ForumPage from './components/ForumPage/ForumPage'
 import TopicPage from './components/ForumPage/TopicPage'
 import PostPage from './components/ForumPage/PostPage'
+import ParamPage from './components/ParamPage/ParamPage'
 
 interface IRoute {
     path: string;
@@ -25,6 +26,12 @@ const routes: IRoute[] = [
     path: '/profile/:id',
     name: 'Profile Page',
     component: ProfilePage,
+    exact: true
+  },
+  {
+    path: '/params',
+    name: 'Params Page',
+    component: ParamPage,
     exact: true
   },
   {

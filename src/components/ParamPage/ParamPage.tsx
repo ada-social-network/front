@@ -9,22 +9,12 @@ interface FormValues {
   lastName: string,
   email : string,
   dateOfBirth?: string,
-  apprenticeAt?: string,
-  profilPic?: string,
   privateMail?: string,
   instagram?: string,
   facebook?: string,
   github?: string,
   linkedin?: string,
   mbti?: string,
-  biography?: string,
-  coverPic? : string,
-  projectPerso? : string,
-  projectPro?: string
-}
-
-interface Props {
-  onClose: () => void
 }
 
 interface FormStatus {
@@ -47,7 +37,7 @@ const formStatusProps: FormStatusProps = {
   }
 }
 
-const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
+const ParamPage: FunctionComponent = () => {
   const { user } = useUserContext()
   const [displayFormStatus, setDisplayFormStatus] = useState(false)
   const [formStatus, setFormStatus] = useState<FormStatus>({
@@ -60,19 +50,14 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
     lastName: user.lastName,
     email: user.email,
     dateOfBirth: user.dateOfBirth,
-    apprenticeAt: user.apprenticeAt,
-    profilPic: user.profilPic,
     privateMail: user.privateMail,
     instagram: user.instagram,
     facebook: user.facebook,
     github: user.github,
     linkedin: user.linkedin,
-    mbti: user.mbti,
-    biography: user.biography,
-    coverPic: user.coverPic,
-    projectPerso: user.projectPerso,
-    projectPro: user.projectPro
+    mbti: user.mbti
   }
+  console.log(initialValues)
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required('Veuillez entrez une adresse mail valide'),
@@ -88,7 +73,6 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
     updateUser(user.id, values)
       .then(() => {
         setFormStatus(formStatusProps.success)
-        setTimeout(onClose, 1500)
       })
       .catch(function (error) {
         console.log(error)
@@ -114,24 +98,29 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
         } = props
         return (
           <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+            <h1 className='mt-12 text-2xl'>Paramètres du compte</h1>
             <Form>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  placeholder='Prénom'
-                  name='firstName'
-                  value={values.firstName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  style={{ transition: 'all .15s ease' }}
-                  error={
-                    !!(errors.firstName && touched.firstName)
-                  }
-                />
-                {errors.firstName && touched.firstName
-                  ? <div className="text-xs text-red">{errors.firstName} </div>
-                  : ''}
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Prénom</p>
+                <div className="relative">
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    placeholder='Prénom'
+                    name='firstName'
+                    value={values.firstName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    style={{ transition: 'all .15s ease' }}
+                    error={
+                      !!(errors.firstName && touched.firstName)
+                    }
+                  />
+                  {errors.firstName && touched.firstName
+                    ? <div className="text-xs text-red">{errors.firstName} </div>
+                    : ''}
+                </div>
               </div>
+
               <div className="relative mt-8">
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
@@ -187,26 +176,6 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
               <div className="relative mt-8">
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='apprenticeAt'
-                  placeholder='Entreprise'
-                  value={values.apprenticeAt}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='profilPic'
-                  placeholder='Photo de profil'
-                  value={values.profilPic}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='instagram'
                   placeholder='Instagram'
                   value={values.instagram}
@@ -256,13 +225,6 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
               </div>
               <div className="px-4 mt-4 py-3 flex flex-inline align-center">
                 <button
-                  type="button"
-                  className="bg-red text-white active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
-                  onClick={onClose}
-                >
-                  Annuler
-                </button>
-                <button
                   className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
                   type="submit"
                   disabled={isSubmitting}
@@ -291,4 +253,4 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
   )
 }
 
-export default ProfileForm
+export default ParamPage
