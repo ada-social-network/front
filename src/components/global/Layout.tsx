@@ -3,6 +3,7 @@ import { FunctionComponent } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import NavBar from './NavBar/NavBar'
 import SideBar from './SideBar/SideBar'
+import Footer from './Footer'
 
 const Layout: FunctionComponent = ({ children }) => {
   const isSmallScreen = useMediaQuery({ query: '(max-width: 900px)' })
@@ -14,6 +15,7 @@ const Layout: FunctionComponent = ({ children }) => {
         {isSmallScreen ? <SideBar small={true} /> : <SideBar small={false} />}
         {children}
       </div>
+      <Footer />
     </div>
 
   )
