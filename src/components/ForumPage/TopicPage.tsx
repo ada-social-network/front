@@ -4,7 +4,7 @@ import PostTopicButton from './PostTopicButton'
 import TopicTitle from './TopicTitle'
 import { useParams } from 'react-router'
 
-interface Topic {
+export interface Topic {
   id: string;
   createdAt?: Date;
   updatedAt?: Date;

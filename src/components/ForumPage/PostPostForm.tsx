@@ -2,74 +2,68 @@ import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { FunctionComponent, useState } from 'react'
 import { useParams } from 'react-router'
 import { postPost } from '../../services/post.service'
+import { Post } from './PostPage'
 
 interface Values {
   content:string;
 }
 
 interface Props {
-  onClose: () => void
+  onPost: (response : Post) => void
 }
 
 interface Params {
   id:string
 }
 
-const PostPostForm:FunctionComponent<Props> = ({ onClose }) => {
-  const [succes, setSuccess] = useState(false)
+const PostPostForm:FunctionComponent<Props> = ({ onPost }) => {
   const { id } = useParams<Params>()
   return (
     <div>
-      {!succes
-        ? (<Formik
-          initialValues={{
-            content: ''
-          }}
-          onSubmit={(
-            values: Values,
-            { setSubmitting }: FormikHelpers<Values>
-          ) => {
-            postPost(id, values)
-              .then((response) => {
-                setSuccess(true)
-                console.log(response)
-              })
-            setSubmitting(false)
-            setTimeout(onClose, 500)
-            setSuccess(false)
-          }}
-        >
+
+      <Formik
+        initialValues={{
+          content: ''
+        }}
+        enableReinitialize={true}
+
+        onSubmit={(
+          values: Values,
+          actions: FormikHelpers<Values>
+        ) => {
+          postPost(id, values)
+            .then((response) => {
+              actions.setSubmitting(false)
+              actions.resetForm()
+              console.log(response)
+              onPost(response.data)
+            })
+        }}
+      >
+        <div className="rounded-3xl ">
+
           <Form>
-            <div className="flex flex-col">
-              <label className="my-2" htmlFor="content">
-                Message
-              </label>
+            <div className="m-4 flex">
+
               <Field
-                as="textarea"
-                className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
+                className="rounded-l-lg p-4 bg-gray-100 border-t mr-0 border-b border-l text-gray-800 border-gray-200 w-full"
                 id="content"
                 name="content"
                 placeholder="Mon message à la plèbe"
               />
-            </div>
-            <div className="px-4 mt-4 py-3 flex flex-inline align-center">
+
               <button
-                type="button"
-                className="bg-red text-white active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
-                onClick={onClose}
-              >
-                Annuler
-              </button>
-              <button
-                className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
+                className="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r"
                 type="submit"
               >
-                Poster
+      Poster
               </button>
             </div>
           </Form>
-        </Formik>)
-        : 'Merci pour votre post :)' }
+        </div>
+
+      </Formik>
+
     </div>
   )
 }

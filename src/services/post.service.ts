@@ -11,9 +11,22 @@ export const getBdaPosts = () => {
     })
 }
 
+export const getBdaPostLikes = (id : string) => {
+  return axios
+    .get(API_URL + '/bdaposts/' + id + '/likes', { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response.data
+    })
+}
+
 export const postBdaPost = (values: object) => {
   return axios
     .post(API_URL + 'bdaposts', JSON.stringify(values), { headers: { Authorization: authHeader() } })
+}
+
+export const postBdaPostLike = (id: string) => {
+  return axios
+    .post(API_URL + 'bdaposts/' + id + '/likes', { headers: { Authorization: authHeader() } })
 }
 
 export const getBdaPostComments = (id : string) => {
@@ -63,6 +76,14 @@ export const postPost = (id:string, values: object) => {
 export const getPosts = (id : string) => {
   return axios
     .get(`${API_URL}topics/${id}/posts`, { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response.data
+    })
+}
+
+export const getTopic = (id: string) => {
+  return axios
+    .get(`${API_URL}topics/${id}`, { headers: { Authorization: authHeader() } })
     .then((response) => {
       return response.data
     })

@@ -1,17 +1,18 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { getPosts } from '../../services/post.service'
-import PostPostButton from './PostPostButton'
+import { getPosts, getTopic } from '../../services/post.service'
 import PostCard from './PostCard'
 import { useParams } from 'react-router'
+import PostPostForm from './PostPostForm'
+import { Topic } from './TopicPage'
 
-interface Post {
+export interface Post {
   id: string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
   content: string;
   topicID : string;
-  userID: string;
+  userId: string;
 }
 
 interface Params {
@@ -21,9 +22,14 @@ interface Params {
 type PostList = Post[];
 
 const PostPage:FunctionComponent = () => {
-  const [posts, setPosts] = useState<PostList>()
+  const [posts, setPosts] = useState<PostList>([])
+  const [topic, setTopic] = useState<Topic>()
+
   const { id } = useParams<Params>()
 
+  const newPost = (response : Post) => {
+    setPosts([...posts, response])
+  }
   useEffect(() => {
     getPosts(id)
       .then((response) => {
@@ -43,9 +49,13 @@ const PostPage:FunctionComponent = () => {
             id: '',
             content: "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau",
             topicID: '',
-            userID: ''
+            userId: ''
           }
         ])
+      })
+    getTopic(id)
+      .then((response) => {
+        setTopic(response)
       })
   }, [])
 
@@ -53,9 +63,9 @@ const PostPage:FunctionComponent = () => {
     <div className="w-full justify-center bg-white">
       <div className="border-b-2 border-pink px-6 py-2 ">
         <div className="flex flex-col">
-          <h3 className="text-grey-darkest mb-1 font-extrabold">#general</h3>
+          <h3 className="text-grey-darkest mb-1 font-extrabold"> {topic?.name}</h3>
           <div className="text-grey-dark text-sm ">
-                    Chit-chattin' about ugly HTML and mixing of concerns.
+            {topic?.content}
           </div>
         </div>
 
@@ -67,7 +77,7 @@ const PostPage:FunctionComponent = () => {
         })
         : 'Loading...'
       }
-      <PostPostButton />
+      <PostPostForm onPost={newPost} />
     </div>
 
   )
