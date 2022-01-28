@@ -3,6 +3,9 @@ import DateComponent from './DateComponent'
 import CommentButton from './CommentButton'
 import { getBdaPostLikes } from '../../services/post.service'
 import LikeButton from './LikeButton'
+import DislikeButton from './DislikeButton'
+import { useUserContext } from '../../context/userContext'
+import { getCurrentUser, getUser, User } from '../../services/user.service'
 
 interface Props {
   title?: string;
@@ -21,17 +24,33 @@ interface Like {
 }
 interface LikeList {
     items: [Like];
-    count: number
+    count: number;
+    isLiked : boolean;
+}
+
+function findLikeId (bdaPostId: string, userId:string | undefined, likes :[Like]) {
+  const like = likes.find(like => {
+    return like.bdapostId === bdaPostId && like.userId === userId
+  })
+  if (like !== undefined) return like.id
 }
 
 const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }) => {
   const [likes, setLikes] = useState<LikeList>()
+  const [userLikeId, setUserLikeId] = useState<string>()
+  const [user, setUser] = useState<User>()
 
   useEffect(() => {
+    getCurrentUser().then((response) => {
+      setUser(response)
+    })
     getBdaPostLikes(id)
       .then((likes) => {
+        /* setUserLike(isLikedByUser(id, user.id, likes.items)) */
         setLikes(likes)
-      })
+        setUserLikeId(findLikeId(id, user?.id, likes.items))
+      }
+      )
       .catch(function (error) {
         if (error.response) {
           console.log(error.response.data)
@@ -43,7 +62,6 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
           console.log('Error', error.message)
         }
         console.log(error.config)
-        setLikes(undefined)
       })
   }, [])
 
@@ -57,8 +75,11 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
             <p className="text-gray-700 text-base">{content}</p>
             <DateComponent date={createdAt} />
             <CommentButton bdaPostId={id}/>
-            <p>{likes ? likes.items : 'oups'}</p>
-            <LikeButton bdaPostId={id} onPost={() => { console.log('hihi') }}/>
+
+            <p>{likes ? likes.count : 'wait ...'}</p>
+            { likes?.isLiked
+              ? <DislikeButton bdaPostId={id} likeId={userLikeId} onPost={() => { }}/>
+              : <LikeButton bdaPostId={id} onPost={() => { }}/>}):
           </div>
         </div>
       </div>
