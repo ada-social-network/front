@@ -53,6 +53,16 @@ const Dropdown: FunctionComponent = () => {
             >
               Paramètres
             </a>
+            {/* {user.isAdmin
+              ? ( */}
+            <a
+              href="/admin"
+              className='text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
+            >
+              Admin
+            </a>
+            {/* )
+              : ''} */}
             <a
               className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent cursor-pointer"
               onClick={userLogOut}

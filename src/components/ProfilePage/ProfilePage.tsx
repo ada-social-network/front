@@ -25,7 +25,7 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
 
   return (
     <div className="mt-8">
-      <h1 className='font-bold text-3xl text-blue mb-10 text-center'>Mon profil</h1>
+      <h1 className='mb-10 text-center'>Mon profil</h1>
       <div className="flex justify-center">
         <div className="flex flex-col">
           <div className="md:relative"
@@ -59,7 +59,7 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
         </div>
       </div>
       <div className="flex justify-center flex-col mt-6 mb-3.5">
-        <h1 className="text-center text-2xl">{user.firstName + ' ' + user.lastName}</h1>
+        <h3 className="text-center text-2xl">{user.firstName + ' ' + user.lastName}</h3>
       </div>
 
       <div className='container flex mt-14 justify-center'>

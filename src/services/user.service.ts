@@ -20,7 +20,7 @@ export type User = {
   github?: string,
   linkedin?: string,
   mbti?: string,
-  isAdmin?: string,
+  isAdmin: boolean,
   promoId?: string,
   biography?: string,
   coverPic? : string,
