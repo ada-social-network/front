@@ -7,14 +7,20 @@ import { useUserContext } from '../../context/userContext'
 interface FormValues {
   firstName: string,
   lastName: string,
-  email : string,
+  email: string,
   dateOfBirth?: string,
+  apprenticeAt?: string,
+  profilPic?: string,
   privateMail?: string,
   instagram?: string,
   facebook?: string,
   github?: string,
   linkedin?: string,
   mbti?: string,
+  biography?: string,
+  coverPic? : string,
+  projectPerso? : string,
+  projectPro?: string
 }
 
 interface FormStatus {
@@ -50,14 +56,19 @@ const ParamPage: FunctionComponent = () => {
     lastName: user.lastName,
     email: user.email,
     dateOfBirth: user.dateOfBirth,
+    apprenticeAt: user.apprenticeAt,
+    profilPic: user.profilPic,
     privateMail: user.privateMail,
     instagram: user.instagram,
     facebook: user.facebook,
     github: user.github,
     linkedin: user.linkedin,
-    mbti: user.mbti
+    mbti: user.mbti,
+    biography: user.biography,
+    coverPic: user.coverPic,
+    projectPerso: user.projectPerso,
+    projectPro: user.projectPro
   }
-  console.log(initialValues)
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required('Veuillez entrez une adresse mail valide'),
@@ -102,7 +113,7 @@ const ParamPage: FunctionComponent = () => {
             <Form>
               <div className='relative mt-8 grid grid-cols-2'>
                 <p>Prénom</p>
-                <div className="relative">
+                <div>
                   <Field
                     className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                     placeholder='Prénom'
@@ -121,59 +132,68 @@ const ParamPage: FunctionComponent = () => {
                 </div>
               </div>
 
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='lastName'
-                  placeholder='Nom'
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  style={{ transition: 'all .15s ease' }}
-                  error={
-                    !!(errors.lastName && touched.lastName)
-                  }
-                />
-                {errors.lastName && touched.lastName
-                  ? <div className="text-xs text-red">{errors.lastName}</div>
-                  : ''}
-
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Nom</p>
+                <div>
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    name='lastName'
+                    placeholder='Nom'
+                    value={values.lastName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    style={{ transition: 'all .15s ease' }}
+                    error={
+                      !!(errors.lastName && touched.lastName)
+                    }
+                  />
+                  {errors.lastName && touched.lastName
+                    ? <div className="text-xs text-red">{errors.lastName}</div>
+                    : ''}
+                </div>
               </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='email'
-                  placeholder='Addresse mail'
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  type="email"
-                  style={{ transition: 'all .15s ease' }}
-                  error={
-                    !!(errors.email && touched.email)
-                  }
-                />
-                {errors.email && touched.email
-                  ? <div className="text-xs text-red">{errors.email}</div>
-                  : ''}
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Email</p>
+                <div>
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    name='email'
+                    placeholder='Addresse mail'
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    type="email"
+                    style={{ transition: 'all .15s ease' }}
+                    error={
+                      !!(errors.email && touched.email)
+                    }
+                  />
+                  {errors.email && touched.email
+                    ? <div className="text-xs text-red">{errors.email}</div>
+                    : ''}
+                </div>
               </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='dateOfBirth'
-                  placeholder='Date de naissance'
-                  value={values.dateOfBirth}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={
-                    !!(errors.dateOfBirth && touched.dateOfBirth)
-                  }
-                />
-                {errors.dateOfBirth && touched.dateOfBirth
-                  ? <div className="text-xs text-red">Veuillez entrer une date valide</div>
-                  : ''}
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Date de naissance</p>
+                <div>
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    name='dateOfBirth'
+                    placeholder='Date de naissance'
+                    value={values.dateOfBirth}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={
+                      !!(errors.dateOfBirth && touched.dateOfBirth)
+                    }
+                  />
+                  {errors.dateOfBirth && touched.dateOfBirth
+                    ? <div className="text-xs text-red">Veuillez entrer une date valide</div>
+                    : ''}
+                </div>
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Instagram</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='instagram'
@@ -183,7 +203,8 @@ const ParamPage: FunctionComponent = () => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Facebook</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='facebook'
@@ -193,7 +214,8 @@ const ParamPage: FunctionComponent = () => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Github</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='github'
@@ -203,7 +225,8 @@ const ParamPage: FunctionComponent = () => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Linkedin</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='linkedin'
@@ -213,7 +236,8 @@ const ParamPage: FunctionComponent = () => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>MBTI</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='mbti'
