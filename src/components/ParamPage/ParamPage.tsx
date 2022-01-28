@@ -7,7 +7,7 @@ import { useUserContext } from '../../context/userContext'
 interface FormValues {
   firstName: string,
   lastName: string,
-  email : string,
+  email: string,
   dateOfBirth?: string,
   apprenticeAt?: string,
   profilPic?: string,
@@ -21,10 +21,6 @@ interface FormValues {
   coverPic? : string,
   projectPerso? : string,
   projectPro?: string
-}
-
-interface Props {
-  onClose: () => void
 }
 
 interface FormStatus {
@@ -47,7 +43,7 @@ const formStatusProps: FormStatusProps = {
   }
 }
 
-const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
+const ParamPage: FunctionComponent = () => {
   const { user } = useUserContext()
   const [displayFormStatus, setDisplayFormStatus] = useState(false)
   const [formStatus, setFormStatus] = useState<FormStatus>({
@@ -88,7 +84,6 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
     updateUser(user.id, values)
       .then(() => {
         setFormStatus(formStatusProps.success)
-        setTimeout(onClose, 1500)
       })
       .catch(function (error) {
         console.log(error)
@@ -114,97 +109,91 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
         } = props
         return (
           <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+            <h1 className='mt-12 text-2xl'>Paramètres du compte</h1>
             <Form>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  placeholder='Prénom'
-                  name='firstName'
-                  value={values.firstName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  style={{ transition: 'all .15s ease' }}
-                  error={
-                    !!(errors.firstName && touched.firstName)
-                  }
-                />
-                {errors.firstName && touched.firstName
-                  ? <div className="text-xs text-red">{errors.firstName} </div>
-                  : ''}
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Prénom</p>
+                <div>
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    placeholder='Prénom'
+                    name='firstName'
+                    value={values.firstName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    style={{ transition: 'all .15s ease' }}
+                    error={
+                      !!(errors.firstName && touched.firstName)
+                    }
+                  />
+                  {errors.firstName && touched.firstName
+                    ? <div className="text-xs text-red">{errors.firstName} </div>
+                    : ''}
+                </div>
               </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='lastName'
-                  placeholder='Nom'
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  style={{ transition: 'all .15s ease' }}
-                  error={
-                    !!(errors.lastName && touched.lastName)
-                  }
-                />
-                {errors.lastName && touched.lastName
-                  ? <div className="text-xs text-red">{errors.lastName}</div>
-                  : ''}
 
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Nom</p>
+                <div>
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    name='lastName'
+                    placeholder='Nom'
+                    value={values.lastName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    style={{ transition: 'all .15s ease' }}
+                    error={
+                      !!(errors.lastName && touched.lastName)
+                    }
+                  />
+                  {errors.lastName && touched.lastName
+                    ? <div className="text-xs text-red">{errors.lastName}</div>
+                    : ''}
+                </div>
               </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='email'
-                  placeholder='Addresse mail'
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  type="email"
-                  style={{ transition: 'all .15s ease' }}
-                  error={
-                    !!(errors.email && touched.email)
-                  }
-                />
-                {errors.email && touched.email
-                  ? <div className="text-xs text-red">{errors.email}</div>
-                  : ''}
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Email</p>
+                <div>
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    name='email'
+                    placeholder='Addresse mail'
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    type="email"
+                    style={{ transition: 'all .15s ease' }}
+                    error={
+                      !!(errors.email && touched.email)
+                    }
+                  />
+                  {errors.email && touched.email
+                    ? <div className="text-xs text-red">{errors.email}</div>
+                    : ''}
+                </div>
               </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='dateOfBirth'
-                  placeholder='Date de naissance'
-                  value={values.dateOfBirth}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={
-                    !!(errors.dateOfBirth && touched.dateOfBirth)
-                  }
-                />
-                {errors.dateOfBirth && touched.dateOfBirth
-                  ? <div className="text-xs text-red">Veuillez entrer une date valide</div>
-                  : ''}
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Date de naissance</p>
+                <div>
+                  <Field
+                    className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
+                    name='dateOfBirth'
+                    placeholder='Date de naissance'
+                    value={values.dateOfBirth}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={
+                      !!(errors.dateOfBirth && touched.dateOfBirth)
+                    }
+                  />
+                  {errors.dateOfBirth && touched.dateOfBirth
+                    ? <div className="text-xs text-red">Veuillez entrer une date valide</div>
+                    : ''}
+                </div>
               </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='apprenticeAt'
-                  placeholder='Entreprise'
-                  value={values.apprenticeAt}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </div>
-              <div className="relative mt-8">
-                <Field
-                  className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
-                  name='profilPic'
-                  placeholder='Photo de profil'
-                  value={values.profilPic}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Instagram</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='instagram'
@@ -214,7 +203,8 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Facebook</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='facebook'
@@ -224,7 +214,8 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Github</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='github'
@@ -234,7 +225,8 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>Linkedin</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='linkedin'
@@ -244,7 +236,8 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                   onBlur={handleBlur}
                 />
               </div>
-              <div className="relative mt-8">
+              <div className='relative mt-8 grid grid-cols-2'>
+                <p>MBTI</p>
                 <Field
                   className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring border border-black"
                   name='mbti'
@@ -255,13 +248,6 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
                 />
               </div>
               <div className="px-4 mt-4 py-3 flex flex-inline align-center">
-                <button
-                  type="button"
-                  className="bg-red text-white active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
-                  onClick={onClose}
-                >
-                  Annuler
-                </button>
                 <button
                   className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
                   type="submit"
@@ -291,4 +277,4 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
   )
 }
 
-export default ProfileForm
+export default ParamPage
