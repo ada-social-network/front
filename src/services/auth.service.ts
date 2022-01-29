@@ -26,6 +26,7 @@ export const login = (email: string, password: string) => {
 
 export const logOut = () => {
   localStorage.removeItem('user')
+  localStorage.removeItem('current')
   window.location.replace('/login')
   isLogin()
 }

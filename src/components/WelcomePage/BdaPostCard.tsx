@@ -4,8 +4,8 @@ import CommentButton from './CommentButton'
 import { getBdaPostLikes } from '../../services/post.service'
 import LikeButton from './LikeButton'
 import DislikeButton from './DislikeButton'
-import { useUserContext } from '../../context/userContext'
-import { getCurrentUser, getUser, User } from '../../services/user.service'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
   title?: string;
@@ -14,7 +14,7 @@ interface Props {
   id: string
 }
 
-interface Like {
+export type Like = {
   id: string;
   createdAt: Date;
   updatedAt: Date;
@@ -22,33 +22,29 @@ interface Like {
   userId: string;
   bdapostId: string;
 }
-interface LikeList {
-    items: [Like];
+export type LikeList = {
+    items: Like[];
     count: number;
     isLiked : boolean;
 }
 
-function findLikeId (bdaPostId: string, userId:string | undefined, likes :[Like]) {
-  const like = likes.find(like => {
-    return like.bdapostId === bdaPostId && like.userId === userId
-  })
-  if (like !== undefined) return like.id
-}
-
 const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }) => {
   const [likes, setLikes] = useState<LikeList>()
-  const [userLikeId, setUserLikeId] = useState<string>()
-  const [user, setUser] = useState<User>()
+
+  const newLike = (response : Like, likes : LikeList) => {
+    likes.items.push(response)
+    setLikes({ items: likes.items, count: likes.count + 1, isLiked: true })
+  }
+
+  const newDislike = (userId : string, likes : LikeList) => {
+    const newItems = likes.items.filter((item) => item.userId !== userId)
+    setLikes({ items: newItems, count: likes.count - 1, isLiked: false })
+  }
 
   useEffect(() => {
-    getCurrentUser().then((response) => {
-      setUser(response)
-    })
     getBdaPostLikes(id)
       .then((likes) => {
-        /* setUserLike(isLikedByUser(id, user.id, likes.items)) */
         setLikes(likes)
-        setUserLikeId(findLikeId(id, user?.id, likes.items))
       }
       )
       .catch(function (error) {
@@ -69,18 +65,26 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
   return (
     <>
       <div className="bg-white w-4/6 flex flex-col m-6">
-        <div className="border-blue border-4 shadow">
+        <div className="border-blue border-4 shadow-small rounded-md">
           <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{title + id}</div>
+            <div className="font-bold text-xl mb-2">{title}</div>
             <p className="text-gray-700 text-base">{content}</p>
             <DateComponent date={createdAt} />
+          </div>
+          <div className="px-6 py-4 flex flex-row">
+
             <CommentButton bdaPostId={id}/>
 
-            <p>{likes ? likes.count : 'wait ...'}</p>
-            { likes?.isLiked
-              ? <DislikeButton bdaPostId={id} likeId={userLikeId} onPost={() => { }}/>
-              : <LikeButton bdaPostId={id} onPost={() => { }}/>}):
+            <div className="flex flex-row mx-2">
+
+              <p>{likes ? likes.count : 'wait ...'}</p>
+              <FontAwesomeIcon icon={faHeart}/>
+            </div>
+            {likes?.isLiked
+              ? <DislikeButton bdaPostId={id} likes={likes} onPost={newDislike}/>
+              : <LikeButton bdaPostId={id} likes={likes} onPost={newLike}/>}
           </div>
+
         </div>
       </div>
     </>

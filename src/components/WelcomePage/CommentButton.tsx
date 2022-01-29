@@ -45,6 +45,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
         setComments([])
       })
   }, [])
+
   const [showComments, setShowComments] = React.useState(false)
   const openComments = () => {
     setShowComments(true)
@@ -56,7 +57,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
   return (
     <div>
       <button
-        className="max-w-10 bg-blue text-white text-xs px-6 py-3 rounded hover:shadow-lg "
+        className="max-w-10 bg-blue mx-2 text-white text-xs px-6 py-3 rounded hover:shadow-lg "
         type="button"
         onClick={() => {
           showComments
@@ -66,11 +67,11 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
       >
         Commentaires
       </button>
-      <div className="flex flex-col">
+      <div className="flex flex-col justify">
         <div
           className={
             (showComments ? 'block ' : 'hidden ') +
-            ('bg-white ' + 'text-base float-left py-2 list-none text-left rounded shadow-lg mt-1')
+            ('bg-white ' + 'text-base py-2 list-none text-left rounded shadow-lg mt-1')
           }
           style={{ minWidth: '12rem' }}
         >

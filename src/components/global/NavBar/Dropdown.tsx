@@ -6,6 +6,7 @@ import { useUserContext } from '../../../context/userContext'
 const Dropdown: FunctionComponent = () => {
   const { user, userLogOut } = useUserContext()
   const profileRef = '/profile/' + user.id
+  localStorage.setItem('current', user.id)
 
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false)
   const btnDropdownRef = createRef<HTMLButtonElement>()
