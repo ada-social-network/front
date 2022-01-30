@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import MenuTitle from '../global/SideBar/MenuTitle'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 import ProfileForm from './ProfileForm'
@@ -6,25 +6,43 @@ import { useUserContext } from '../../context/userContext'
 import Insta from '../../logo/insta.svg'
 import Github from '../../logo/github.svg'
 import Linkedin from '../../logo/linkedin.svg'
+import { getUser, User } from '../../services/user.service'
+import { useParams } from 'react-router'
 
 interface Props {
   small : boolean,
 }
 
+interface Params {
+  id : string
+}
+
 const ProfilePage: FunctionComponent<Props> = ({ small }) => {
   const { user } = useUserContext()
+
+  const [anyUser, setAnyUser] = useState<User | undefined>()
   const [isModalOpen, setIsModalOpen] = useState(false)
+
   const handleClose = () => {
     setIsModalOpen(false)
     window.location.reload()
   }
 
-  const hrefInsta = `https://www.instagram.com/${user.instagram}`
+  const { id } = useParams<Params>()
+
+  useEffect(() => {
+    getUser(id).then((response) => {
+      setAnyUser(response)
+    })
+  }, [])
+
+  const hrefInsta = `https://www.instagram.com/${anyUser?.instagram}`
   const profilPic = 'https://cdn.radiofrance.fr/s3/cruiser-production/2020/03/e67b4427-4143-4eef-9dc2-5c893a445662/838_800px-ada_lovelace_portrait.jpg'
   const coverImage = 'https://thumb.canalplus.pro/http/unsafe/3532x1914/smart/creativemedia-image.canalplus.pro/content/0001/33/a50a92ea1757a6f64a1edefbeb69f3defd498149.jpeg'
 
   return (
     <div className="mt-8">
+
       <h1 className='font-bold text-3xl text-blue mb-10 text-center'>Mon profil</h1>
       <div className="flex justify-center">
         <div className="flex flex-col">
@@ -32,7 +50,7 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
             style={{ width: '940px', height: '348px' }}>
             <img src={coverImage} alt="ADA" className='border-4 border-blue' style={{ width: '940px', height: '348px' }}/>
             <div>
-              <img src={user.profilPic ? user.profilPic : profilPic}
+              <img src={anyUser?.profilPic ? anyUser?.profilPic : profilPic}
                 className="rounded-full md:absolute top-60 inset-x-96 border-4 border-pink" style={{ width: '170px', height: '168px' }} />
             </div>
           </div>
@@ -44,12 +62,12 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
               </a>
             </div>
             <div className='w-10'>
-              <a href={user.github}>
+              <a href={anyUser?.github}>
                 <img src={Github} alt="github"/>
               </a>
             </div>
             <div className='w-10'>
-              <a href={user.linkedin}>
+              <a href={anyUser?.linkedin}>
                 <img src={Linkedin} alt="linkedin"/>
               </a>
             </div>
@@ -59,7 +77,7 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
         </div>
       </div>
       <div className="flex justify-center flex-col mt-6 mb-3.5">
-        <h1 className="text-center text-2xl">{user.firstName + ' ' + user.lastName}</h1>
+        <h1 className="text-center text-2xl">{anyUser?.firstName + ' ' + anyUser?.lastName}</h1>
       </div>
 
       <div className='container flex mt-14 justify-center'>
@@ -72,11 +90,11 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
             <div className='container grid grid-cols-2'>
               <div className="px-6 py-4">
                 <h3 className="font-bold text-xl mb-2">Anniversaire</h3>
-                <p className="text-base">{user.dateOfBirth}</p>
+                <p className="text-base">{anyUser?.dateOfBirth}</p>
               </div>
               <div className="px-6 py-4">
                 <h3 className="font-bold text-xl mb-2">Alternance</h3>
-                <p className="text-base">{user.apprenticeAt}</p>
+                <p className="text-base">{anyUser?.apprenticeAt}</p>
               </div>
             </div>
           </div>

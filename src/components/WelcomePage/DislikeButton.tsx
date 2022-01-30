@@ -18,8 +18,8 @@ function findLikeId (bdaPostId: string, userId:string | null, likes :LikeList) {
 }
 
 const DislikeButton: FunctionComponent<Props> = ({ bdaPostId, likes, onPost }) => {
-  const userId = localStorage.getItem('current')
-  const likeId = findLikeId(bdaPostId, userId, likes)
+  const cUserId = localStorage.getItem('current')
+  const likeId = findLikeId(bdaPostId, cUserId, likes)
   return (
     <div>
       <button
@@ -27,8 +27,8 @@ const DislikeButton: FunctionComponent<Props> = ({ bdaPostId, likes, onPost }) =
         onClick={() => {
           if (likeId !== undefined) {
             postBdaDeleteLike(bdaPostId, likeId).then((response) => {
-              if (userId !== null) {
-                onPost(userId, likes)
+              if (cUserId !== null) {
+                onPost(cUserId, likes)
               }
             })
           }

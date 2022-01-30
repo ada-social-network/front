@@ -32,6 +32,7 @@ export const getCurrentUser = () => {
   return axios
     .get<User>(API_URL + 'me', { headers: { Authorization: authHeader() } })
     .then((response) => {
+      localStorage.setItem('current', JSON.stringify(response.data.id))
       return response.data
     })
 }

@@ -16,7 +16,7 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
     getUser(userId).then((response) => {
       setAuthor(response)
     })
-  }, [])
+  }, [userId])
   return (
 
     <div className="bg-white flex flex-row w-5/6 mx-6">
