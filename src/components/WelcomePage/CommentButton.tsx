@@ -16,10 +16,11 @@ export interface IComment {
 type CommentList = IComment[]
 
 type Props = {
-  bdaPostId: string
+  bdaPostId: string;
+  onOpen :()=> void
 }
 
-const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
+const CommentButton: FunctionComponent<Props> = ({ bdaPostId, onOpen }) => {
   const [comments, setComments] = useState<CommentList>([])
 
   const newComment = (response : IComment) => {
@@ -45,18 +46,21 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
         setComments([])
       })
   }, [])
+
   const [showComments, setShowComments] = React.useState(false)
   const openComments = () => {
     setShowComments(true)
+    onOpen()
   }
   const closeComments = () => {
     setShowComments(false)
+    onOpen()
   }
 
   return (
     <div>
       <button
-        className="max-w-10 bg-blue text-white text-xs px-6 py-3 rounded hover:shadow-lg "
+        className="max-w-10 bg-blue mx-2 text-white text-xs px-6 py-3 rounded hover:shadow-lg "
         type="button"
         onClick={() => {
           showComments
@@ -66,11 +70,11 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
       >
         Commentaires
       </button>
-      <div className="flex flex-col">
+      <div className="flex flex-col justify">
         <div
           className={
             (showComments ? 'block ' : 'hidden ') +
-            ('bg-white ' + 'text-base float-left py-2 list-none text-left rounded shadow-lg mt-1')
+            ('bg-white ' + 'text-base py-2 list-none text-left rounded shadow-lg mt-1')
           }
           style={{ minWidth: '12rem' }}
         >
@@ -83,7 +87,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
                 ? comments.map((comment, i) => {
                   return <Comment key={i + bdaPostId} {...comment} />
                 })
-                : <p>Zero commentaire ...</p>
+                : <p> Zero commentaire ...</p>
               }
             </li>
           </ul>

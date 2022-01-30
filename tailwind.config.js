@@ -24,8 +24,9 @@ module.exports = {
       },
       boxShadow: {
         DEFAULT: '#2D337B -20px 20px',
-        small: '#2D337B -5px 5px',
+        small: '#2D337B -10px 10px',
         red: '#e74f3c -20px 20px',
+        sred: '#e74f3c  -5px 5px',
         lightBlue: '#1f78f4 -20px 20px'
       },
       fontFamily: {
