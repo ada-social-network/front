@@ -16,10 +16,11 @@ export interface IComment {
 type CommentList = IComment[]
 
 type Props = {
-  bdaPostId: string
+  bdaPostId: string;
+  onOpen :()=> void
 }
 
-const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
+const CommentButton: FunctionComponent<Props> = ({ bdaPostId, onOpen }) => {
   const [comments, setComments] = useState<CommentList>([])
 
   const newComment = (response : IComment) => {
@@ -49,9 +50,11 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
   const [showComments, setShowComments] = React.useState(false)
   const openComments = () => {
     setShowComments(true)
+    onOpen()
   }
   const closeComments = () => {
     setShowComments(false)
+    onOpen()
   }
 
   return (
@@ -84,7 +87,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId }) => {
                 ? comments.map((comment, i) => {
                   return <Comment key={i + bdaPostId} {...comment} />
                 })
-                : <p>Zero commentaire ...</p>
+                : <p> Zero commentaire ...</p>
               }
             </li>
           </ul>

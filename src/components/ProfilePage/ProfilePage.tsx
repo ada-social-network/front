@@ -18,7 +18,7 @@ interface Params {
 }
 
 const ProfilePage: FunctionComponent<Props> = ({ small }) => {
-  const { user } = useUserContext()
+  // const { user } = useUserContext()
 
   const [anyUser, setAnyUser] = useState<User | undefined>()
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -41,17 +41,18 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
   const coverImage = 'https://thumb.canalplus.pro/http/unsafe/3532x1914/smart/creativemedia-image.canalplus.pro/content/0001/33/a50a92ea1757a6f64a1edefbeb69f3defd498149.jpeg'
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 8 w-5/6 mx-auto">
 
-      <h1 className='font-bold text-3xl text-blue mb-10 text-center'>Mon profil</h1>
-      <div className="flex justify-center">
-        <div className="flex flex-col">
-          <div className="md:relative"
-            style={{ width: '940px', height: '348px' }}>
-            <img src={coverImage} alt="ADA" className='border-4 border-blue' style={{ width: '940px', height: '348px' }}/>
-            <div>
-              <img src={anyUser?.profilPic ? anyUser?.profilPic : profilPic}
-                className="rounded-full md:absolute top-60 inset-x-96 border-4 border-pink" style={{ width: '170px', height: '168px' }} />
+      <div className="flex justify-center ">
+        <div className="flex flex-col w-full">
+          <div className="md:relative ">
+            <div className="h-80 w-full  ">
+              <img src={coverImage} alt="ADA" className='object-cover h-80 w-full  border-4 border-blue' />
+
+              <div>
+                <img src={anyUser?.profilPic ? anyUser?.profilPic : profilPic}
+                  className="object-cover rounded-full md:absolute top-60 inset-x-96 border-4 border-pink mx-auto" style={{ width: '170px', height: '168px' }} />
+              </div>
             </div>
           </div>
           {/* <div className='absolute right-0'> */}
@@ -76,44 +77,44 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
 
         </div>
       </div>
-      <div className="flex justify-center flex-col mt-6 mb-3.5">
+      <div className="flex justify-center flex-col mt-10 mb-3.5 ">
         <h1 className="text-center text-2xl">{anyUser?.firstName + ' ' + anyUser?.lastName}</h1>
       </div>
 
-      <div className='container flex mt-14 justify-center'>
-        <div className="bg-white">
-          <div className="p-4 border-blue border-4 shadow-red" style={{ width: '940px' }}>
+      <div className='container flex mt-14 justify-center '>
+
+        <div className="p-4 border-blue border-4 shadow-red box-border w-full " >
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2">Biographie</div>
+            <p className="text-base">Ceci est une biographie détaillée</p>
+          </div>
+          <div className='container grid grid-cols-2'>
             <div className="px-6 py-4">
-              <div className="font-bold text-xl mb-2">Biographie</div>
-              <p className="text-base">Ceci est une biographie détaillée</p>
+              <h3 className="font-bold text-xl mb-2">Anniversaire</h3>
+              <p className="text-base">{anyUser?.dateOfBirth}</p>
             </div>
-            <div className='container grid grid-cols-2'>
-              <div className="px-6 py-4">
-                <h3 className="font-bold text-xl mb-2">Anniversaire</h3>
-                <p className="text-base">{anyUser?.dateOfBirth}</p>
-              </div>
-              <div className="px-6 py-4">
-                <h3 className="font-bold text-xl mb-2">Alternance</h3>
-                <p className="text-base">{anyUser?.apprenticeAt}</p>
-              </div>
+            <div className="px-6 py-4">
+              <h3 className="font-bold text-xl mb-2">Alternance</h3>
+              <p className="text-base">{anyUser?.apprenticeAt}</p>
             </div>
           </div>
         </div>
+
       </div>
 
       <div className='container flex mt-24 justify-center'>
-        <div className="bg-white">
-          <div className="p-4 border-blue border-4 shadow-red" style={{ width: '940px' }}>
-            <div className="px-6 py-4">
-              <div className="font-bold text-xl mb-2">Mes projets pro</div>
-              <p className="text-base">??????????</p>
-            </div>
-            <div className="px-6 py-4">
-              <h3 className="font-bold text-xl mb-2">Mes projets perso</h3>
-              <p className="text-base">???????????</p>
-            </div>
+
+        <div className="p-4 border-blue border-4 shadow-red box-border w-full " >
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2">Mes projets pro</div>
+            <p className="text-base">??????????</p>
+          </div>
+          <div className="px-6 py-4">
+            <h3 className="font-bold text-xl mb-2">Mes projets perso</h3>
+            <p className="text-base">???????????</p>
           </div>
         </div>
+
       </div>
 
       <button onClick={() => setIsModalOpen(!isModalOpen)}>

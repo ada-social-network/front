@@ -30,6 +30,11 @@ export type LikeList = {
 
 const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }) => {
   const [likes, setLikes] = useState<LikeList>()
+  const [comOpen, setComIsOpen] = useState<boolean>(false)
+
+  const setIsOpen = () => {
+    setComIsOpen(!comOpen)
+  }
 
   const newLike = (response : Like, likes : LikeList) => {
     likes.items.push(response)
@@ -71,22 +76,26 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
             <p className="text-gray-700 text-base">{content}</p>
             <DateComponent date={createdAt} />
           </div>
-          <div className="px-6 py-4 flex flex-row">
 
-            <CommentButton bdaPostId={id}/>
+          <div className={('px-6 py-4 flex') + (comOpen ? ' flex-col' : ' flex-row')}>
 
-            <div className="flex flex-row mx-2">
+            <CommentButton bdaPostId={id} onOpen={setIsOpen}/>
+            <div className={('flex flex-row') + (comOpen ? ' hidden' : ' block')}>
 
-              <p>{likes ? likes.count : 'wait ...'}</p>
-              <FontAwesomeIcon icon={faHeart}/>
+              <div className="flex flex-row mx-2 text-xs py-3 hover:text-blue ">
+                <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
+                <FontAwesomeIcon icon={faHeart} size={'lg'} className="text-red py-auto"/>
+              </div>
+
+              {likes?.isLiked
+                ? <DislikeButton bdaPostId={id} likes={likes} onPost={newDislike}/>
+                : <LikeButton bdaPostId={id} likes={likes} onPost={newLike}/>}
             </div>
-            {likes?.isLiked
-              ? <DislikeButton bdaPostId={id} likes={likes} onPost={newDislike}/>
-              : <LikeButton bdaPostId={id} likes={likes} onPost={newLike}/>}
           </div>
-
         </div>
+
       </div>
+
     </>
   )
 }
