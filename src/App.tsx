@@ -10,6 +10,7 @@ import RegistrationPage from './components/RegistrationPage/RegistrationPage'
 import routes from './routes'
 
 import { UserProvider } from './context/userContext'
+import AdminPage from './components/AdminPage/AdminPage'
 
 function App () {
   return (
@@ -19,6 +20,7 @@ function App () {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationPage} />
           <UserProvider>
+            <Route exact path="/admin" component={AdminPage} />
             {routes.map((route, index) => {
               return (
                 <Route

@@ -35,12 +35,12 @@ const routes: IRoute[] = [
     component: ParamPage,
     exact: true
   },
-  {
+  /*  {
     path: '/admin',
     name: 'Admin Page',
     component: AdminPage,
     exact: true
-  },
+  }, */
   {
     path: '/calendar',
     name: 'Calendar Page',

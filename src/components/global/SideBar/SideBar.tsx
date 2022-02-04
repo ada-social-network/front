@@ -13,6 +13,7 @@ const SideBar: FunctionComponent<Props> = ({ small }) => {
     setIsModalOpen(false)
     window.location.reload()
   }
+
   return (
     <>
       <div className={small ? ('w-14') : ('w-44')}>
