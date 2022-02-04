@@ -1,33 +1,27 @@
-import { FunctionComponent, useEffect, useState } from 'react'
-import { useUserContext } from '../../context/userContext'
+import { FunctionComponent } from 'react'
 import { postBdaPostLike } from '../../services/post.service'
-import { IComment } from './CommentButton'
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Like, LikeList } from './BdaPostCard'
 
 type Props ={
   bdaPostId : string,
-  onPost : () => void,
+  onPost : (response : Like, likes : LikeList) => void,
+  likes :LikeList | undefined
 }
-const LikeButton: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
-  const { user } = useUserContext()
-  const [userID, setUserID] = useState<string>('')
-  useEffect(() => {
-    setUserID(user.id)
-  }, [user])
-
+const LikeButton: FunctionComponent<Props> = ({ bdaPostId, onPost, likes }) => {
   return (
     <div>
-      {userID !== ''
-        ? (
-          <button
-            onClick={() => {
-              postBdaPostLike(bdaPostId).then((response) => {
-                console.log(response)
-                onPost()
-              })
-            }}
-          > Jaime </button>)
-        : 'Attendez 5 secondes'}
-
+      <button
+        className="max-w-10 bg-pink text-white text-xs px-6 mx-2 py-3 rounded hover:shadow-lg "
+        onClick={() => {
+          postBdaPostLike(bdaPostId).then((response) => {
+            if (likes !== undefined) {
+              onPost(response.data, likes)
+            }
+          })
+        }}
+      > <FontAwesomeIcon icon={faThumbsUp}/> J'aime </button>
     </div>
   )
 }

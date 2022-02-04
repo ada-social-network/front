@@ -25,7 +25,7 @@ const PostCard: FunctionComponent<Props> = ({ content, createdAt, id, topicID, u
     <div className="border-b border-red flex-col px-6 py-2 items-center flex-none">
       <div className="flex items-start mb-4 text-sm">
 
-        <img src={author?.profilPic} className="w-10 h-10 rounded mr-3"/>
+        <img src={author?.profilPic} className="w-10 h-10 rounded mr-3 object-cover"/>
         <div className="flex-1 overflow-hidden">
           <div className="flex justify-between">
             <span className="font-bold">{author?.firstName} {author?.lastName}</span>
