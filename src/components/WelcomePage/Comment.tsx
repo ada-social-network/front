@@ -22,9 +22,11 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
     <div className="bg-white flex flex-row w-5/6 mx-6">
 
       <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex">
-        <a href={`/profile/${author?.id}`}>
-          <img className="rounded-full object-cover h-10 w-10 mr-2 " src={author?.profilPic}/>
-        </a>
+        <div>
+          <a href={`/profile/${author?.id}`}>
+            <img className="rounded-full object-cover h-10 w-10 mr-2 " src={author?.profilPic}/>
+          </a>
+        </div>
         <div>
 
           <div className="bg-gray-100 flex flex-row dark:bg-gray-700 rounded-xl px-4 pt-2 pb-2.5">
