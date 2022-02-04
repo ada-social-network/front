@@ -3,3 +3,9 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Chivo&family=Oswald&display=swap');
+
+h1 {
+  font-size: 1.875rem;
+  color: #2D337B;
+  font-weight: 800;
+}

@@ -7,7 +7,7 @@ import { useUserContext } from '../../context/userContext'
 interface FormValues {
   firstName: string,
   lastName: string,
-  email : string,
+  email: string,
   dateOfBirth?: string,
   apprenticeAt?: string,
   profilPic?: string,
@@ -20,7 +20,8 @@ interface FormValues {
   biography?: string,
   coverPic? : string,
   projectPerso? : string,
-  projectPro?: string
+  projectPro?: string,
+  isAdmin: boolean
 }
 
 interface Props {
@@ -71,7 +72,8 @@ const ProfileForm: FunctionComponent<Props> = ({ onClose }) => {
     biography: user.biography,
     coverPic: user.coverPic,
     projectPerso: user.projectPerso,
-    projectPro: user.projectPro
+    projectPro: user.projectPro,
+    isAdmin: user.isAdmin
   }
 
   const validationSchema = Yup.object().shape({

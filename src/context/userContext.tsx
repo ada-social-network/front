@@ -11,7 +11,8 @@ const defaultUser = {
     id: '',
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    isAdmin: false
   }
 }
 

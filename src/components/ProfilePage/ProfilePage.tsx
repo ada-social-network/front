@@ -77,6 +77,7 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
 
         </div>
       </div>
+
       <div className="flex justify-center flex-col mt-10 mb-3.5 ">
         <h1 className="text-center text-2xl">{anyUser?.firstName + ' ' + anyUser?.lastName}</h1>
       </div>

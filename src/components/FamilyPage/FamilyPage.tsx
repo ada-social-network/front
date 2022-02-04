@@ -50,7 +50,8 @@ const FamilyPage: FunctionComponent = () => {
 
   return (
     <div>
-      <h1 className="text-2xl m-4 ">Family Page</h1>
+
+      <h1 className="m-8">Family Page</h1>
       <PostPromoForm onClose={() => {}}/>
       <div className="grid grid-cols-3 gap-6">
         {promos !== null || undefined

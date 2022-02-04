@@ -15,7 +15,7 @@ const PromoCard: FunctionComponent<Props> = ({ promo, biography }) => {
           className="mx-auto rounded-full max-w-full h-auto"
         />
       </div>
-      <h1 className="text-xl px-2 border-2 border-blue shadow-small ">{promo}</h1>
+      <h2 className="text-xl px-2 border-2 border-blue shadow-small ">{promo}</h2>
       <p className="text-sm w-36 px-2 mt-2 border-b-2 border-l-2 border-red">{biography}</p>
     </div>
   )

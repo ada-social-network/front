@@ -109,7 +109,7 @@ const ParamPage: FunctionComponent = () => {
         } = props
         return (
           <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-            <h1 className='mt-12 text-2xl'>Paramètres du compte</h1>
+            <h1 className='mt-8'>Paramètres du compte</h1>
             <Form>
               <div className='relative mt-8 grid grid-cols-2'>
                 <p>Prénom</p>

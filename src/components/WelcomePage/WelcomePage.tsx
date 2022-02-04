@@ -47,7 +47,7 @@ const WelcomePage: FunctionComponent = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="text-2xl m-4">Actualités du Bda</h1>
+      <h1 className="m-8">Actualités du Bda</h1>
 
       {posts
         ? posts.map((post, i) => {
