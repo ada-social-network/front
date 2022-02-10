@@ -4,10 +4,10 @@ import { postPromo } from '../../../services/admin.service'
 import { DatePickerField } from '../../global/DatePicker'
 
 interface Values {
- promo: string;
- biography : string;
- dateOfStart :string;
- dateOfEnd : string;
+  promo: string;
+  biography : string;
+  dateOfStart :string;
+  dateOfEnd : string;
 }
 
 interface Props {
