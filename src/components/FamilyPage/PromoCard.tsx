@@ -3,14 +3,15 @@ import { FunctionComponent } from 'react'
 interface Props {
     promo : string;
     biography: string;
+    profilePic? :string;
 }
 
-const PromoCard: FunctionComponent<Props> = ({ promo, biography }) => {
+const PromoCard: FunctionComponent<Props> = ({ promo, biography, profilePic }) => {
   return (
     <div className="flex flex-col justify-center my-4 mx-4">
       <div className="w-20 justify-center">
         <img
-          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
+          src={profilePic}
           alt="..."
           className="mx-auto rounded-full max-w-full h-auto"
         />

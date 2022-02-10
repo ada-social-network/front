@@ -3,7 +3,7 @@ import PromoCard from './PromoCard'
 import { getPromoList } from '../../services/user.service'
 import PostPromoForm from '../AdminPage/AdminPromo/PostPromoForm'
 
-interface Promo {
+export interface Promo {
   id: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -12,9 +12,10 @@ interface Promo {
   dateOfStart?: string;
   dateOfEnd?: string;
   biography: string;
+  profilePic?: string;
 }
 
-type PromoList = Promo[];
+export type PromoList = Promo[];
 
 const FamilyPage: FunctionComponent = () => {
   const [promos, setPromos] = useState<PromoList>()
