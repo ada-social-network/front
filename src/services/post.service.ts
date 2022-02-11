@@ -47,6 +47,11 @@ export const postBdaComment = (values: object, id: string) => {
     .post(API_URL + 'bdaposts/' + id + '/comments', JSON.stringify(values), { headers: { Authorization: authHeader() } })
 }
 
+export const postCommentDeleteLike = (id: string, likeId: string) => {
+    return axios
+        .delete(API_URL + 'comments/' + id + '/likes' + likeId, )
+}
+
 export const postCategory = (values: object) => {
   return axios
     .post(`${API_URL}categories`, JSON.stringify(values), { headers: { Authorization: authHeader() } })
