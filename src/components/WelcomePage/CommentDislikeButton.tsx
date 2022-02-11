@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react'
 import { deleteLikeComment } from '../../services/post.service'
-import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CommentLikeList } from './Comment'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'

@@ -3,7 +3,7 @@ import { postCommentLike } from '../../services/post.service'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CommentLike, CommentLikeList } from './Comment'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 
 type Props ={
