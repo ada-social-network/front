@@ -7,6 +7,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import ActuPage from './ActuPage/ActuPage'
 import AdminPromo from './AdminPromo/AdminPromo'
 import AdminWelcome from './AdminWelcome'
+import AdminForum from './AdminForum/AdminForum'
 
 interface Page {
   name: string
@@ -41,7 +42,8 @@ const AdminPage: FunctionComponent = () => {
             {
               Welcome: <AdminWelcome />,
               Actualité: <ActuPage />,
-              Promos: <AdminPromo />
+              Promos: <AdminPromo />,
+              Forum: <AdminForum />
             }[active]
           }
         </div>

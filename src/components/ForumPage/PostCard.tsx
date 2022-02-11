@@ -1,6 +1,5 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import { getTopic } from '../../services/post.service'
+
 import { getUser, User } from '../../services/user.service'
 import DateComponent from '../WelcomePage/DateComponent'
 

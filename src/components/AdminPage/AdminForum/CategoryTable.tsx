@@ -1,15 +1,15 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { getPromoList } from '../../../services/user.service'
-import { PromoList, Promo } from '../../FamilyPage/FamilyPage'
-import PromoRow from './PromoRow'
+import { getCategories } from '../../../services/admin.service'
+import { Category, CategoryList } from '../../ForumPage/ForumPage'
+import CategoryRow from './CategoryRow'
 
-const PromoTable: FunctionComponent = () => {
-  const [promos, setPromos] = useState<PromoList>([])
+const CategoryTable: FunctionComponent = () => {
+  const [categories, setCategories] = useState<CategoryList>()
 
   useEffect(() => {
-    getPromoList()
+    getCategories()
       .then((response) => {
-        setPromos(response.data)
+        setCategories(response)
       })
       .catch(function (error) {
         if (error.response) {
@@ -22,14 +22,6 @@ const PromoTable: FunctionComponent = () => {
           console.log('Error', error.message)
         }
         console.log(error.config)
-        setPromos([
-          {
-            id: '',
-            promo: 'Error',
-            biography:
-              "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau"
-          }
-        ])
       })
   }, [])
 
@@ -49,19 +41,17 @@ const PromoTable: FunctionComponent = () => {
                   <th className="p-2 whitespace-nowrap">
                     <div className="font-semibold text-left">Id</div>
                   </th>
-                  <th className="p-2 whitespace-nowrap">
-                    <div className="font-semibold text-left">Nombre d'apprenant.es</div>
-                  </th>
+
                   <th className="p-2 whitespace-nowrap">
                     <div className="font-semibold text-center">Administrer</div>
                   </th>
                 </tr>
               </thead>
               <tbody className="text-sm divide-y divide-gray-100">
-                {promos !== undefined
-                  ? promos.map((promo, i) => {
+                {categories !== undefined
+                  ? categories.map((category, i) => {
                     return (
-                      <PromoRow key={i} {...promo} />
+                      <CategoryRow key={i} {...category} />
                     )
                   })
                   : 'Il y a un problème ...'}
@@ -75,4 +65,4 @@ const PromoTable: FunctionComponent = () => {
   )
 }
 
-export default PromoTable
+export default CategoryTable

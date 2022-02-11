@@ -1,21 +1,21 @@
 import { FunctionComponent, useState } from 'react'
-import { deletePromo } from '../../../services/admin.service'
+import { deleteCategory } from '../../../services/admin.service'
 
-import { Promo } from '../../FamilyPage/FamilyPage'
+import { Category } from '../../ForumPage/ForumPage'
 
 interface Props {
-  promoToDelete: Promo,
+  categoryToDelete: Category,
   onClose: () => void,
 }
 
-const DeletePromoForm:FunctionComponent<Props> = ({ onClose, promoToDelete }) => {
+const DeleteCategoryForm:FunctionComponent<Props> = ({ onClose, categoryToDelete }) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(false)
-  const deletePromoForEver = () => {
-    deletePromo(promoToDelete.id).then((response) => {
+  const deleteCategoryForEver = () => {
+    deleteCategory(categoryToDelete.id).then(() => {
       setIsDeleted(true)
       setTimeout(onClose, 1000)
     }
-    ).catch((resp) => {
+    ).catch((resp: any) => {
       console.log(resp)
     })
   }
@@ -31,7 +31,7 @@ const DeletePromoForm:FunctionComponent<Props> = ({ onClose, promoToDelete }) =>
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full"></div>
                 {!isDeleted
                   ? (<div className="flex flex-col">
-                    <p>Etes vous sûr.e.s de vouloir supprimer la promo {promoToDelete.promo} ?</p>
+                    <p>Etes vous sûr.e.s de vouloir supprimer la catégorie {categoryToDelete.name} ?</p>
                     <div className="px-4 mt-4 py-3 flex flex-inline align-center">
                       <button
                         type="button"
@@ -42,13 +42,13 @@ const DeletePromoForm:FunctionComponent<Props> = ({ onClose, promoToDelete }) =>
                       </button>
                       <button
                         className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
-                        onClick={deletePromoForEver}
+                        onClick={deleteCategoryForEver}
                       >
                 Supprimer
                       </button>
                     </div>
                   </div>)
-                  : 'Promo supprimée avec succès ! Bye bye les losers !'}
+                  : 'Category supprimée avec succès ! Bye bye les losers !'}
               </div>
             </div>
           </div>
@@ -58,4 +58,4 @@ const DeletePromoForm:FunctionComponent<Props> = ({ onClose, promoToDelete }) =>
   )
 }
 
-export default DeletePromoForm
+export default DeleteCategoryForm
