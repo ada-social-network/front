@@ -10,7 +10,7 @@ const DateComponent: FunctionComponent<Props> = ({ date }) => {
   }
   return (
     <div>
-      <p className="text-gray-400 text-sm text-right">
+      <p className="text-gray-400 text-sm mt-2 text-right">
         {date !== undefined
           ? date.toLocaleDateString('fr-FR', {
             weekday: 'long',
