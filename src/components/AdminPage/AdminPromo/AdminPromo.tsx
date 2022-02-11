@@ -8,9 +8,9 @@ import PromoTable from './PromoTable'
 const AdminPromo: FunctionComponent = () => {
   return (
     <div className="ml-20 mx-4">
-      <h1 className='text-center my-6'>Gestion des promotions</h1>
-      <div className="flex flex-col items-center">
-        <PostButton title={'Ajouter une nouvelle promotion'} form={<PostPromoForm />} onOpen={() => {}} />
+      <h1 className=' my-6'>Gestion des promotions</h1>
+      <div className="flex flex-col">
+        <PostButton title={'Ajouter une nouvelle promotion'} form={<PostPromoForm />} onClose={() => { window.location.reload() }} />
 
         <PromoTable />
       </div>

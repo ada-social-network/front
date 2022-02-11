@@ -4,20 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface PostButtonProps {
  title : string;
- onOpen : () => void;
- form : ReactElement
+ form : ReactElement;
+ onClose: ()=> void;
 
 }
 
-const PostButton: FunctionComponent<PostButtonProps> = ({ title, onOpen, form }) => {
+const PostButton: FunctionComponent<PostButtonProps> = ({ title, form, onClose }) => {
   const [showForm, setShowForm] = useState(false)
   const openForm = () => {
     setShowForm(true)
-    onOpen()
   }
   const closeForm = () => {
     setShowForm(false)
-    onOpen()
+    onClose()
   }
 
   return (
@@ -37,7 +36,7 @@ const PostButton: FunctionComponent<PostButtonProps> = ({ title, onOpen, form })
         <div
           className={
             (showForm ? 'block ' : 'hidden ') +
-            ('bg-white ' + 'text-base py-2 list-none text-left rounded shadow-lg mt-1')
+            ('bg-white ' + 'text-base py-2 list-none text-left rounded ')
           }
           style={{ minWidth: '12rem' }}
         >

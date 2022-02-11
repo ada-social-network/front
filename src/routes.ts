@@ -6,7 +6,6 @@ import ForumPage from './components/ForumPage/ForumPage'
 import TopicPage from './components/ForumPage/TopicPage'
 import PostPage from './components/ForumPage/PostPage'
 import ParamPage from './components/ParamPage/ParamPage'
-import AdminPage from './components/AdminPage/AdminPage'
 
 interface IRoute {
   path: string;
@@ -35,12 +34,6 @@ const routes: IRoute[] = [
     component: ParamPage,
     exact: true
   },
-  /*  {
-    path: '/admin',
-    name: 'Admin Page',
-    component: AdminPage,
-    exact: true
-  }, */
   {
     path: '/calendar',
     name: 'Calendar Page',

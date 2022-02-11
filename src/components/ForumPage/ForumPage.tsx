@@ -1,9 +1,8 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { getCategories } from '../../services/post.service'
-import PostCategoryButton from './PostCategoryButton'
+import { getCategories } from '../../services/admin.service'
 import ForumTitle from './ForumTitle'
 
-interface Category {
+export interface Category {
   id: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -11,7 +10,7 @@ interface Category {
   name : string
 }
 
-type CategoryList = Category[];
+export type CategoryList = Category[];
 
 const ForumPage:FunctionComponent = () => {
   const [categories, setCategories] = useState<CategoryList>()
@@ -41,7 +40,6 @@ const ForumPage:FunctionComponent = () => {
   console.log(categories)
   return (
     <div className=" item-center justify-center">
-      <PostCategoryButton />
       {categories !== undefined
         ? categories.map((category, i) => {
           return <ForumTitle key={i} title={category.name} id={category.id}/>
