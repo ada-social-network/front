@@ -58,8 +58,7 @@ const LoginForm: FunctionComponent = () => {
       .then(() => {
         setFormStatus(formStatusProps.success)
         setTimeout(redirectWelcome, 1500)
-      }
-      )
+      })
       .catch(function (error) {
         const response = error.response
         if (
