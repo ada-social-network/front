@@ -11,7 +11,6 @@ const AdminPromo: FunctionComponent = () => {
       <h1 className='text-center my-6'>Gestion des promotions</h1>
       <div className="flex flex-col items-center">
         <PostButton title={'Ajouter une nouvelle promotion'} form={<PostPromoForm />} onOpen={() => {}} />
-
         <PromoTable />
       </div>
     </div>
