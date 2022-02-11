@@ -5,7 +5,7 @@ import AdminSideBar from './AdminSideBar'
 import { useUserContext } from '../../context/userContext'
 import { faGlobe, faCommentDots, faCalendarAlt, faUsers, faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import ActuPage from './ActuPage'
+import ActuPage from './ActuPage/ActuPage'
 import PostPromoForm from './AdminPromo/PostPromoForm'
 
 interface Page {
@@ -38,6 +38,7 @@ const AdminPage: FunctionComponent = () => {
             {
               Actualité: <ActuPage />,
               Promos: <PostPromoForm onClose={() => false}/>
+
             }[active.name]
           }
         </div>
