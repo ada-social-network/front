@@ -53,7 +53,7 @@ const PostPromoForm = () => {
             </div>
             <div className="my-2">
               <label className="my-2" htmlFor="biography">
-               Biography
+                Biography
               </label>
               <Field
                 as="textarea"
@@ -77,7 +77,7 @@ const PostPromoForm = () => {
             <div className="flex flex-row">
               <div className="flex flex-col mr-2">
                 <label className="my-2" htmlFor="dateOfStart">
-               Date de début
+                  Date de début
                 </label>
                 <DatePickerField
                   className="px-3 py-1 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring border border-black"
@@ -88,7 +88,7 @@ const PostPromoForm = () => {
               </div>
               <div className="flex flex-col mx-2">
                 <label className="my-2" htmlFor="dateOfEnd">
-               Date de fin
+                  Date de fin
                 </label>
                 <DatePickerField
                   className="px-3 py-1 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring border border-black"

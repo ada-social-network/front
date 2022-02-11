@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-
 import { useMediaQuery } from 'react-responsive'
 import NavBar from './NavBar/NavBar'
 import SideBar from './SideBar/SideBar'
@@ -15,7 +14,6 @@ const Layout: FunctionComponent = ({ children }) => {
         {children}
       </div>
     </div>
-
   )
 }
 
