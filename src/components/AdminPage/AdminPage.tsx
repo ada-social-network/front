@@ -7,6 +7,8 @@ import { faGlobe, faCommentDots, faCalendarAlt, faUsers, faGraduationCap } from 
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import ActuPage from './ActuPage/ActuPage'
 import PostPromoForm from './AdminPromo/PostPromoForm'
+import AdminPromo from './AdminPromo/AdminPromo'
+import AdminForum from './AdminForum/AdminForum'
 
 interface Page {
   name: string;
@@ -32,12 +34,12 @@ const AdminPage: FunctionComponent = () => {
       <div className='flex flex-row w-full'>
         <AdminSideBar pages={pages} setActive={setActive} small={!!isSmallScreen} />
         <div className="flex flex-col w-5/6 ml-6 mt-20">
-          <h1 className='text-center m-8'>Admin</h1>
-          <p>Bienvenue sur la page admin {user.firstName} !</p>
+
           {
             {
               Actualité: <ActuPage />,
-              Promos: <PostPromoForm onClose={() => false}/>
+              Promos: <AdminPromo/>,
+              Forum: <AdminForum />
 
             }[active.name]
           }

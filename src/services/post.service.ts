@@ -47,19 +47,6 @@ export const postBdaComment = (values: object, id: string) => {
     .post(API_URL + 'bdaposts/' + id + '/comments', JSON.stringify(values), { headers: { Authorization: authHeader() } })
 }
 
-export const postCategory = (values: object) => {
-  return axios
-    .post(`${API_URL}categories`, JSON.stringify(values), { headers: { Authorization: authHeader() } })
-}
-
-export const getCategories = () => {
-  return axios
-    .get(API_URL + 'categories', { headers: { Authorization: authHeader() } })
-    .then((response) => {
-      return response.data
-    })
-}
-
 export const getTopics = (id : string) => {
   return axios
     .get(`${API_URL}categories/${id}/topics`, { headers: { Authorization: authHeader() } })

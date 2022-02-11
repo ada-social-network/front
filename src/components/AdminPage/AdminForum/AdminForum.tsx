@@ -1,18 +1,16 @@
 import { FunctionComponent } from 'react'
 
-import PostPromoForm from './PostPromoForm'
+import PostCategoryForm from './PostCategoryForm'
 import PostButton from '../PostButton'
-
-import PromoTable from './PromoTable'
+import CategoryTable from './CategoryTable'
 
 const AdminPromo: FunctionComponent = () => {
   return (
     <div className="ml-20 mx-4">
-      <h1 className=' my-6'>Gestion des promotions</h1>
+      <h1 className=' my-6'>Gestion du forum</h1>
       <div className="flex flex-col">
-        <PostButton title={'Ajouter une nouvelle promotion'} form={<PostPromoForm />} />
-
-        <PromoTable />
+        <PostButton title={'Ajouter une nouvelle Catégorie'} form={<PostCategoryForm />} />
+        <CategoryTable />
       </div>
     </div>
   )
