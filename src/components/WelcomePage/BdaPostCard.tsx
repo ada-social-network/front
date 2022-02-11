@@ -20,12 +20,12 @@ export type Like = {
   updatedAt: Date;
   deletedAt?: null | Date;
   userId: string;
-  bdapostId: string;
+  bdaPostId: string;
 }
 export type LikeList = {
     items: Like[];
     count: number;
-    isLiked : boolean;
+    isLikedByCurrentUser : boolean;
 }
 
 const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }) => {
@@ -38,12 +38,12 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
 
   const newLike = (response : Like, likes : LikeList) => {
     likes.items.push(response)
-    setLikes({ items: likes.items, count: likes.count + 1, isLiked: true })
+    setLikes({ items: likes.items, count: likes.count + 1, isLikedByCurrentUser: true })
   }
 
   const newDislike = (userId : string, likes : LikeList) => {
     const newItems = likes.items.filter((item) => item.userId !== userId)
-    setLikes({ items: newItems, count: likes.count - 1, isLiked: false })
+    setLikes({ items: newItems, count: likes.count - 1, isLikedByCurrentUser: false })
   }
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
                 <FontAwesomeIcon icon={faHeart} size={'lg'} className="text-red py-auto"/>
               </div>
 
-              {likes?.isLiked
+              {likes?.isLikedByCurrentUser
                 ? <DislikeButton bdaPostId={id} likes={likes} onPost={newDislike}/>
                 : <LikeButton bdaPostId={id} likes={likes} onPost={newLike}/>}
             </div>

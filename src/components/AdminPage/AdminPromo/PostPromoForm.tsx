@@ -4,17 +4,14 @@ import { postPromo } from '../../../services/admin.service'
 import { DatePickerField } from '../../global/DatePicker'
 
 interface Values {
-  promo: string;
-  biography : string;
-  dateOfStart :string;
-  dateOfEnd : string;
+ promo: string;
+ biography : string;
+ dateOfStart :string;
+ dateOfEnd : string;
+ profilePic: string;
 }
 
-interface Props {
-  onClose: () => void
-}
-
-const PostPromoForm:FunctionComponent<Props> = ({ onClose }) => {
+const PostPromoForm = () => {
   const [succes, setSuccess] = useState(false)
 
   return (
@@ -25,7 +22,8 @@ const PostPromoForm:FunctionComponent<Props> = ({ onClose }) => {
             promo: '',
             biography: '',
             dateOfStart: '',
-            dateOfEnd: ''
+            dateOfEnd: '',
+            profilePic: ''
 
           }}
           onSubmit={(
@@ -38,7 +36,6 @@ const PostPromoForm:FunctionComponent<Props> = ({ onClose }) => {
                 console.log(response)
               })
             setSubmitting(false)
-            setTimeout(onClose, 500)
             setSuccess(false)
           }}
         >
@@ -63,6 +60,17 @@ const PostPromoForm:FunctionComponent<Props> = ({ onClose }) => {
                 className="px-3 py-2 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
                 id="biography"
                 name="biography"
+                placeholder="Infos pertinentes only"
+              />
+            </div>
+            <div className="my-2">
+              <label className="my-2" htmlFor="profilePic">
+               Photo de profil
+              </label>
+              <Field
+                className="px-3 py-2 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
+                id="profilePic"
+                name="profilePic"
                 placeholder="Infos pertinentes only"
               />
             </div>
@@ -92,13 +100,6 @@ const PostPromoForm:FunctionComponent<Props> = ({ onClose }) => {
               </div>
             </div>
             <div className="px-4 mt-4 py-3 flex flex-inline align-center">
-              <button
-                type="button"
-                className="bg-red text-white active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
-                onClick={onClose}
-              >
-                Annuler
-              </button>
               <button
                 className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-full"
                 type="submit"

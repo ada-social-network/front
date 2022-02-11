@@ -12,7 +12,7 @@ type Props ={
 
 function findLikeId (bdaPostId: string, userId:string | null, likes :LikeList) {
   const like = likes.items.find(like => {
-    return like.bdapostId === bdaPostId && like.userId === userId
+    return like.bdaPostId === bdaPostId && like.userId === userId
   })
   if (like !== undefined) return like.id
 }

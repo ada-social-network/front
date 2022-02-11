@@ -13,6 +13,8 @@ export const DatePickerField = ({ ...props }) => {
       selected={(field.value && new Date(field.value)) || null}
       onChange={val => {
         setFieldValue(field.name, val)
+
+        console.log(val)
       }}
     />
   )
