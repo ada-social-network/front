@@ -78,25 +78,29 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
 
           <div className="bg-gray-100 flex flex-row dark:bg-gray-700 rounded-xl px-4 pt-2 pb-2.5">
             <div className="font-semibold mr-3 text-sm leading-relaxed">{author?.firstName}</div>
-            <div className="text-normal mx-2 leading-snug md:leading-normal">
+            <div className="text-normal mx-2 leading-snug md:leading-normal min-w-3/4">
               {content}
             </div>
-            <div className={('flex flex-row')}>
-
-              <div className="flex flex-row mx-2 text-xs py-3 hover:text-blue ">
-                <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
-                <FontAwesomeIcon icon={faHeart} size={'lg'} className="text-red py-auto"/>
-              </div>
-
-              {likes?.isLikedByCurrentUser
-                ? <CommentDislikeButton commentId={id} likes={likes} onPost={newCommentDislike}/>
-                : <CommentLikeButton commentId={id} likes={likes} onPost={newCommentLike}/>}
-            </div>
           </div>
-          <DateComponent date={createdAt} />
+          <div className="flex flex-row text-sm mt-2 my-auto justify-between">
+            <div className ="flex flex-row text-gray-400 text-sm text-left ">
+              {likes?.isLikedByCurrentUser
+                ? <CommentDislikeButton commentId={id} likes={likes} onPost={newCommentDislike} />
+                : <CommentLikeButton commentId={id} likes={likes} onPost={newCommentLike}/>}
+                
+           <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
+           
+          </div>
+
+          <div>
+          <DateComponent date={createdAt} /> 
+          </div>
+
+          </div>
+              
+          </div>
         </div>
       </div>
-    </div>
 
   )
 }

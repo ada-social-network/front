@@ -3,6 +3,7 @@ import { deleteLikeComment } from '../../services/post.service'
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CommentLikeList } from './Comment'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 type Props = {
     commentId: string,
@@ -23,7 +24,6 @@ const CommentDislikeButton: FunctionComponent<Props> = ({ commentId, likes, onPo
   return (
     <div>
       <button
-        className="max-w-10 bg-pink text-white text-xs px-6 py-3 mx-2 rounded hover:shadow-lg "
         onClick={() => {
           if (likeId !== undefined) {
             deleteLikeComment(commentId, likeId).then((response) => {
@@ -33,7 +33,8 @@ const CommentDislikeButton: FunctionComponent<Props> = ({ commentId, likes, onPo
             })
           }
         }}
-      ><FontAwesomeIcon icon={faThumbsDown}/> Je n'aime plus
+      ><FontAwesomeIcon icon={faHeart} size={'lg'} className="text-red py-auto"/>
+
       </button>
     </div>
   )
