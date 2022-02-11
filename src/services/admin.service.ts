@@ -15,3 +15,8 @@ export const updatePromo = (id: string, values: object) => {
       { headers: { Authorization: authHeader() } }
     )
 }
+
+export const DeletePromo = (id: string) => {
+  return axios
+    .delete(API_URL + 'promos/' + id, { headers: { Authorization: authHeader() } })
+}
