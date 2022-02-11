@@ -10,7 +10,7 @@ const AdminPromo: FunctionComponent = () => {
     <div className="ml-20 mx-4">
       <h1 className=' my-6'>Gestion des promotions</h1>
       <div className="flex flex-col">
-        <PostButton title={'Ajouter une nouvelle promotion'} form={<PostPromoForm />} />
+        <PostButton title={'Ajouter une nouvelle promotion'} form={<PostPromoForm />} onClose={() => { window.location.reload() }} />
 
         <PromoTable />
       </div>

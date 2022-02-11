@@ -9,7 +9,7 @@ const AdminPromo: FunctionComponent = () => {
     <div className="ml-20 mx-4">
       <h1 className=' my-6'>Gestion du forum</h1>
       <div className="flex flex-col">
-        <PostButton title={'Ajouter une nouvelle Catégorie'} form={<PostCategoryForm />} />
+        <PostButton title={'Ajouter une nouvelle Catégorie'} form={<PostCategoryForm/>} onClose={() => { window.location.reload() }} />
         <CategoryTable />
       </div>
     </div>

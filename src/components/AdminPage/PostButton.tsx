@@ -4,17 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface PostButtonProps {
  title : string;
- form : ReactElement
+ form : ReactElement;
+ onClose: ()=> void;
 
 }
 
-const PostButton: FunctionComponent<PostButtonProps> = ({ title, form }) => {
+const PostButton: FunctionComponent<PostButtonProps> = ({ title, form, onClose }) => {
   const [showForm, setShowForm] = useState(false)
   const openForm = () => {
     setShowForm(true)
   }
   const closeForm = () => {
     setShowForm(false)
+    onClose()
   }
 
   return (

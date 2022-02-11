@@ -32,10 +32,10 @@ const PostCategoryForm:FunctionComponent = () => {
           >
             <Form>
               <div className="flex flex-col">
-                <label className="mx-2" htmlFor="title">
+                <label className="my-2" htmlFor="title">
                 Nom de la catégorie
                 </label>
-                <div className="px-4 mt-4 flex flex-row align-center">
+                <div className="px-4 mt-4 py-3 flex flex-row align-center">
                   <Field
                     className="px-3 py-3 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring w-full border border-black"
                     id="name"
@@ -44,7 +44,7 @@ const PostCategoryForm:FunctionComponent = () => {
                   />
 
                   <button
-                    className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w-1/4"
+                    className="bg-white text-black active:bg-gray-700 font-bold px-6 mx-6 py-3 border-2 border-black hover:shadow-lg outline-none focus:outline-none mb-1 w"
                     type="submit"
                   >
                 Poster
