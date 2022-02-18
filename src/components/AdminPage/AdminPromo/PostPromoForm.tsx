@@ -4,14 +4,14 @@ import { postPromo } from '../../../services/admin.service'
 import { DatePickerField } from '../../global/DatePicker'
 
 interface Values {
- promo: string;
- biography : string;
- dateOfStart :string;
- dateOfEnd : string;
- profilePic: string;
+  promo: string;
+  biography : string;
+  dateOfStart :string;
+  dateOfEnd : string;
+  profilePic: string;
 }
 
-const PostPromoForm = () => {
+const PostPromoForm: FunctionComponent = () => {
   const [succes, setSuccess] = useState(false)
 
   return (
@@ -65,7 +65,7 @@ const PostPromoForm = () => {
             </div>
             <div className="my-2">
               <label className="my-2" htmlFor="profilePic">
-               Photo de profil
+                Photo de profil
               </label>
               <Field
                 className="px-3 py-2 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"

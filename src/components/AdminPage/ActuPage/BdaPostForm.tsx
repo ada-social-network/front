@@ -59,7 +59,7 @@ const BdaPostForm:FunctionComponent = () => {
   })
 
   return (
-    <div className="border-4 border-blue rounded-md px-8 py-3 w-4/5 place-self-center">
+    <div className="border-4 border-blue rounded-md px-8 py-3">
       <div className="flex flex-col">
         <h3 className="text-lg leading-6 text-center font-medium text-gray-900 mb-4">
             Poster un message
