@@ -6,6 +6,7 @@ const CategoryRow:FunctionComponent<Category> = ({ ...category }) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const handleDeleteClose = () => {
     setIsDeleteOpen(false)
+    window.location.reload()
   }
   return (
     !isDeleteOpen

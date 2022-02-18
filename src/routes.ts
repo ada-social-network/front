@@ -6,6 +6,7 @@ import ForumPage from './components/ForumPage/ForumPage'
 import TopicPage from './components/ForumPage/TopicPage'
 import PostPage from './components/ForumPage/PostPage'
 import ParamPage from './components/ParamPage/ParamPage'
+import PromoPage from './components/FamilyPage/PromoPage/PromoPage'
 
 interface IRoute {
   path: string;
@@ -44,6 +45,12 @@ const routes: IRoute[] = [
     path: '/family',
     name: 'Family Page',
     component: FamilyPage,
+    exact: true
+  },
+  {
+    path: '/family/:id',
+    name: 'Promo Page',
+    component: PromoPage,
     exact: true
   },
   {

@@ -1,17 +1,14 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { getPromoList } from '../../../services/user.service'
-import { PromoList, Promo } from '../../FamilyPage/FamilyPage'
-import PromoRow from './PromoRow'
+import { getUsers } from '../../../services/admin.service'
+import { User } from '../../../services/user.service'
 
-const PromoTable: FunctionComponent = () => {
-  const [promos, setPromos] = useState<PromoList>([])
-  const [promoCount, setPromoCount] = useState<number>(0)
+const UserTable: FunctionComponent = () => {
+  const [users, setUsers] = useState<User[]>([])
 
   useEffect(() => {
-    getPromoList()
+    getUsers()
       .then((response) => {
-        setPromos(response.data)
-        setPromoCount(response.data.length + 1)
+        setUsers(response)
       })
       .catch(function (error) {
         if (error.response) {
@@ -24,14 +21,6 @@ const PromoTable: FunctionComponent = () => {
           console.log('Error', error.message)
         }
         console.log(error.config)
-        setPromos([
-          {
-            id: '',
-            promo: 'Error',
-            biography:
-              "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau"
-          }
-        ])
       })
   }, [])
 
@@ -60,10 +49,11 @@ const PromoTable: FunctionComponent = () => {
                 </tr>
               </thead>
               <tbody className="text-sm divide-y divide-gray-100">
-                {promos !== undefined
-                  ? promos.map((promo, i) => {
+                {users !== undefined
+                  ? users.map((user, i) => {
                     return (
-                      <PromoRow key={i} {...promo} />
+                      /* <UserRow key={i} {...user} /> */
+                      <p key={user.id}> {user.firstName} </p>
                     )
                   })
                   : 'Il y a un problème ...'}
@@ -77,4 +67,4 @@ const PromoTable: FunctionComponent = () => {
   )
 }
 
-export default PromoTable
+export default UserTable
