@@ -38,3 +38,11 @@ export const deleteCategory = (id: string) => {
   return axios
     .delete(API_URL + 'categories/' + id, { headers: { Authorization: authHeader() } })
 }
+
+export const getUsers = () => {
+  return axios
+    .get(API_URL + 'users', { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response.data
+    })
+}

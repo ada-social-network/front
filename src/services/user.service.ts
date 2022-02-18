@@ -57,3 +57,11 @@ export const updateUser = (id: string, values: object) => {
       { headers: { Authorization: authHeader() } }
     )
 }
+
+export const getUsersByPromo = (promoId :string) => {
+  return axios
+    .get<User[]>(API_URL + 'promos/' + promoId + '/users', { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response.data
+    })
+}

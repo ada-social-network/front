@@ -34,7 +34,9 @@ const PromoRow:FunctionComponent<Promo> = ({ ...promo }) => {
         <div className="text-left">{promo.id}</div>
       </td>
       <td className="p-2 whitespace-nowrap">
-        <div className="text-left font-medium text-green-500"></div>
+        <div className="text-left font-medium text-green-500">
+          {/*  {count} */}
+        </div>
       </td>
       <td className="p-2 whitespace-nowrap">
         <div className="text-lg text-center flex-col">

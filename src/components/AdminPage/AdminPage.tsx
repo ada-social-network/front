@@ -8,6 +8,7 @@ import ActuPage from './ActuPage/ActuPage'
 import AdminPromo from './AdminPromo/AdminPromo'
 import AdminWelcome from './AdminWelcome'
 import AdminForum from './AdminForum/AdminForum'
+import AdminUsers from './AdminUsers/AdminUsers'
 
 interface Page {
   name: string
@@ -43,7 +44,8 @@ const AdminPage: FunctionComponent = () => {
               Welcome: <AdminWelcome />,
               Actualité: <ActuPage />,
               Promos: <AdminPromo />,
-              Forum: <AdminForum />
+              Forum: <AdminForum />,
+              Apprenantes: <AdminUsers />
             }[active]
           }
         </div>
