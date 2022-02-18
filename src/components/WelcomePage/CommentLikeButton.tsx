@@ -5,13 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CommentLike, CommentLikeList } from './Comment'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
-
 type Props ={
     commentId : string,
     onPost : (response : CommentLike, likes : CommentLikeList) => void,
     likes : CommentLikeList | undefined
 }
-const LikeButton: FunctionComponent<Props> = ({ commentId, onPost, likes }) => {
+const CommentLikeButton: FunctionComponent<Props> = ({ commentId, onPost, likes }) => {
   return (
     <div>
       <button
@@ -22,10 +21,10 @@ const LikeButton: FunctionComponent<Props> = ({ commentId, onPost, likes }) => {
             }
           })
         }}
-      > <FontAwesomeIcon icon={faHeart} size={'lg'} className="text-red py-auto"/>
+      > <FontAwesomeIcon icon={['fas', 'heart']} size={'lg'} className="text-red py-auto"/>
       </button>
     </div>
   )
 }
 
-export default LikeButton
+export default CommentLikeButton
