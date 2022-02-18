@@ -51,6 +51,10 @@ const ParamPage: FunctionComponent = () => {
     type: ''
   })
 
+  if (user.firstName === '') {
+    return <div></div>
+  }
+
   const initialValues = {
     firstName: user.firstName,
     lastName: user.lastName,
@@ -107,6 +111,7 @@ const ParamPage: FunctionComponent = () => {
           handleChange,
           isSubmitting
         } = props
+
         return (
           <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
             <h1 className='mt-8'>Paramètres du compte</h1>
@@ -123,7 +128,9 @@ const ParamPage: FunctionComponent = () => {
                     onBlur={handleBlur}
                     style={{ transition: 'all .15s ease' }}
                     error={
-                      !!(errors.firstName && touched.firstName)
+                      errors.firstName && touched.firstName
+                        ? 'erreur'
+                        : undefined
                     }
                   />
                   {errors.firstName && touched.firstName
@@ -144,7 +151,9 @@ const ParamPage: FunctionComponent = () => {
                     onBlur={handleBlur}
                     style={{ transition: 'all .15s ease' }}
                     error={
-                      !!(errors.lastName && touched.lastName)
+                      errors.lastName && touched.lastName
+                        ? 'erreur'
+                        : undefined
                     }
                   />
                   {errors.lastName && touched.lastName
@@ -165,7 +174,9 @@ const ParamPage: FunctionComponent = () => {
                     type="email"
                     style={{ transition: 'all .15s ease' }}
                     error={
-                      !!(errors.email && touched.email)
+                      errors.email && touched.email
+                        ? 'erreur'
+                        : undefined
                     }
                   />
                   {errors.email && touched.email
@@ -184,7 +195,9 @@ const ParamPage: FunctionComponent = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
-                      !!(errors.dateOfBirth && touched.dateOfBirth)
+                      errors.dateOfBirth && touched.dateOfBirth
+                        ? 'erreur'
+                        : undefined
                     }
                   />
                   {errors.dateOfBirth && touched.dateOfBirth

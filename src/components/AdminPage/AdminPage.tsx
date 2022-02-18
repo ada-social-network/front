@@ -27,9 +27,7 @@ const AdminPage: FunctionComponent = () => {
   const [active, setActive] = useState<string>('Welcome')
 
   useEffect(() => localStorage.setItem('active', JSON.stringify(active)), [active])
-
   const stateFromLocalStorage = localStorage.getItem('active') as string
-
   useEffect(() => setActive(JSON.parse(stateFromLocalStorage)), [])
 
   return (
