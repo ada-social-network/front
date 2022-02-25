@@ -87,20 +87,20 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
               {likes?.isLikedByCurrentUser
                 ? <CommentDislikeButton commentId={id} likes={likes} onPost={newCommentDislike} />
                 : <CommentLikeButton commentId={id} likes={likes} onPost={newCommentLike}/>}
-                
-           <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
-           
+
+              <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
+
+            </div>
+
+            <div>
+              <DateComponent date={createdAt} />
+            </div>
+
           </div>
 
-          <div>
-          <DateComponent date={createdAt} /> 
-          </div>
-
-          </div>
-              
-          </div>
         </div>
       </div>
+    </div>
 
   )
 }
