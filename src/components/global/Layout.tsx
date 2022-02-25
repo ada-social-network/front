@@ -15,7 +15,7 @@ const Layout: FunctionComponent = ({ children }) => {
         {isSmallScreen ? <SideBar small={true} /> : <SideBar small={false} />}
         {children}
       </div>
-      <Footer />
+      <Footer/>
     </div>
 
   )
