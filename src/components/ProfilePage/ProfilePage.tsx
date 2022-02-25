@@ -3,8 +3,9 @@ import { useUserContext } from '../../context/userContext'
 import Insta from '../../logo/insta.svg'
 import Github from '../../logo/github.svg'
 import Linkedin from '../../logo/linkedin.svg'
-import { getUser, User, updateUser } from '../../services/user.service'
+import { getUser, User } from '../../services/user.service'
 import { useParams } from 'react-router'
+import EditableField from './EditableField'
 
 interface Props {
   small : boolean,
@@ -16,6 +17,10 @@ interface Params {
 
 const ProfilePage: FunctionComponent<Props> = ({ small }) => {
   const { user } = useUserContext()
+
+  if (user.firstName === '') {
+    return <div></div>
+  }
 
   const [anyUser, setAnyUser] = useState<User | undefined>()
 
@@ -31,18 +36,9 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
   const profilPic = 'https://cdn.radiofrance.fr/s3/cruiser-production/2020/03/e67b4427-4143-4eef-9dc2-5c893a445662/838_800px-ada_lovelace_portrait.jpg'
   const coverImage = 'https://thumb.canalplus.pro/http/unsafe/3532x1914/smart/creativemedia-image.canalplus.pro/content/0001/33/a50a92ea1757a6f64a1edefbeb69f3defd498149.jpeg'
 
-  const [editBio, setEditBio] = useState(false)
   const [bio, setBio] = useState<string | undefined>(user.biography)
-
-  const [editProProjects, setEditProProjects] = useState(false)
-  const [proProjects, setProProjects] = useState<string | undefined>(user.projectPro)
-
-  const handleSubmit = (value: object) => {
-    updateUser(user.id, value)
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
+  const [proProjects, setProProjects] = useState<string | any>(user.projectPro)
+  const [persoProjects, setPersoProjects] = useState<string | undefined>(user.projectPerso)
 
   return (
     <div className="my-8 w-5/6 mx-auto">
@@ -83,42 +79,8 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
 
       <div className='container flex mt-14 justify-center'>
         <div className="p-4 border-blue border-4 shadow-red box-border w-full">
-          <div className="px-6 py-4">
-            <div className='flex flex-row space-x-4'>
-              <div className="font-bold text-xl">Biographie</div>
-              <button
-                className='text-blue'
-                onClick={() => setEditBio(true)}
-              >
-                  Modifier
-              </button>
-            </div>
-            <div className="my-2">
-              {editBio
-                ? (
-                  <form
-                    className='grid'
-                    onSubmit={() => handleSubmit({ biography: bio })}
-                  >
-                    <input
-                      className="w-full h-16 border-2 border-blue text-gray-800"
-                      type="text"
-                      value={bio}
-                      onChange={(event) => setBio(event.target.value)}
-                    />
-                    <button
-                      className='p-1 active:bg-gray-700 font-bold border-2 border-black hover:shadow-lg outline-none focus:outline-none my-3 place-self-end'
-                      type="submit"
-                    >
-                      Enregistrer
-                    </button>
-                  </form>
-                )
-                : (
-                  <p className="w-full">{anyUser?.biography}</p>
-                )}
-            </div>
-          </div>
+          <EditableField name={'Biogrphie'} attribute={bio} setAttribute={setBio} objectToSubmit={{ biography: bio }} toShow={anyUser?.biography}/>
+
           <div className='container grid grid-cols-2 mb-4'>
             <div className="px-6 py-4">
               <h3 className="font-bold text-xl mb-2">Anniversaire</h3>
@@ -134,50 +96,8 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
 
       <div className='container flex mt-24 justify-center'>
         <div className="p-4 border-blue border-4 shadow-red box-border w-full" >
-          <div className="px-6 py-4">
-            <div className='flex flex-row space-x-4'>
-              <div className="font-bold text-xl">Mes projets pro</div>
-              <button
-                className='text-blue'
-                onClick={() => setEditProProjects(true)}
-              >
-                  Modifier
-              </button>
-            </div>
-            <div className="my-2">
-              {editProProjects
-                ? (
-                  <form
-                    className='grid'
-                    onSubmit={() => {
-                      handleSubmit({ projectPro: proProjects })
-                      console.log('handle submit')
-                    }
-                    }
-                  >
-                    <input
-                      className="w-full h-16 border-2 border-blue text-gray-800"
-                      type="text"
-                      value={proProjects}
-                      onChange={(event) => setProProjects(event.target.value)}
-                    />
-                    <button
-                      className='p-1 active:bg-gray-700 font-bold border-2 border-black hover:shadow-lg outline-none focus:outline-none my-3 place-self-end'
-                      type="submit">
-                        Enregistrer
-                    </button>
-                  </form>
-                )
-                : (
-                  <p className="w-full">{anyUser?.projectPro}</p>
-                )}
-            </div>
-
-          </div>
-          <div className="px-6 py-4">
-            <h3 className="font-bold text-xl mb-2">Mes projets perso</h3>
-            <p className="text-base">???????????</p>
-          </div>
+          <EditableField name={'Mes projects pro'} attribute={proProjects} setAttribute={setProProjects} objectToSubmit={{ projectro: proProjects }} toShow={anyUser?.projectPro} />
+          <EditableField name={'Mes projects perso'} attribute={persoProjects} setAttribute={setPersoProjects} objectToSubmit={{ projectPerso: persoProjects }} toShow={anyUser?.projectPerso} />
         </div>
       </div>
     </div>
