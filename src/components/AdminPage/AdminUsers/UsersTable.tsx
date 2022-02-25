@@ -1,6 +1,7 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import { getUsers } from '../../../services/admin.service'
 import { User } from '../../../services/user.service'
+import UserRow from './UserRow'
 
 const UserTable: FunctionComponent = () => {
   const [users, setUsers] = useState<User[]>([])
@@ -41,10 +42,10 @@ const UserTable: FunctionComponent = () => {
                     <div className="font-semibold text-left">Id</div>
                   </th>
                   <th className="p-2 whitespace-nowrap">
-                    <div className="font-semibold text-left">Nombre d'apprenant.es</div>
+                    <div className="font-semibold text-left">Promo </div>
                   </th>
                   <th className="p-2 whitespace-nowrap">
-                    <div className="font-semibold text-center">Administrer</div>
+                    <div className="font-semibold text-center">Admin</div>
                   </th>
                 </tr>
               </thead>
@@ -52,8 +53,8 @@ const UserTable: FunctionComponent = () => {
                 {users !== undefined
                   ? users.map((user, i) => {
                     return (
-                      /* <UserRow key={i} {...user} /> */
-                      <p key={user.id}> {user.firstName} </p>
+                      <UserRow key={i} {...user} />
+
                     )
                   })
                   : 'Il y a un problème ...'}

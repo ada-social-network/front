@@ -3,7 +3,7 @@ import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:8080/api/rest/v1/'
 
-export type User = {
+export interface User {
   id: string;
   createdAt?: Date;
   updatedAt?: Date;
