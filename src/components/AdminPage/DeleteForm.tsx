@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react'
 
 interface Props {
   idToDelete: string,
-  nameToDelete : string,
+  nameToDelete? : string,
   onClose: () => void,
   onDelete : (id: string) => any
 }

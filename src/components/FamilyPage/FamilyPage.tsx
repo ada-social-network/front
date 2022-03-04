@@ -8,7 +8,7 @@ export interface Promo {
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
-  promo: string;
+  name: string;
   dateOfStart?: string;
   dateOfEnd?: string;
   biography: string;
@@ -39,7 +39,7 @@ const FamilyPage: FunctionComponent = () => {
         setPromos([
           {
             id: '',
-            promo: 'Error',
+            name: 'Error',
             biography:
               "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau"
           }

@@ -5,7 +5,7 @@ import { Promo } from '../../FamilyPage/FamilyPage'
 import { DatePickerField } from '../../global/DatePicker'
 
 interface FormValues {
- promo: string;
+ name: string;
  biography : string;
  dateOfStart :string ;
  dateOfEnd : string;
@@ -41,7 +41,7 @@ const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, promoToUpdate }) =>
                   {!formSent
                     ? (<Formik
                       initialValues={{
-                        promo: promoToUpdate.promo,
+                        name: promoToUpdate.name,
                         biography: promoToUpdate.biography,
                         dateOfStart: promoToUpdate.dateOfStart ? promoToUpdate.dateOfStart : '',
                         dateOfEnd: promoToUpdate.dateOfEnd ? promoToUpdate.dateOfEnd : '',
@@ -64,14 +64,14 @@ const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, promoToUpdate }) =>
 
                       <Form>
                         <div className="flex flex-col">
-                          <label className="my-2" htmlFor="promo">
+                          <label className="my-2" htmlFor="name">
                 Nom de la promo
                           </label>
                           <Field
-                            placeholder={promoToUpdate.promo}
+                            placeholder={promoToUpdate.name}
                             className="px-3 py-2 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring w-full border border-black"
-                            id="promo"
-                            name="promo"
+                            id="name"
+                            name="name"
 
                           />
                         </div>

@@ -27,7 +27,7 @@ const PromoTable: FunctionComponent = () => {
         setPromos([
           {
             id: '',
-            promo: 'Error',
+            name: 'Error',
             biography:
               "Désolé, il semblerait qu'une interférence ait été détectée sur notre réseau"
           }
