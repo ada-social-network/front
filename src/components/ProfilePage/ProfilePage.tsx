@@ -6,6 +6,7 @@ import Linkedin from '../../logo/linkedin.svg'
 import { getUser, User } from '../../services/user.service'
 import { useParams } from 'react-router'
 import EditableField from './EditableField'
+import { NonEditableField } from './NonEditableField'
 
 interface Props {
   small : boolean,
@@ -79,25 +80,31 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
 
       <div className='container flex mt-14 justify-center'>
         <div className="p-4 border-blue border-4 shadow-red box-border w-full">
-          <EditableField name={'Biogrphie'} attribute={bio} setAttribute={setBio} objectToSubmit={{ biography: bio }} toShow={anyUser?.biography}/>
+          { user.id === anyUser?.id
+            ? <EditableField name={'Biographie'} attribute={bio} setAttribute={setBio} objectToSubmit={{ biography: bio }} toShow={anyUser?.biography} />
+            : <NonEditableField name={'Biographie'} toShow={anyUser?.biography} />
+          }
 
           <div className='container grid grid-cols-2 mb-4'>
-            <div className="px-6 py-4">
-              <h3 className="font-bold text-xl mb-2">Anniversaire</h3>
-              <p className="text-base">{anyUser?.dateOfBirth}</p>
-            </div>
-            <div className="px-6 py-4">
-              <h3 className="font-bold text-xl mb-2">Alternance</h3>
-              <p className="text-base">{anyUser?.apprenticeAt}</p>
-            </div>
+            <NonEditableField name={'Anniversaire'} toShow={anyUser?.dateOfBirth} />
+            <NonEditableField name={'Alternance'} toShow={anyUser?.apprenticeAt} />
           </div>
         </div>
       </div>
 
       <div className='container flex mt-24 justify-center'>
         <div className="p-4 border-blue border-4 shadow-red box-border w-full" >
-          <EditableField name={'Mes projects pro'} attribute={proProjects} setAttribute={setProProjects} objectToSubmit={{ projectro: proProjects }} toShow={anyUser?.projectPro} />
-          <EditableField name={'Mes projects perso'} attribute={persoProjects} setAttribute={setPersoProjects} objectToSubmit={{ projectPerso: persoProjects }} toShow={anyUser?.projectPerso} />
+          { user.id === anyUser?.id
+            ? <>
+              <EditableField name={'Mes projets pro'} attribute={proProjects} setAttribute={setProProjects} objectToSubmit={{ projectPro: proProjects }} toShow={anyUser?.projectPro} />
+              <EditableField name={'Mes projets perso'} attribute={persoProjects} setAttribute={setPersoProjects} objectToSubmit={{ projectPerso: persoProjects }} toShow={anyUser?.projectPerso} />
+            </>
+            : <>
+              <NonEditableField name={'Mes projets pro'} toShow={anyUser?.projectPro} />
+              <NonEditableField name={'Mes projets perso'} toShow={anyUser?.projectPerso} />
+            </>
+          }
+
         </div>
       </div>
     </div>
