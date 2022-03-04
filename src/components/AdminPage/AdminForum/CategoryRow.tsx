@@ -24,7 +24,6 @@ const CategoryRow:FunctionComponent<Category> = ({ ...category }) => {
 
         <td className="p-2 whitespace-nowrap">
           <div className="text-lg text-center flex-col">
-
             <button
               className="max-w-10 bg-blue mx-2 text-white text-xs px-6 py-3 rounded hover:shadow-lg m-2"
               type="button"
@@ -35,7 +34,7 @@ const CategoryRow:FunctionComponent<Category> = ({ ...category }) => {
           </div>
         </td>
       </tr>)
-      : <DeleteForm onClose={handleDeleteClose} idToDelete={category.id} nameToDelete={category.name} onDelete={deleteCategory}/>
+      : <DeleteForm onClose={handleDeleteClose} idToDelete={category.id} nameToDelete={category.name} onDelete={deleteCategory} />
 
   )
 }
