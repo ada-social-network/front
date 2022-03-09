@@ -64,23 +64,28 @@ const UserRow:FunctionComponent<User> = ({ ...user }) => {
   } else {
     return (<tr>
       <td className="p-2 whitespace-nowrap">
+        <div className="mx-auto w-10 h-10 mr-2 sm:mr-3"><img className="h-10 rounded-full object-cover" src={user.profilPic}/></div>
+      </td>
+      <td className="p-2 whitespace-nowrap">
         <div className="flex items-center">
-          <div className="w-10 h-10 mr-2 sm:mr-3"><img className="rounded-full object-cover" src={user.profilPic}/></div>
-          <div className="font-medium text-gray-800">{user.firstName} {user.lastName}</div>
+          <div className="font-medium text-gray-800">{user.firstName} </div>
         </div>
+      </td>
+      <td className="p-2 whitespace-nowrap">
+        <div className="text-left">{user.lastName}</div>
       </td>
       <td className="p-2 whitespace-nowrap">
         <div className="text-left">{user.id}</div>
       </td>
       <td className="p-2 whitespace-nowrap">
-        <div className="text-left font-medium text-green-500">
+        <div className="text-left font-medium text-gray-500">
           {promoName}
         </div>
       </td>
       <td className="p-2 whitespace-nowrap">
-        <div className="text-left font-medium text-green-500">
+        <div className="text-left font-medium">
           {user.isAdmin
-            ? 'yes she is'
+            ? <p className="text-green-500">yes she is</p>
             : 'loooooser'
           }
         </div>
