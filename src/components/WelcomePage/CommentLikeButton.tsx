@@ -21,7 +21,7 @@ const LikeButton: FunctionComponent<Props> = ({ commentId, onPost, likes }) => {
             }
           })
         }}
-      > <FontAwesomeIcon icon={['fas', 'heart']} size={'lg'} className="text-red py-auto"/>
+      > J'aime
       </button>
     </div>
   )

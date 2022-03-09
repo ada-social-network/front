@@ -47,6 +47,9 @@ const UserTable: FunctionComponent = () => {
                   <th className="p-2 whitespace-nowrap">
                     <div className="font-semibold text-center">Admin</div>
                   </th>
+                  <th className="p-2 whitespace-nowrap">
+                    <div className="font-semibold text-center">Gérer</div>
+                  </th>
                 </tr>
               </thead>
               <tbody className="text-sm divide-y divide-gray-100">
