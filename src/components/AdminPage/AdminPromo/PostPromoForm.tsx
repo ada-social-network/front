@@ -4,7 +4,7 @@ import { postPromo } from '../../../services/admin.service'
 import { DatePickerField } from '../../global/DatePicker'
 
 interface Values {
-  promo: string;
+  name: string;
   biography : string;
   dateOfStart :string;
   dateOfEnd : string;
@@ -19,7 +19,7 @@ const PostPromoForm: FunctionComponent = () => {
       {!succes
         ? (<Formik
           initialValues={{
-            promo: '',
+            name: '',
             biography: '',
             dateOfStart: '',
             dateOfEnd: '',
@@ -46,8 +46,8 @@ const PostPromoForm: FunctionComponent = () => {
               </label>
               <Field
                 className="px-3 py-2 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring w-full border border-black"
-                id="promo"
-                name="promo"
+                id="name"
+                name="name"
                 placeholder="Le nom de la promo chérie"
               />
             </div>

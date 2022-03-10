@@ -1,9 +1,10 @@
 import axios from 'axios'
+import { Promo } from '../components/FamilyPage/FamilyPage'
 import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:8080/api/rest/v1/'
 
-export type User = {
+export interface User {
   id: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -21,7 +22,7 @@ export type User = {
   linkedin?: string,
   mbti?: string,
   isAdmin: boolean,
-  promoId?: string,
+  promoId: string,
   biography?: string,
   coverPic? : string,
   projectPerso? : string,
@@ -61,6 +62,14 @@ export const updateUser = (id: string, values: object) => {
 export const getUsersByPromo = (promoId :string) => {
   return axios
     .get<User[]>(API_URL + 'promos/' + promoId + '/users', { headers: { Authorization: authHeader() } })
+    .then((response) => {
+      return response.data
+    })
+}
+
+export const getPromo = (promoId :string) => {
+  return axios
+    .get<Promo>(API_URL + 'promos/' + promoId, { headers: { Authorization: authHeader() } })
     .then((response) => {
       return response.data
     })

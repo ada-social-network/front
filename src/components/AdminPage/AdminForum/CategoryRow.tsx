@@ -1,6 +1,7 @@
 import { FunctionComponent, useState } from 'react'
+import { deleteCategory } from '../../../services/admin.service'
 import { Category } from '../../ForumPage/ForumPage'
-import DeleteCategoryForm from './DeleteCategoryForm'
+import DeleteForm from '../DeleteForm'
 
 const CategoryRow:FunctionComponent<Category> = ({ ...category }) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
@@ -34,7 +35,7 @@ const CategoryRow:FunctionComponent<Category> = ({ ...category }) => {
           </div>
         </td>
       </tr>)
-      : <DeleteCategoryForm onClose={handleDeleteClose} categoryToDelete={category}/>
+      : <DeleteForm onClose={handleDeleteClose} idToDelete={category.id} nameToDelete={category.name} onDelete={deleteCategory}/>
 
   )
 }

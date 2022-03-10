@@ -46,3 +46,8 @@ export const getUsers = () => {
       return response.data
     })
 }
+
+export const deleteUser = (id: string) => {
+  return axios
+    .delete(API_URL + 'users/' + id, { headers: { Authorization: authHeader() } })
+}

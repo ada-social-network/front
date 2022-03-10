@@ -1,23 +1,24 @@
-import { Formik, Field, Form, FormikHelpers, FormikHandlers } from 'formik'
-import { FunctionComponent, useState } from 'react'
-import { updatePromo } from '../../../services/admin.service'
+import { Formik, Field, Form } from 'formik'
+import { FunctionComponent, useEffect, useState } from 'react'
 import { Promo } from '../../FamilyPage/FamilyPage'
-import { DatePickerField } from '../../global/DatePicker'
+import { User, updateUser, getPromoList } from '../../../services/user.service'
 
 interface FormValues {
- name: string;
- biography : string;
- dateOfStart :string ;
- dateOfEnd : string;
- profilePic: string;
+  firstName: string,
+  lastName: string,
+  apprenticeAt?: string,
+  isAdmin: boolean,
+  promoId: string,
 }
 
 interface Props {
-  promoToUpdate: Promo,
+  userToUpdate: User,
   onClose: () => void,
+  promos : Promo[]
+  name : string
 }
 
-const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, promoToUpdate }) => {
+const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, userToUpdate, promos, name }) => {
   const [formSent, setFormSent] = useState(false)
 
   const handleFormSent = () => {
@@ -41,22 +42,22 @@ const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, promoToUpdate }) =>
                   {!formSent
                     ? (<Formik
                       initialValues={{
-                        name: promoToUpdate.name,
-                        biography: promoToUpdate.biography,
-                        dateOfStart: promoToUpdate.dateOfStart ? promoToUpdate.dateOfStart : '',
-                        dateOfEnd: promoToUpdate.dateOfEnd ? promoToUpdate.dateOfEnd : '',
-                        profilePic: promoToUpdate.profilePic ? promoToUpdate.profilePic : ''
+                        firstName: userToUpdate.firstName,
+                        lastName: userToUpdate.lastName,
+                        apprenticeAt: userToUpdate.apprenticeAt ? userToUpdate.apprenticeAt : '',
+                        isAdmin: userToUpdate.isAdmin,
+                        promoId: userToUpdate.promoId
                       }}
                       onSubmit={(
-                        values : FormValues,
-                        { setSubmitting }: FormikHelpers<FormValues>
+                        values : FormValues
+
                       ) => {
-                        updatePromo(promoToUpdate.id, values)
+                        updateUser(userToUpdate.id, values)
                           .then((response) => {
                             handleFormSent()
                             console.log(response)
                           })
-                        setSubmitting(false)
+
                         setTimeout(onClose, 500)
                         handleResetForm()
                       }}
@@ -64,69 +65,70 @@ const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, promoToUpdate }) =>
 
                       <Form>
                         <div className="flex flex-col">
-                          <label className="my-2" htmlFor="name">
-                Nom de la promo
+                          <label className="my-2" htmlFor="firstName">
+                           Prénom
                           </label>
                           <Field
-                            placeholder={promoToUpdate.name}
+                            placeholder={userToUpdate.firstName}
                             className="px-3 py-2 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring w-full border border-black"
-                            id="name"
-                            name="name"
+                            id="firstName"
+                            name="firstName"
 
                           />
                         </div>
                         <div className="my-2">
-                          <label className="my-2" htmlFor="biography">
-               Biography
+                          <label className="my-2" htmlFor="lastName">
+                          Nom de famille
                           </label>
                           <Field
-                            placeholder={promoToUpdate.biography}
+                            placeholder={userToUpdate.lastName}
                             as="textarea"
                             className="px-3 py-2 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
-                            id="biography"
-                            name="biography"
+                            id="lastName"
+                            name="lastName"
 
                           />
                         </div>
                         <div className="my-2">
-                          <label className="my-2" htmlFor="profilePic">
-               Photo de profil
+                          <label className="my-2" htmlFor="apprenticeAt">
+                           Entreprise d'apprentissage
                           </label>
                           <Field
-                            placeholder={promoToUpdate.profilePic}
+                            placeholder={userToUpdate.apprenticeAt}
                             className="px-3 py-2 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
-                            id="profilePic"
-                            name="profilePic"
+                            id="apprenticeAt"
+                            name="apprenticeAt"
 
                           />
                         </div>
-                        <div className="flex flex-row">
-                          <div className="flex flex-col mr-2">
-                            <label className="my-2" htmlFor="dateOfStart">
-               Date de début
-                            </label>
-                            <DatePickerField
-                              placeholder={promoToUpdate.dateOfStart}
-                              className="px-3 py-1 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring border border-black"
+                        <div className="my-2">
+                          <label className="my-2" htmlFor="isAdmin">
+                          Admin ?
 
-                              id="dateOfStart"
-                              name="dateOfStart"
+                            <Field
+                              type="checkbox"
+                              className="px-3 py-2 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
+                              id="isAdmin"
+                              name="isAdmin"
                             />
-                          </div>
-                          <div className="flex flex-col mx-2">
-                            <label className="my-2" htmlFor="dateOfEnd">
-               Date de fin
-                            </label>
-                            <DatePickerField
-                              placeholder={promoToUpdate.dateOfEnd}
-                              className="px-3 py-1 placeholder-gray-400 bg-white text-gray-400 text-sm focus:outline-none focus:ring border border-black"
 
-                              id="dateOfEnd"
-                              name="dateOfEnd"
-
-                            />
-                          </div>
+                          </label>
                         </div>
+                        <div className="my-2">
+                          <label className="my-2" htmlFor="isAdmin">
+                          Promo ?
+                            <Field as="select" name="promoId">
+                              { (name !== 'none')
+                                ? (<option value={userToUpdate.promoId}>{name}</option>)
+                                : 'none'}
+                              {promos.map((promo, i) => <option key={i} value={promo.id}> {promo.name}</option>)}
+
+                            </Field>
+
+                          </label>
+
+                        </div>
+
                         <div className="px-4 mt-4 py-3 flex flex-inline align-center">
                           <button
                             type="button"
