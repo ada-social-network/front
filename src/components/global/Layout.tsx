@@ -15,11 +15,7 @@ const Layout: FunctionComponent = ({ children }) => {
         {isSmallScreen ? <SideBar small={true} /> : <SideBar small={false} />}
         {children}
       </div>
-<<<<<<< HEAD
       <Footer/>
-=======
-      <Footer />
->>>>>>> refs/remotes/origin/Footer
     </div>
 
   )
