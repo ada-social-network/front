@@ -73,7 +73,7 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
         <div className="border-blue border-4 shadow-small rounded-md">
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">{title}</div>
-            <p className="text-gray-700 text-base">{content}</p>
+            <p className="text-gray-700 text-base snap-center">{content}</p>
             <DateComponent date={createdAt} />
           </div>
 

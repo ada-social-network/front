@@ -70,13 +70,15 @@ const PostPage:FunctionComponent = () => {
         </div>
 
       </div>
+      <div className='scroll-auto '>
+        {posts !== undefined
+          ? posts.map((post, i) => {
+            return <PostCard key={i} {...post}/>
+          })
+          : 'Loading...'
+        }
+      </div>
 
-      {posts !== undefined
-        ? posts.map((post, i) => {
-          return <PostCard key={i} {...post}/>
-        })
-        : 'Loading...'
-      }
       <PostPostForm onPost={newPost} />
     </div>
 

@@ -7,6 +7,13 @@ import UserRow from './UserRow'
 const UserTable: FunctionComponent = () => {
   const [users, setUsers] = useState<User[]>([])
 
+  const filterPromo = (currentFilter :string) => {
+    const newUsers = users.filter((newVal) => {
+      return newVal.promoId === currentFilter
+    })
+    setUsers(newUsers)
+  }
+
   function compareLastName (a :any, b: any) {
     if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) return -1
     if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) return 1

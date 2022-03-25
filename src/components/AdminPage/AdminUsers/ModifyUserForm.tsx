@@ -18,7 +18,7 @@ interface Props {
   name : string
 }
 
-const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, userToUpdate, promos, name }) => {
+const ModifyUserForm:FunctionComponent<Props> = ({ onClose, userToUpdate, promos, name }) => {
   const [formSent, setFormSent] = useState(false)
 
   const handleFormSent = () => {
@@ -118,9 +118,9 @@ const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, userToUpdate, promo
                           <label className="my-2" htmlFor="isAdmin">
                           Promo ?
                             <Field as="select" name="promoId">
-                              { (name !== 'none')
-                                ? (<option value={userToUpdate.promoId}>{name}</option>)
-                                : 'none'}
+
+                              <option value={userToUpdate.promoId}>{name}</option>
+
                               {promos.map((promo, i) => <option key={i} value={promo.id}> {promo.name}</option>)}
 
                             </Field>
@@ -157,4 +157,4 @@ const ModifyPromoForm:FunctionComponent<Props> = ({ onClose, userToUpdate, promo
   )
 }
 
-export default ModifyPromoForm
+export default ModifyUserForm
