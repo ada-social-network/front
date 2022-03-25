@@ -51,8 +51,3 @@ export const deleteUser = (id: string) => {
   return axios
     .delete(API_URL + 'users/' + id, { headers: { Authorization: authHeader() } })
 }
-
-export const deleteBdaPost = (id: string) => {
-  return axios
-    .delete(API_URL + 'bdaposts/' + id, { headers: { Authorization: authHeader() } })
-}

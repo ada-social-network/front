@@ -10,7 +10,7 @@ export const NonEditableField: FunctionComponent<Props> = ({ name, toShow }) => 
     <>
       <div className="px-6 py-4">
         <div className="font-bold text-xl">{name}</div>
-        <div className="my-2">
+        <div className="my-1">
           <p className="w-full">{toShow}</p>
         </div>
       </div>

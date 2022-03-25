@@ -1,42 +1,30 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import DateComponent from './DateComponent'
 import CommentButton from './CommentButton'
-import { getBdaPostLikes } from '../../services/post.service'
-import { deleteBdaPost } from '../../services/admin.service'
+import { getBdaPostLikes, Like, LikeList, BdaPost, deleteBdaPost } from '../../services/post.service'
 import LikeButton from './LikeButton'
 import DislikeButton from './DislikeButton'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DeleteForm from '../AdminPage/DeleteForm'
+import ModifyForm from './ModifyForm'
 
 interface Props {
-  title?: string;
-  content: string;
-  createdAt?: Date;
-  id: string
+  post: BdaPost
 }
 
-export type Like = {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: null | Date;
-  userId: string;
-  bdaPostId: string;
-}
-export type LikeList = {
-    items: Like[];
-    count: number;
-    isLikedByCurrentUser : boolean;
-}
-
-const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }) => {
+const BdaPostCard: FunctionComponent<Props> = ({ post }) => {
   const [likes, setLikes] = useState<LikeList>()
   const [comOpen, setComIsOpen] = useState<boolean>(false)
+
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const handleDeleteClose = () => {
     setIsDeleteOpen(false)
-    window.location.reload()
+  }
+
+  const [isModifyOpen, setIsModifyOpen] = useState(false)
+  const handleModifyClose = () => {
+    setIsModifyOpen(false)
   }
 
   const newLike = (response : Like, likes : LikeList) => {
@@ -49,8 +37,13 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
     setLikes({ items: newItems, count: likes.count - 1, isLikedByCurrentUser: false })
   }
 
+  const [isReadMore, setIsReadMore] = useState(true)
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore)
+  }
+
   useEffect(() => {
-    getBdaPostLikes(id)
+    getBdaPostLikes(post.id)
       .then((likes) => {
         setLikes(likes)
       })
@@ -68,50 +61,71 @@ const BdaPostCard: FunctionComponent<Props> = ({ title, content, createdAt, id }
       })
   }, [])
 
-  if (!title) title = 'Pas de titre :('
-  return (
-    !isDeleteOpen
-      ? <>
+  if (isModifyOpen) {
+    return (<ModifyForm onClose={handleModifyClose} postToUpdate={post}/>)
+  } else if (isDeleteOpen) {
+    return (<DeleteForm onClose={handleDeleteClose} idToDelete={post.id} nameToDelete={post.title} onDelete={deleteBdaPost} />)
+  } else {
+    return (
+      <>
         <div className="bg-white w-4/6 flex flex-col m-6">
           <div className="border-blue border-4 shadow-small rounded-md">
             <div className="px-6 py-4">
-
               <div className='flex flex-row place-content-between'>
-                <div className="font-bold text-xl mb-2">{title}</div>
-                {/* <div className="text-lg text-center flex-col"> */}
-                <button
-                  className="max-w-10 mx-2 text-gray hover:text-red"
-                  type="button"
-                  onClick={() => setIsDeleteOpen(!isDeleteOpen)}
-                >
-                    Supprimer
-                </button>
-                {/* </div> */}
+                <div className="font-bold text-xl pt-2">{post.title}</div>
+                <div>
+                  <button
+                    className="w-20 mx-2 text-gray border-2 border-black p-1 rounded hover:text-red hover:border-red"
+                    type="button"
+                    onClick={() => setIsModifyOpen(!isModifyOpen)}
+                  >
+                  Modifier
+                  </button>
+                  <button
+                    className="w-20 mx-2 text-gray border-2 border-black p-1 rounded hover:text-red hover:border-red"
+                    type="button"
+                    onClick={() => setIsDeleteOpen(!isDeleteOpen)}
+                  >
+                  Supprimer
+                  </button>
+                </div>
               </div>
-              <p className="text-gray-700 text-base">{content}</p>
-              <DateComponent date={createdAt} />
+              {post.content.length > 800
+                ? (
+                  <p className='pt-2'>
+                    {isReadMore ? post.content.slice(0, 650) : post.content}
+                    <span onClick={toggleReadMore} className="text-blue cursor-pointer hover:underline">
+                      {isReadMore
+                        ? '  voir plus'
+                        : '  voir moins'
+                      }
+                    </span>
+                  </p>
+                )
+                : (<p className='pt-2'>{post.content}</p>)
+              }
+
+              <DateComponent date={post.createdAt} />
             </div>
 
             <div className={('px-6 py-4 flex') + (comOpen ? ' flex-col' : ' flex-row')}>
-
-              <CommentButton bdaPostId={id} onOpen={() => setComIsOpen(!comOpen)}/>
+              <CommentButton bdaPostId={post.id} onOpen={() => setComIsOpen(!comOpen)}/>
               <div className={('flex flex-row') + (comOpen ? ' hidden' : ' block')}>
-
-                <div className="flex flex-row mx-2 text-xs py-3 hover:text-blue ">
+                <div className="flex flex-row mx-2 text-xs py-3 hover:text-blue">
                   <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
                   <FontAwesomeIcon icon={faHeart} size={'lg'} className="text-red py-auto"/>
                 </div>
 
                 {likes?.isLikedByCurrentUser
-                  ? <DislikeButton bdaPostId={id} likes={likes} onPost={newDislike}/>
-                  : <LikeButton bdaPostId={id} likes={likes} onPost={newLike}/>}
+                  ? <DislikeButton bdaPostId={post.id} likes={likes} onPost={newDislike}/>
+                  : <LikeButton bdaPostId={post.id} likes={likes} onPost={newLike}/>}
               </div>
             </div>
           </div>
         </div>
       </>
-      : <DeleteForm onClose={handleDeleteClose} idToDelete={id} nameToDelete={title} onDelete={deleteBdaPost} />
-  )
+    )
+  }
 }
 
 export default BdaPostCard

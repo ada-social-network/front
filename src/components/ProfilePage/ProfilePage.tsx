@@ -43,11 +43,11 @@ const ProfilePage: FunctionComponent<Props> = ({ small }) => {
 
   return (
     <div className="my-8 w-5/6 mx-auto">
-      <div className="flex justify-center ">
+      <div className="flex justify-center">
         <div className="flex flex-col w-full">
-          <div className="md:relative ">
-            <div className="h-80 w-full  ">
-              <img src={coverImage} alt="ADA" className='object-cover h-80 w-full  border-4 border-blue' />
+          <div className="md:relative">
+            <div className="h-80 w-full">
+              <img src={coverImage} alt="ADA" className='object-cover h-80 w-full border-4 border-blue' />
               <div>
                 <img src={anyUser?.profilPic ? anyUser?.profilPic : profilPic}
                   className="object-cover rounded-full md:absolute top-60 inset-x-96 border-4 border-pink mx-auto" style={{ width: '170px', height: '168px' }} />

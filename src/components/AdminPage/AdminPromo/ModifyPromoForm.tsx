@@ -1,15 +1,15 @@
-import { Formik, Field, Form, FormikHelpers, FormikHandlers } from 'formik'
+import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { FunctionComponent, useState } from 'react'
 import { updatePromo } from '../../../services/admin.service'
 import { Promo } from '../../FamilyPage/FamilyPage'
 import { DatePickerField } from '../../global/DatePicker'
 
 interface FormValues {
- name: string;
- biography : string;
- dateOfStart :string ;
- dateOfEnd : string;
- profilePic: string;
+  name: string
+  biography : string
+  dateOfStart :string
+  dateOfEnd : string
+  profilePic: string
 }
 
 interface Props {
