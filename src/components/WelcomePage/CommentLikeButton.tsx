@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { postCommentLike } from '../../services/post.service'
 import { CommentLike, CommentLikeList } from './Comment'
-import { FaHeart } from 'react-icons/fa'
+import { FaRegHeart } from 'react-icons/fa'
 
 type Props ={
     commentId : string,
@@ -19,7 +19,7 @@ const LikeButton: FunctionComponent<Props> = ({ commentId, onPost, likes }) => {
             }
           })
         }}
-      > < FaHeart size={18} className="text-red py-auto"/>
+      > < FaRegHeart size={18} className="text-red py-auto"/>
       </button>
     </div>
   )

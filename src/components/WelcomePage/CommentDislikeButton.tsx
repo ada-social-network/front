@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { deleteLikeComment } from '../../services/post.service'
 import { CommentLikeList } from './Comment'
-import { FaRegHeart } from 'react-icons/fa'
+import { FaHeart } from 'react-icons/fa'
 
 type Props = {
     commentId: string,
@@ -31,7 +31,7 @@ const CommentDislikeButton: FunctionComponent<Props> = ({ commentId, likes, onPo
             })
           }
         }}
-      >< FaRegHeart size={18} className="text-red py-auto"/>
+      >< FaHeart size={18} className="text-red py-auto"/>
 
       </button>
     </div>
