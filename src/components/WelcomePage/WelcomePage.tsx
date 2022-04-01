@@ -1,16 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import BdaPostCard from './BdaPostCard'
-import { getBdaPosts } from '../../services/post.service'
-
-interface BdaPost {
-    id: string;
-    createdAt?: Date;
-    updatedAt?: Date;
-    deletedAt?: Date;
-    content: string;
-    title?: string;
-    userId: string;
-}
+import { getBdaPosts, BdaPost } from '../../services/post.service'
 
 type BdaPostList = BdaPost[];
 
@@ -51,7 +41,7 @@ const WelcomePage: FunctionComponent = () => {
 
       {posts
         ? posts.map((post, i) => {
-          return <BdaPostCard key={i} {...post} />
+          return <BdaPostCard key={i} post={post} />
         })
         : 'Loading...'
       }

@@ -32,16 +32,15 @@ const EditableField: FunctionComponent<Props> = ({ name, attribute, setAttribute
           Modifier
         </button>
       </div>
-      <div className="my-2">
+      <div className="my-1">
         {editAttribute
           ? (
             <form
               className='grid'
               onSubmit={() => handleSubmit(objectToSubmit)}
             >
-              <input
+              <textarea
                 className="w-full h-16 border-2 border-blue text-gray-800"
-                type="text"
                 value={attribute}
                 onChange={(event) => setAttribute(event.target.value)}
               />
