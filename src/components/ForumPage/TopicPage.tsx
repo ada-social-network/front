@@ -54,7 +54,7 @@ const TopicPage:FunctionComponent = () => {
       <PostTopicButton />
       {topics !== undefined
         ? topics.map((topic, i) => {
-          return <TopicTitle key={i} title={topic.name} id={topic.id} content={topic.content}/>
+          return <TopicTitle key={i} topic={topic}/>
         })
         : 'Loading...'
       }

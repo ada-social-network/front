@@ -116,6 +116,16 @@ export const postTopic = (id:string, values: object) => {
     .post(`${API_URL}categories/${id}/topics`, JSON.stringify(values), { headers: { Authorization: authHeader() } })
 }
 
+export const deleteTopic = (id: string) => {
+  return axios
+    .delete(`${API_URL}topics/${id}`, { headers: { Authorization: authHeader() } })
+}
+
+export const updateTopic = (id: string, values: object) => {
+  return axios
+    .patch(`${API_URL}topics/${id}`, JSON.stringify(values), { headers: { Authorization: authHeader() } })
+}
+
 export const postPost = (id:string, values: object) => {
   return axios
     .post(`${API_URL}topics/${id}/posts`, JSON.stringify(values), { headers: { Authorization: authHeader() } })
