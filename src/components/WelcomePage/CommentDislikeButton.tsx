@@ -1,8 +1,7 @@
 import { FunctionComponent } from 'react'
 import { deleteLikeComment } from '../../services/post.service'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CommentLikeList } from './Comment'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { FaHeart } from 'react-icons/fa'
 
 type Props = {
     commentId: string,
@@ -32,7 +31,7 @@ const CommentDislikeButton: FunctionComponent<Props> = ({ commentId, likes, onPo
             })
           }
         }}
-      ><FontAwesomeIcon icon={faHeart} size={'lg'} className="text-red py-auto"/>
+      >< FaHeart size={18} className="text-red py-auto"/>
 
       </button>
     </div>

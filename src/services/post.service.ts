@@ -3,6 +3,31 @@ import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:8080/api/rest/v1/'
 
+export interface BdaPost {
+  id: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  content: string;
+  title?: string;
+  userId: string;
+}
+
+export type Like = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt?: null | Date;
+  userId: string;
+  bdaPostId: string;
+}
+
+export type LikeList = {
+  items: Like[];
+  count: number;
+  isLikedByCurrentUser : boolean;
+}
+
 export const getBdaPosts = () => {
   return axios
     .get(API_URL + 'bdaposts', { headers: { Authorization: authHeader() } })
@@ -110,4 +135,17 @@ export const getTopic = (id: string) => {
     .then((response) => {
       return response.data
     })
+}
+
+export const deleteBdaPost = (id: string) => {
+  return axios
+    .delete(API_URL + 'bdaposts/' + id, { headers: { Authorization: authHeader() } })
+}
+
+export const updateBdaPost = (id: string, values: object) => {
+  return axios
+    .patch(API_URL + 'bdaposts/' + id,
+      JSON.stringify(values),
+      { headers: { Authorization: authHeader() } }
+    )
 }

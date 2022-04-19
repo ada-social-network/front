@@ -12,7 +12,8 @@ const DeleteForm:FunctionComponent<Props> = ({ onClose, idToDelete, nameToDelete
   const deleteForEver = () => {
     onDelete(idToDelete).then(() => {
       setIsDeleted(true)
-      setTimeout(onClose, 1000)
+      onClose()
+      window.location.reload()
     }
     ).catch((resp: any) => {
       console.log(resp)

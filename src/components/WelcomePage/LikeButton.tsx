@@ -1,8 +1,7 @@
 import { FunctionComponent } from 'react'
-import { postBdaPostLike } from '../../services/post.service'
+import { postBdaPostLike, Like, LikeList } from '../../services/post.service'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Like, LikeList } from './BdaPostCard'
 
 type Props ={
   bdaPostId : string,

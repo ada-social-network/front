@@ -2,8 +2,6 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import DateComponent from './DateComponent'
 import { getUser, User } from '../../services/user.service'
 import { getCommentLikes } from '../../services/post.service'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import CommentDislikeButton from './CommentDislikeButton'
 import CommentLikeButton from './CommentLikeButton'
 
