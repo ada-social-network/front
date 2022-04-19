@@ -20,6 +20,7 @@
     "@types/react-router-dom": "^5.3.2",
     "axios": "^0.24.0",
     "cosmiconfig-typescript-loader": "^1.0.0",
+    "dotenv": "^16.0.0",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-datepicker": "^4.6.0",
@@ -33,7 +34,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "craco --openssl-legacy-provider start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
