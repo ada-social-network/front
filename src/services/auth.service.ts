@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = process.env.REACT_APP_URL
+const API_URL = `${process.env.REACT_APP_URL}/auth/`
 
 export const register = (values: object) => {
   return axios
