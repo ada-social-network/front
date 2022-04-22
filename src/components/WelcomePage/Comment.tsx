@@ -4,12 +4,16 @@ import { getUser, User } from '../../services/user.service'
 import { getCommentLikes } from '../../services/post.service'
 import CommentDislikeButton from './CommentDislikeButton'
 import CommentLikeButton from './CommentLikeButton'
+import DeleteCommentModal from './DeleteCommentModal'
+import { deleteBdaComment } from '../../services/post.service'
+import { AiOutlineDelete } from 'react-icons/ai'
 
 interface Props {
   content: string;
   userId: string;
   createdAt?: Date;
-  id: string
+  id: string;
+  bdaPostId : string
 }
 
 export type CommentLike = {
@@ -27,7 +31,7 @@ export type CommentLikeList = {
   isLikedByCurrentUser : boolean;
 }
 
-const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) => {
+const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id, bdaPostId }) => {
   const [author, setAuthor] = useState<User|undefined>(undefined)
   const [likes, setCommentLikes] = useState<CommentLikeList>()
 
@@ -39,6 +43,12 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
   const newCommentDislike = (userId : string, likes : CommentLikeList) => {
     const newItems = likes.items.filter((item) => item.userId !== userId)
     setCommentLikes({ items: newItems, count: likes.count - 1, isLikedByCurrentUser: false })
+  }
+
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+  const handleDeleteClose = () => {
+    setIsDeleteOpen(false)
+    window.location.reload()
   }
 
   useEffect(() => {
@@ -63,7 +73,7 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
     })
   }, [userId])
   return (
-
+    !isDeleteOpen?(
     <div className="bg-white flex flex-row w-5/6 mx-6">
 
       <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex">
@@ -80,6 +90,7 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
               {content}
             </div>
           </div>
+          
           <div className="flex flex-row text-sm mt-2 my-auto justify-between">
             <div className ="flex flex-row text-gray-400 text-sm text-left ">
               {likes?.isLikedByCurrentUser
@@ -88,6 +99,16 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
 
               <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
 
+
+              <div>
+  
+        <button 
+        type="button"
+        onClick={() => setIsDeleteOpen(!isDeleteOpen)}>
+         < AiOutlineDelete size={18} className="text-blue py-auto"/>
+        </button>
+        </div>
+              
             </div>
 
             <div>
@@ -100,6 +121,7 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id }) =
       </div>
     </div>
 
+  ):  <DeleteCommentModal bdaPostId={bdaPostId} commentId={id} onClose={handleDeleteClose} />
   )
 }
 
