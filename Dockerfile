@@ -22,7 +22,8 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 # Remove eslint because we have to fix code before remove this variable
 ENV DISABLE_ESLINT_PLUGIN=true
 
-ENV REACT_APP_URL=http://localhost:8080
+# We use an empty string because if not the value is undefined and the path is wrong(/undefined/api/rest/v1...)
+ENV REACT_APP_URL=""
 
 # Build current project into current container folder
 RUN npm run build
