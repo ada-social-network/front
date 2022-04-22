@@ -104,7 +104,6 @@ const BdaPostCard: FunctionComponent<Props> = ({ post }) => {
                 )
                 : (<p className='pt-2'>{post.content}</p>)
               }
-
               <DateComponent date={post.createdAt} />
             </div>
 

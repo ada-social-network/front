@@ -24,7 +24,7 @@ const CommentDislikeButton: FunctionComponent<Props> = ({ commentId, likes, onPo
       <button
         onClick={() => {
           if (likeId !== undefined) {
-            deleteLikeComment(commentId, likeId).then((response) => {
+            deleteLikeComment(commentId, likeId).then(() => {
               if (cUserId !== null) {
                 onPost(cUserId, likes)
               }

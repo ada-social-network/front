@@ -81,7 +81,7 @@ const RegistrationForm: FunctionComponent = () => {
 
   const handleRegister = (values: FormValues) => {
     register(values)
-      .then((response) => {
+      .then(() => {
         setFormStatus(formStatusProps.success)
         setTimeout(() => { redirectLogin() }, 1500)
       })

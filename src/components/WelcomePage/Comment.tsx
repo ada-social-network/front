@@ -5,7 +5,6 @@ import { getCommentLikes } from '../../services/post.service'
 import CommentDislikeButton from './CommentDislikeButton'
 import CommentLikeButton from './CommentLikeButton'
 import DeleteCommentModal from './DeleteCommentModal'
-import { deleteBdaComment } from '../../services/post.service'
 import { AiOutlineDelete } from 'react-icons/ai'
 
 interface Props {
@@ -48,7 +47,6 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id, bda
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const handleDeleteClose = () => {
     setIsDeleteOpen(false)
-    window.location.reload()
   }
 
   useEffect(() => {
@@ -73,55 +71,47 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id, bda
     })
   }, [userId])
   return (
-    !isDeleteOpen?(
-    <div className="bg-white flex flex-row w-5/6 mx-6">
-
-      <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex">
-        <div>
-          <a href={`/profile/${author?.id}`}>
-            <img className="rounded-full object-cover h-10 w-10 mr-2 " src={author?.profilPic}/>
-          </a>
-        </div>
-        <div>
-
-          <div className="bg-gray-100 flex flex-row dark:bg-gray-700 rounded-xl px-4 pt-2 pb-2.5">
-            <div className="font-semibold mr-3 text-sm leading-relaxed">{author?.firstName}</div>
-            <div className="text-normal mx-2 leading-snug md:leading-normal min-w-3/4">
-              {content}
-            </div>
-          </div>
-          
-          <div className="flex flex-row text-sm mt-2 my-auto justify-between">
-            <div className ="flex flex-row text-gray-400 text-sm text-left ">
-              {likes?.isLikedByCurrentUser
-                ? <CommentDislikeButton commentId={id} likes={likes} onPost={newCommentDislike} />
-                : <CommentLikeButton commentId={id} likes={likes} onPost={newCommentLike}/>}
-
-              <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
-
-
-              <div>
-  
-        <button 
-        type="button"
-        onClick={() => setIsDeleteOpen(!isDeleteOpen)}>
-         < AiOutlineDelete size={18} className="text-blue py-auto"/>
-        </button>
-        </div>
-              
-            </div>
-
+    !isDeleteOpen
+      ? (
+        <div className="bg-white flex flex-row mx-6">
+          <div className="w-full bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex">
             <div>
-              <DateComponent date={createdAt} />
+              <a href={`/profile/${author?.id}`}>
+                <img className="rounded-full object-cover h-10 w-10 mr-2 " src={author?.profilPic}/>
+              </a>
             </div>
+            <div className='w-full'>
+              <div className="bg-gray-100 flex flex-row dark:bg-gray-700 rounded-xl px-4 pt-2 pb-2.5">
+                <div className="font-semibold mr-3 text-sm leading-relaxed">{author?.firstName}</div>
+                <div className="text-normal mx-2 leading-snug md:leading-normal min-w-3/4">
+                  {content}
+                </div>
+              </div>
 
+              <div className="flex flex-row mt-4 px-2 justify-between">
+                <div className ="flex flex-row text-gray-400 text-sm text-left ">
+                  {likes?.isLikedByCurrentUser
+                    ? <CommentDislikeButton commentId={id} likes={likes} onPost={newCommentDislike} />
+                    : <CommentLikeButton commentId={id} likes={likes} onPost={newCommentLike}/>}
+                  <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => setIsDeleteOpen(!isDeleteOpen)}>
+                      <AiOutlineDelete size={18} className="text-blue py-auto"/>
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <DateComponent date={createdAt} />
+                </div>
+              </div>
+            </div>
           </div>
-
         </div>
-      </div>
-    </div>
 
-  ):  <DeleteCommentModal bdaPostId={bdaPostId} commentId={id} onClose={handleDeleteClose} />
+      )
+      : <DeleteCommentModal bdaPostId={bdaPostId} commentId={id} onClose={handleDeleteClose} />
   )
 }
 
