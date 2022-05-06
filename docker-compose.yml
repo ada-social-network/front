@@ -2,13 +2,13 @@ version: "3"
 services:
   api:
     image: adahub/api:0.0.1
+    ports:
+      - "8080:8080"
     command:
       - "--http-port=8080"
       - "--sqlite-dsn"
       - "/usr/local/ada/data/gorm.db"
-      - "--allowed-domain=http//localhost:3000"
-      - "--allowed-domain=http://172.20.0.3:3000"
-      - "--allowed-domain=front:3000"
+      - "--allowed-domain=*"
 
     volumes:
       - data-volume:/usr/local/ada/data
@@ -16,11 +16,12 @@ services:
   front:
     build:
       context: .
+    
     ports:
-      - 3000:3000
+      - "3000:3000"
     command: "npm start"
     environment:
-      - REACT_APP_URL=api:8080
+      - REACT_APP_URL=http://0.0.0.0:8080
 
 volumes:
   data-volume:
