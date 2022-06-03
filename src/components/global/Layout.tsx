@@ -10,11 +10,13 @@ const Layout: FunctionComponent = ({ children }) => {
   return (
     <div>
       <NavBar />
-      <div className="flex flex-row w-full">
+      <div className="relative flex flex-row w-full">
         {isSmallScreen ? <SideBar small={true} /> : <SideBar small={false} />}
-        {children}
+        <div className="flex h-screen justify-between flex-col w-full">
+          {children}
+          <Footer/>
+        </div>
       </div>
-      <Footer/>
     </div>
   )
 }
