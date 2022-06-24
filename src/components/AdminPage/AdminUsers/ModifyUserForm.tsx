@@ -1,7 +1,7 @@
 import { Formik, Field, Form } from 'formik'
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { Promo } from '../../FamilyPage/FamilyPage'
-import { User, updateUser, getPromoList } from '../../../services/user.service'
+import { User, updateUser } from '../../../services/user.service'
 
 interface FormValues {
   firstName: string,
@@ -66,7 +66,7 @@ const ModifyUserForm:FunctionComponent<Props> = ({ onClose, userToUpdate, promos
                       <Form>
                         <div className="flex flex-col">
                           <label className="my-2" htmlFor="firstName">
-                           Prénom
+                            Prénom
                           </label>
                           <Field
                             placeholder={userToUpdate.firstName}
@@ -91,7 +91,7 @@ const ModifyUserForm:FunctionComponent<Props> = ({ onClose, userToUpdate, promos
                         </div>
                         <div className="my-2">
                           <label className="my-2" htmlFor="apprenticeAt">
-                           Entreprise d'apprentissage
+                           Entreprise d&apos;apprentissage
                           </label>
                           <Field
                             placeholder={userToUpdate.apprenticeAt}

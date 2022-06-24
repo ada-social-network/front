@@ -20,7 +20,7 @@ const LikeButton: FunctionComponent<Props> = ({ bdaPostId, onPost, likes }) => {
             }
           })
         }}
-      > <FontAwesomeIcon icon={faThumbsUp}/> J'aime </button>
+      > <FontAwesomeIcon icon={faThumbsUp}/> J&apos;aime </button>
     </div>
   )
 }

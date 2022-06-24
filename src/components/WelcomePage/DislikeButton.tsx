@@ -32,7 +32,7 @@ const DislikeButton: FunctionComponent<Props> = ({ bdaPostId, likes, onPost }) =
             })
           }
         }}
-      > <FontAwesomeIcon icon={faThumbsDown}/> Je n'aime plus </button>
+      > <FontAwesomeIcon icon={faThumbsDown}/> Je n&apos;aime plus </button>
     </div>
   )
 }

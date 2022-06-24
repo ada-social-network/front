@@ -1,5 +1,5 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent } from 'react'
 import { useParams } from 'react-router'
 import { postPost } from '../../services/post.service'
 import { Post } from './PostPage'
