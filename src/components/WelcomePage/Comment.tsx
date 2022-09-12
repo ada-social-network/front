@@ -6,6 +6,7 @@ import CommentDislikeButton from './CommentDislikeButton'
 import CommentLikeButton from './CommentLikeButton'
 import DeleteCommentModal from './DeleteCommentModal'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { useUserContext } from '../../context/userContext'
 
 interface Props {
   content: string;
@@ -33,6 +34,7 @@ export type CommentLikeList = {
 const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id, bdaPostId }) => {
   const [author, setAuthor] = useState<User|undefined>(undefined)
   const [likes, setCommentLikes] = useState<CommentLikeList>()
+  const { user } = useUserContext()
 
   const newCommentLike = (response : CommentLike, likes : CommentLikeList) => {
     likes.items.push(response)
@@ -92,15 +94,19 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id, bda
                 <div className ="flex flex-row text-gray-400 text-sm text-left ">
                   {likes?.isLikedByCurrentUser
                     ? <CommentDislikeButton commentId={id} likes={likes} onPost={newCommentDislike} />
-                    : <CommentLikeButton commentId={id} likes={likes} onPost={newCommentLike}/>}
+                    : <CommentLikeButton commentId={id} likes={likes} onPost={newCommentLike}/>
+                  }
                   <p className="mx-1 pb-2">{likes ? likes.count : 'wait ...'}</p>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => setIsDeleteOpen(!isDeleteOpen)}>
-                      <AiOutlineDelete size={18} className="text-blue py-auto"/>
-                    </button>
-                  </div>
+                  {(user.isAdmin || user.id === author?.id)
+                    ? <div>
+                      <button
+                        type="button"
+                        onClick={() => setIsDeleteOpen(!isDeleteOpen)}>
+                        <AiOutlineDelete size={18} className="text-blue py-auto"/>
+                      </button>
+                    </div>
+                    : ''
+                  }
                 </div>
                 <div>
                   <DateComponent date={createdAt} />
@@ -111,7 +117,9 @@ const Comment: FunctionComponent<Props> = ({ userId, content, createdAt, id, bda
         </div>
 
       )
-      : <DeleteCommentModal bdaPostId={bdaPostId} commentId={id} onClose={handleDeleteClose} />
+      : (
+        <DeleteCommentModal bdaPostId={bdaPostId} commentId={id} onClose={handleDeleteClose} />
+      )
   )
 }
 

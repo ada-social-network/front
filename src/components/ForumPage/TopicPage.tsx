@@ -27,7 +27,7 @@ const TopicPage:FunctionComponent = () => {
   useEffect(() => {
     getTopics(id)
       .then((response) => {
-        setTopics(response)
+        setTopics(response.reverse())
       })
       .catch(function (error) {
         if (error.response) {

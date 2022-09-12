@@ -8,12 +8,15 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DeleteForm from '../AdminPage/DeleteForm'
 import ModifyForm from './ModifyForm'
+import { useUserContext } from '../../context/userContext'
 
 interface Props {
   post: BdaPost
 }
 
 const BdaPostCard: FunctionComponent<Props> = ({ post }) => {
+  const { user } = useUserContext()
+
   const [likes, setLikes] = useState<LikeList>()
   const [comOpen, setComIsOpen] = useState<boolean>(false)
 
@@ -73,22 +76,24 @@ const BdaPostCard: FunctionComponent<Props> = ({ post }) => {
             <div className="px-6 py-4">
               <div className='flex flex-row place-content-between'>
                 <div className="font-bold text-xl pt-2">{post.title}</div>
-                <div>
-                  <button
-                    className="w-20 mx-2 text-gray border-2 border-black p-1 rounded hover:text-red hover:border-red"
-                    type="button"
-                    onClick={() => setIsModifyOpen(!isModifyOpen)}
-                  >
+                {user.isAdmin
+                  ? <div>
+                    <button
+                      className="w-20 mx-2 text-gray border-2 border-black p-1 rounded hover:text-red hover:border-red"
+                      type="button"
+                      onClick={() => setIsModifyOpen(!isModifyOpen)}
+                    >
                   Modifier
-                  </button>
-                  <button
-                    className="w-20 mx-2 text-gray border-2 border-black p-1 rounded hover:text-red hover:border-red"
-                    type="button"
-                    onClick={() => setIsDeleteOpen(!isDeleteOpen)}
-                  >
+                    </button>
+                    <button
+                      className="w-20 mx-2 text-gray border-2 border-black p-1 rounded hover:text-red hover:border-red"
+                      type="button"
+                      onClick={() => setIsDeleteOpen(!isDeleteOpen)}
+                    >
                   Supprimer
-                  </button>
-                </div>
+                    </button>
+                  </div>
+                  : ''}
               </div>
               {post.content.length > 800
                 ? (

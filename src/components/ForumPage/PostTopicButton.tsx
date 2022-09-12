@@ -9,8 +9,8 @@ const PostTopicButton: FunctionComponent = () => {
   }
   return (
     <>
-      <button onClick={() => setIsModalOpen(!isModalOpen)}>
-        <p> POst Topic</p>
+      <button className="max-w-10 bg-blue mx-2 text-white text-xs px-6 py-3 rounded hover:shadow-lg m-2" onClick={() => setIsModalOpen(!isModalOpen)}>
+        <p> Créer un nouveau topic !</p>
       </button>
 
       {isModalOpen
@@ -23,7 +23,7 @@ const PostTopicButton: FunctionComponent = () => {
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                     <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4" id="modal-title">
-                          Poster un message
+                          Mon nouveau topic :
                     </h3>
                     <PostTopicForm onClose={handleClose}/>
                   </div>

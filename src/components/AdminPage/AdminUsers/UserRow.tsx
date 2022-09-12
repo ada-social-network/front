@@ -75,7 +75,7 @@ const UserRow:FunctionComponent<User> = ({ ...user }) => {
         <div className="text-left">{user.lastName}</div>
       </td>
       <td className="p-2 whitespace-nowrap">
-        <div className="text-left">{user.id}</div>
+        <div className="text-left">{user.email}</div>
       </td>
       <td className="p-2 whitespace-nowrap">
         <div className="text-left font-medium text-gray-500">
@@ -85,8 +85,8 @@ const UserRow:FunctionComponent<User> = ({ ...user }) => {
       <td className="p-2 whitespace-nowrap">
         <div className="text-left font-medium">
           {user.isAdmin
-            ? <p className="text-green-500">yes she is</p>
-            : 'loooooser'
+            ? <p className="text-green-500">admin</p>
+            : 'lambda'
           }
         </div>
       </td>
