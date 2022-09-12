@@ -69,7 +69,7 @@ const LoginForm: FunctionComponent = () => {
         } else {
           setFormStatus(formStatusProps.error)
         }
-        // location.reload()
+        location.reload()
       })
       .finally(() => {
         setDisplayFormStatus(true)

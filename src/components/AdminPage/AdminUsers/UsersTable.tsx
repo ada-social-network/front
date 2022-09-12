@@ -90,7 +90,7 @@ const UserTable: FunctionComponent = () => {
                     </button>
                   </th>
                   <th className="text-left p-2 whitespace-nowrap">
-                    <div className="font-semibold ">Id</div>
+                    <div className="font-semibold ">Email</div>
                   </th>
                   <th className="text-left p-2 whitespace-nowrap">
                     <button onClick={() => setUsers(sortBy(users, comparePromo))} className="rounded text-gray-400 hover:text-gray-500 focus:underline focus:text-blue">

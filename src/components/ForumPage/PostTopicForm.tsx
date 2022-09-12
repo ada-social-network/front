@@ -61,7 +61,7 @@ const PostCategoryForm:FunctionComponent<Props> = ({ onClose }) => {
               className="px-3 py-3 placeholder-gray-400 bg-white text-sm focus:outline-none focus:ring w-full border border-black"
               id="content"
               name="content"
-              placeholder="Mon message à la plèbe"
+              placeholder="Description de ce dont je veux parler"
             />
             <div className="px-4 mt-4 py-3 flex flex-inline align-center">
               <button

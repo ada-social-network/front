@@ -43,7 +43,7 @@ const CommentForm: FunctionComponent<Props> = ({ bdaPostId, onPost }) => {
                 className="rounded-l-lg p-4 bg-gray-100 border-t mr-0 border-b border-l text-gray-800 border-gray-200 w-full"
                 id="content"
                 name="content"
-                placeholder="Mon message à la plèbe"
+                placeholder="Ma réaction"
               />
 
               <button

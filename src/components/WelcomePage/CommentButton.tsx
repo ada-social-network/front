@@ -87,7 +87,11 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId, onOpen }) => {
                 ? comments.map((comment, i) => {
                   return <Comment key={i + bdaPostId} {...comment} bdaPostId={bdaPostId}/>
                 })
-                : <p> Zero commentaire ...</p>
+                : (
+                  <div className='m-4 flex'>
+                    <p className="rounded-l-lg p-4 text-gray-600 " > Il n'y a pas encore de commentaire !</p>
+                  </div>
+                )
               }
             </li>
           </ul>

@@ -9,6 +9,7 @@ import AdminPromo from './AdminPromo/AdminPromo'
 import AdminWelcome from './AdminWelcome'
 import AdminForum from './AdminForum/AdminForum'
 import AdminUsers from './AdminUsers/AdminUsers'
+import { useUserContext } from '../../context/userContext'
 
 interface Page {
   name: string
@@ -17,6 +18,7 @@ interface Page {
 
 const AdminPage: FunctionComponent = () => {
   const isSmallScreen = useMediaQuery({ query: '(max-width: 900px)' })
+  const { user } = useUserContext()
 
   const pages: Page[] = [
     { name: 'Actualité', icon: faGlobe },
@@ -33,21 +35,27 @@ const AdminPage: FunctionComponent = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className='flex flex-row w-full'>
-        <AdminSideBar pages={pages} setActive={setActive} small={!!isSmallScreen} />
-        <div className="flex flex-col w-5/6 ml-6 mt-20">
-          {
-            {
-              Welcome: <AdminWelcome />,
-              Actualité: <ActuPage />,
-              Promos: <AdminPromo />,
-              Forum: <AdminForum />,
-              Apprenantes: <AdminUsers />
-            }[active]
-          }
-        </div>
-      </div>
+      {user.isAdmin
+        ? (
+          <>
+            <Navbar />
+            <div className='flex flex-row w-full'>
+              <AdminSideBar pages={pages} setActive={setActive} small={!!isSmallScreen} />
+              <div className="flex flex-col w-5/6 ml-6 mt-20">
+                {
+                  {
+                    Welcome: <AdminWelcome />,
+                    Actualité: <ActuPage />,
+                    Promos: <AdminPromo />,
+                    Forum: <AdminForum />,
+                    Apprenantes: <AdminUsers />
+                  }[active]
+                }
+              </div>
+            </div>
+          </>)
+        : <AdminWelcome />
+      }
     </div>
   )
 }
