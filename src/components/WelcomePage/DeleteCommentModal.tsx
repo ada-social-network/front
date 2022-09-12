@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react'
 import { deleteBdaComment } from '../../services/post.service'
-import { RiChatDeleteLine } from 'react-icons/ri'
+// import { RiChatDeleteLine } from 'react-icons/ri'
 
 interface Props {
   bdaPostId: string,

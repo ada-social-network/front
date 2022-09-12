@@ -1,7 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import PromoCard from './PromoCard'
 import { getPromoList } from '../../services/user.service'
-import PostPromoForm from '../AdminPage/AdminPromo/PostPromoForm'
 
 export interface Promo {
   id: string;

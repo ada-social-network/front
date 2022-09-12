@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext, useEffect, createContext, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { logOut } from '../services/auth.service'
 import { User, getCurrentUser } from '../services/user.service'
 
@@ -6,6 +7,7 @@ interface UserContextType {
   user: User
   userLogOut?: () => void
 }
+
 const defaultUser = {
   user: {
     id: '',
@@ -20,6 +22,8 @@ const defaultUser = {
 export const UserContext = createContext<UserContextType>(defaultUser)
 
 export const UserProvider : FunctionComponent = ({ children }) => {
+  const history = useHistory()
+
   const [user, setUser] = useState<User>(defaultUser.user)
   const userLogOut = () => {
     logOut()
@@ -31,6 +35,7 @@ export const UserProvider : FunctionComponent = ({ children }) => {
         setUser(u)
       })
       .catch(function (error) {
+        history.push('/login')
         if (error.response) {
           console.log(error.response.data)
           console.log(error.response.status)

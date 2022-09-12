@@ -229,7 +229,7 @@ const RegistrationForm: FunctionComponent = () => {
                       disabled={isSubmitting}
                       style={{ transition: 'all .15s ease' }}
                     >
-                      S'inscrire
+                      S&apos;inscrire
                     </button>
                   </div>
                   {displayFormStatus && (

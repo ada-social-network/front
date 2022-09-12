@@ -10,7 +10,7 @@ type Props ={
 }
 const LikeButton: FunctionComponent<Props> = ({ commentId, onPost, likes }) => {
   return (
-      <div>
+    <div>
       <button
         onClick={() => {
           postCommentLike(commentId).then((response) => {

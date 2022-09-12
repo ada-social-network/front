@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import { getBdaPostComments } from '../../services/post.service'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
@@ -47,7 +47,7 @@ const CommentButton: FunctionComponent<Props> = ({ bdaPostId, onOpen }) => {
       })
   }, [])
 
-  const [showComments, setShowComments] = React.useState(false)
+  const [showComments, setShowComments] = useState(false)
   const openComments = () => {
     setShowComments(true)
     onOpen()

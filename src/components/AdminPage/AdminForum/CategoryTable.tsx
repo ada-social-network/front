@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import { getCategories } from '../../../services/admin.service'
-import { Category, CategoryList } from '../../ForumPage/ForumPage'
+import { CategoryList } from '../../ForumPage/ForumPage'
 import CategoryRow from './CategoryRow'
 
 const CategoryTable: FunctionComponent = () => {

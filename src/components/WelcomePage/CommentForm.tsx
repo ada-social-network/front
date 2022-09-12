@@ -1,6 +1,5 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { FunctionComponent, useEffect, useState } from 'react'
-import { useUserContext } from '../../context/userContext'
+import { FunctionComponent } from 'react'
 import { postBdaComment } from '../../services/post.service'
 import { IComment } from './CommentButton'
 

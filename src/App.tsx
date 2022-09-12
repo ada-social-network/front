@@ -40,7 +40,6 @@ function App () {
                     </Layout>
                   )}
                 />
-
               )
             })}
           </UserProvider>

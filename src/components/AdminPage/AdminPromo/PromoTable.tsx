@@ -1,17 +1,17 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import { getPromoList } from '../../../services/user.service'
-import { PromoList, Promo } from '../../FamilyPage/FamilyPage'
+import { PromoList } from '../../FamilyPage/FamilyPage'
 import PromoRow from './PromoRow'
 
 const PromoTable: FunctionComponent = () => {
   const [promos, setPromos] = useState<PromoList>([])
-  const [promoCount, setPromoCount] = useState<number>(0)
+  // const [promoCount, setPromoCount] = useState<number>(0)
 
   useEffect(() => {
     getPromoList()
       .then((response) => {
         setPromos(response.data)
-        setPromoCount(response.data.length + 1)
+        // setPromoCount(response.data.length + 1)
       })
       .catch(function (error) {
         if (error.response) {
@@ -52,7 +52,7 @@ const PromoTable: FunctionComponent = () => {
                     <div className="font-semibold text-left">Id</div>
                   </th>
                   <th className="p-2 whitespace-nowrap">
-                    <div className="font-semibold text-left">Nombre d'apprenant.es</div>
+                    <div className="font-semibold text-left">Nombre d&apos;apprenant.es</div>
                   </th>
                   <th className="p-2 whitespace-nowrap">
                     <div className="font-semibold text-center">Administrer</div>
