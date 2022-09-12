@@ -5,7 +5,6 @@ import SideBar from './SideBar/SideBar'
 import { isLogin } from '../../services/auth.service'
 import { useHistory } from 'react-router-dom'
 
-
 const Layout: FunctionComponent = ({ children }) => {
   const isSmallScreen = useMediaQuery({ query: '(max-width: 900px)' })
   const history = useHistory()
