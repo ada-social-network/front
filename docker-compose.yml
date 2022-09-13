@@ -1,0 +1,19 @@
+version: "3"
+services:
+  api:
+    image: ghcr.io/ada-social-network/api:latest
+    command:
+      - "--http-port=8080"
+      - "--sqlite-dsn"
+      - "/usr/local/ada/data/gorm.db"
+    volumes:
+      - data-volume:/usr/local/ada/data
+
+  front:
+    image: ghcr.io/ada-social-network/front:latest
+    ports:
+      - "${FRONT_PORT:-3000}:80"
+
+volumes:
+  data-volume:
+

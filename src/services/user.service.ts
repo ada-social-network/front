@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Promo } from '../components/FamilyPage/FamilyPage'
 import authHeader from './auth-header'
 
-const API_URL = 'http://localhost:8080/api/rest/v1/'
+const API_URL = `${process.env.REACT_APP_URL}/api/rest/v1/`
 
 export interface User {
   id: string;

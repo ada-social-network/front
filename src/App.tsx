@@ -4,6 +4,8 @@ import {
   Switch,
   RouteComponentProps
 } from 'react-router-dom'
+import 'dotenv/config'
+
 import Layout from './components/global/Layout'
 import LoginPage from './components/LoginPage/LoginPage'
 import RegistrationPage from './components/RegistrationPage/RegistrationPage'
