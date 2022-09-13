@@ -9,7 +9,7 @@ const AdminWelcome: FunctionComponent = () => {
       <h1 className='text-center m-8'>Admin</h1>
       {user.isAdmin
         ? <p>Bienvenue sur la page admin {user.firstName} !</p>
-        : <p className='text-center m-8'>Tu t'es perdu.e {user.firstName} ? Retourne d'où tu viens ou conséquences!</p>
+        : <p className='text-center m-8'>Tu t&apos;es perdu.e {user.firstName} ? Retourne d&apos;où tu viens ou conséquences!</p>
       }
     </>
   )
